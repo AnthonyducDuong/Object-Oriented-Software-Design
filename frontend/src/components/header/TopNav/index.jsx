@@ -42,81 +42,45 @@ function TopNav(props) {
                     />
                 </Link>
                 <Flex>
-                    <List display='flex'>
+                    <List display='flex' fontWeight='600'>
                         <ListItem padding={'0 16px'}>
                             <Link href='#'>Home</Link>
                         </ListItem>
+                        <ListItem padding={'0 16px'}>
+                            <Link href='#'>Services</Link>
+                        </ListItem>
                         <ListItem>
                             <Container>
                                 <Menu isLazy>
-                                    <MenuButton>Services <Icon as={TriangleDownIcon} w={2} h={2} /></MenuButton>
+                                    <MenuButton fontWeight='600'>About <Icon as={TriangleDownIcon} w={2} h={2} /></MenuButton>
                                     <MenuList backgroundColor={'#018ae0'} >
-                                        <MenuItem><Link>Service Style 1</Link></MenuItem>
-                                        <MenuItem><Link>Service Style 2</Link></MenuItem>
-                                        <MenuItem><Link>Service Style 3</Link></MenuItem>
+                                        <MenuItem fontWeight='600'><Link>About Us</Link></MenuItem>
+                                        <MenuItem fontWeight='600'><Link>Our team</Link></MenuItem>
+                                        <MenuItem fontWeight='600'><Link>Careers</Link></MenuItem>
                                     </MenuList>
                                 </Menu>
                             </Container>
                         </ListItem>
                         <ListItem>
-                            <Container>
-                                <Menu isLazy>
-                                    <MenuButton>About <Icon as={TriangleDownIcon} w={2} h={2} /></MenuButton>
+                            <Container >
+                                <Menu isLazy >
+                                    <MenuButton fontWeight='600'>Adopt <Icon as={TriangleDownIcon} w={2} h={2} /></MenuButton>
                                     <MenuList backgroundColor={'#018ae0'} >
-                                        <MenuItem><Link>Service Style 1</Link></MenuItem>
-                                        <MenuItem><Link>Service Style 2</Link></MenuItem>
-                                        <MenuItem><Link>Service Style 3</Link></MenuItem>
+                                        <MenuItem fontWeight='600'><Link>Adopt Gallery</Link></MenuItem>
+                                        <MenuItem fontWeight='600'><Link>Adopt stories</Link></MenuItem>
+                                        <MenuItem fontWeight='600'><Link>Events</Link></MenuItem>
                                     </MenuList>
                                 </Menu>
                             </Container>
                         </ListItem>
-                        <ListItem>
-                            <Container>
-                                <Menu isLazy>
-                                    <MenuButton>Adopt <Icon as={TriangleDownIcon} w={2} h={2} /></MenuButton>
-                                    <MenuList backgroundColor={'#018ae0'} >
-                                        <MenuItem><Link>Service Style 1</Link></MenuItem>
-                                        <MenuItem><Link>Service Style 2</Link></MenuItem>
-                                        <MenuItem><Link>Service Style 3</Link></MenuItem>
-                                    </MenuList>
-                                </Menu>
-                            </Container>
+                        <ListItem padding={'0 16px'}>
+                            <Link href='#'>Gallery</Link>
                         </ListItem>
-                        <ListItem>
-                            <Container>
-                                <Menu isLazy>
-                                    <MenuButton>Gallery <Icon as={TriangleDownIcon} w={2} h={2} /></MenuButton>
-                                    <MenuList backgroundColor={'#018ae0'} >
-                                        <MenuItem><Link>Service Style 1</Link></MenuItem>
-                                        <MenuItem><Link>Service Style 2</Link></MenuItem>
-                                        <MenuItem><Link>Service Style 3</Link></MenuItem>
-                                    </MenuList>
-                                </Menu>
-                            </Container>
+                        <ListItem padding={'0 16px'}>
+                            <Link href='#'>Contact</Link>
                         </ListItem>
-                        <ListItem>
-                            <Container>
-                                <Menu isLazy>
-                                    <MenuButton>Contact <Icon as={TriangleDownIcon} w={2} h={2} /></MenuButton>
-                                    <MenuList backgroundColor={'#018ae0'} >
-                                        <MenuItem><Link>Service Style 1</Link></MenuItem>
-                                        <MenuItem><Link>Service Style 2</Link></MenuItem>
-                                        <MenuItem><Link>Service Style 3</Link></MenuItem>
-                                    </MenuList>
-                                </Menu>
-                            </Container>
-                        </ListItem>
-                        <ListItem>
-                            <Container>
-                                <Menu isLazy>
-                                    <MenuButton>Orther pages <Icon as={TriangleDownIcon} w={2} h={2} /></MenuButton>
-                                    <MenuList backgroundColor={'#018ae0'} >
-                                        <MenuItem><Link>Service Style 1</Link></MenuItem>
-                                        <MenuItem><Link>Service Style 2</Link></MenuItem>
-                                        <MenuItem><Link>Service Style 3</Link></MenuItem>
-                                    </MenuList>
-                                </Menu>
-                            </Container>
+                        <ListItem padding={'0 16px'}>
+                            <Link href='#'>Blog</Link>
                         </ListItem>
                     </List>
                 </Flex>
