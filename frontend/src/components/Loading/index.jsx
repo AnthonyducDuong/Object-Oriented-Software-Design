@@ -31,11 +31,11 @@ function Loading(props) {
             width={200}
          />
          <Spinner
-            thickness='4px'
+            thickness='8px'
             speed='0.8s'
             emptyColor='gray.200'
             color='black.300'
-            size='lg'
+            size='xl'
          />
       </Flex>
    );
