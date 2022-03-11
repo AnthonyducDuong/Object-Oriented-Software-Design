@@ -10,10 +10,18 @@ Header.propTypes = {
 
 function Header(props) {
     return (
-        <>
+        <Container
+            maxWidth='100%'
+            width='100%'
+            padding='0'
+            position='fixed'
+            top='0'
+            background='#fff'
+            zIndex='1'
+        >
             <TopBar />
             <TopNav />
-        </>
+        </Container>
     );
 }
 
