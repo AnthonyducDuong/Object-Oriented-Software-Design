@@ -7,7 +7,7 @@ BackToTop.propTypes = {
    showBelow: PropTypes.number,
 };
 
-BackToTop.DefaultProp = {
+BackToTop.defaultProps = {
    showBelow: 250,
 };
 

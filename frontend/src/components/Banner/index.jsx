@@ -20,6 +20,7 @@ function Banner(props) {
             height='212'
             marginTop='148px'
             padding='64px 0'
+            backgroundSize={'cover'}
             backgroundRepeat='no-repeat'
             backgroundPosition='center center'
             position='relative'
