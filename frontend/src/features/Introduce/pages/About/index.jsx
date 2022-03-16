@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from '../../../../components/header'
 import Banner from '../../../../components/Banner';
 import { Container, Flex } from '@chakra-ui/layout';
 import Content from '../../components/ContentAbout';
@@ -17,7 +16,6 @@ About.propTypes = {
 function About(props) {
     return (
         <>
-            <Header />
             <Banner heading='About us' />
             <Container
                 backgroundColor='#fff'
@@ -50,8 +48,6 @@ function About(props) {
                     <SideBar maxW='25%' flex='0 0 25%' />
                 </Flex>
             </Container>
-            <NewsLetter />
-            <Footer />
         </>
     );
 }

@@ -12,7 +12,6 @@ HomePage.propTypes = {
 function HomePage(props) {
     return (
         <>
-            <Header />
             <BannerHome />
         </>
     );

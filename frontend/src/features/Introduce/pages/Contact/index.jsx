@@ -14,11 +14,8 @@ Contact.propTypes = {
 function Contact(props) {
     return (
         <>
-            <Header />
             <Banner heading='Contact' />
             <ContentContact />
-            <NewsLetter />
-            <Footer />
         </>
     );
 }
