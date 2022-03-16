@@ -23,6 +23,7 @@ function Banner(props) {
             backgroundRepeat='no-repeat'
             backgroundPosition='center center'
             position='relative'
+            backgroundSize='cover'
         >
             <Container
                 margin='0 190px'
@@ -36,7 +37,7 @@ function Banner(props) {
                 >
                     {props.heading}
                 </Heading>
-                <Flex alignItems='center' justifyContent='center' borderRadius='5px' background='#D61C62' height='30px' maxWidth='168px' padding='5px 30px'>
+                <Flex alignItems='center' justifyContent='center' borderRadius='5px' background='#D61C62' height='30px' maxWidth='180px' padding='5px 30px'>
                     <Link lineHeight='14px' fontSize='14px' fontWeight='400' color='#fff'> Home</Link>
                     <ChevronRightIcon color='#fff' />
                     <Text lineHeight='14px' fontSize='14px' fontWeight='400' color='#cecece'>{props.heading}</Text>
