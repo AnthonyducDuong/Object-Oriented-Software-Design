@@ -6,7 +6,8 @@ import AdoptCart from '../assets/adoptcart.png'
 import AdoptPet from '../assets/adoption1.jpg'
 import SideBar from '../assets/aboutsidebar.jpg'
 import AboutContent from '../assets/aboutContent.jpg'
-
+import BannerHome from '../assets/bannerhome.jpg'
+import BannerElement from '../assets/bannerelement.png'
 const IMAGES = {
     Logo,
     FooterBG,
@@ -16,6 +17,8 @@ const IMAGES = {
     AdoptPet,
     SideBar,
     AboutContent,
+    BannerHome,
+    BannerElement,
 }
 
 export default IMAGES
