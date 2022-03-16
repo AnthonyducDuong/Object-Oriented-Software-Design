@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../../../../components/header'
 import Banner from '../../../../components/Banner';
 import { Container, Flex } from '@chakra-ui/layout';
-import Content from '../../components/Content';
+import Content from '../../components/ContentAbout';
 import SideBar from '../../../../components/SideBar'
 import SliderAbout from '../../components/Slider';
 import AccordionAbout from '../../components/Accordion';
