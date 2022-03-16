@@ -17,7 +17,7 @@ function Header(props) {
             position='fixed'
             top='0'
             background='#fff'
-            zIndex='1'
+            zIndex='100'
         >
             <TopBar />
             <TopNav />

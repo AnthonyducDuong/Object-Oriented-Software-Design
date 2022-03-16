@@ -5,7 +5,8 @@ import IMAGES from '../../constants/images';
 import { FaPinterest, FaFacebookSquare, FaInstagram, FaTwitter } from "react-icons/fa";
 
 SideBar.propTypes = {
-
+    maxW: PropTypes.string,
+    flex: PropTypes.string,
 };
 
 function SideBar(props) {
@@ -18,24 +19,29 @@ function SideBar(props) {
             border-radius='15px'
             height='100% !important'
             maxWidth='100%'
-            width='25%'
+            flex={props.flex}
+            width={props.maxW}
             backgroundImage={IMAGES.FooterBG}
             backgroundPosition='center bottom'
             backgroundRepeat='repeat-x'
+            borderRadius='16px'
         >
             <Container
                 maxWidth='100%'
                 height='100%'
                 marginBottom='40px'
+                padding='0 !important'
             >
                 <Container
                     maxWidth='100%'
                     height='100%'
                     marginBottom='20px'
+                    padding='0 !important'
                 >
                     <Flex
                         justifyContent='center'
                         alignItems='center'
+                        padding='0 !important'
                     >
                         <Heading
                             fontSize='24px'
@@ -50,15 +56,15 @@ function SideBar(props) {
                     />
                 </Container>
                 <Container
-                // padding='0'
+                    padding='0 !important'
                 >
                     <Container
-                        padding='0'
+                        padding='0 !important'
                         maxWidth='100%'
                         height='100%'
                     >
                         <Container
-                            padding='0'
+                            padding='0 !important'
                             maxWidth='100%'
                             height='100%'
                         >
@@ -89,7 +95,7 @@ function SideBar(props) {
                                 <Link
                                     textDecoration='none !important'
                                     href='#'
-                                    padding='8px 60px'
+                                    padding='8px 50px'
                                     borderRadius='20px'
                                     backgroundColor='#D61C62'
                                     color='#fff'
@@ -107,6 +113,7 @@ function SideBar(props) {
                 maxWidth='100%'
                 height='100%'
                 margin='40px 0'
+                padding='0 !important'
             >
                 <Flex
                     justifyContent='center'
@@ -159,6 +166,7 @@ function SideBar(props) {
                 maxWidth='100%'
                 height='100%'
                 margin='40px 0'
+                padding='0 !important'
             >
                 <Flex
                     justifyContent='center'
@@ -180,8 +188,18 @@ function SideBar(props) {
                     height='184px'
                     display='flex'
                     justifyContent='center'
+                    position='relative'
+
                 >
-                    <iframe src="https://www.youtube.com/embed/22-OYBWLWU4" />
+                    <iframe src="https://www.youtube.com/embed/22-OYBWLWU4" style={{
+                        position: 'absolute',
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+
+                    }} />
                 </Container>
             </Container>
 
@@ -189,6 +207,7 @@ function SideBar(props) {
                 maxWidth='100%'
                 height='100%'
                 margin='40px 0'
+                padding='0 !important'
             >
                 <Flex
                     justifyContent='center'

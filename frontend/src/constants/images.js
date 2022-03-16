@@ -5,6 +5,7 @@ import NewsLetter from '../assets/newsletter.jpg'
 import AdoptCart from '../assets/adoptcart.png'
 import AdoptPet from '../assets/adoption1.jpg'
 import SideBar from '../assets/aboutsidebar.jpg'
+import AboutContent from '../assets/aboutContent.jpg'
 
 const IMAGES = {
     Logo,
@@ -14,6 +15,7 @@ const IMAGES = {
     AdoptCart,
     AdoptPet,
     SideBar,
+    AboutContent,
 }
 
 export default IMAGES
