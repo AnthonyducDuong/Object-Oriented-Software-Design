@@ -8,6 +8,13 @@ import NotFound from './components/NotFound';
 import BackToTop from './components/BackToTop';
 import AuthConfirmEmail from './features/Auth/pages/ConfirmEmail';
 const AuthMain = React.lazy(() => import('./features/Auth/pages/Main'));
+import TopBar from './components/header/TopBar';
+import TopNav from './components/header/TopNav';
+import Banner from './components/Banner'
+import About from './features/Introduce/pages/About';
+import SideBar from './components/SideBar';
+import Contact from './features/Introduce/pages/Contact';
+import HomePage from './features/Introduce/pages/Home';
 
 function App() {
   return (

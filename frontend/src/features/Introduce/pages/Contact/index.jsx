@@ -5,7 +5,7 @@ import Map from '../../../../components/Map'
 import NewsLetter from '../../../../components/NewsLetter';
 import Footer from '../../../../components/Footer';
 import Banner from '../../../../components/Banner';
-import ContentContact from '../../Content'
+import ContentContact from '../../components/ContentContact'
 
 Contact.propTypes = {
 

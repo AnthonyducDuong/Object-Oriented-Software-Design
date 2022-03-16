@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, Flex, Heading, Text, List, ListItem, Input, Textarea, Button } from '@chakra-ui/react';
 import { EmailIcon, PhoneIcon } from '@chakra-ui/icons';
 import { FaMapMarker } from "react-icons/fa";
-import Map from '../../../components/Map';
+import Map from '../../../../components/Map';
 
 ContentContact.propTypes = {
 
