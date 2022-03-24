@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from '../../components/header';
-import Banner from '../../components/Banner';
+import Header from '../../../../components/header';
+import Banner from '../../../../components/Banner';
 import { Outlet } from 'react-router';
-import BannerHome from './Banner';
+import BannerHome from '../../components/Banner';
 
 HomePage.propTypes = {
 
@@ -12,7 +12,6 @@ HomePage.propTypes = {
 function HomePage(props) {
     return (
         <>
-            <Header />
             <BannerHome />
         </>
     );
