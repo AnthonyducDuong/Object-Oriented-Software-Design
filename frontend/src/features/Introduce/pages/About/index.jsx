@@ -36,7 +36,7 @@ function About(props) {
                         paddingRight='20px'
                     >
                         <Content />
-                        <AccordionAbout />
+                        <AccordionAbout padd='20px 20px' />
                         <Container
                             margin='48px 0 0 0'
                             padding='0 15px'
