@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, Flex, List, ListItem, Text } from '@chakra-ui/react';
 import { EmailIcon, PhoneIcon } from '@chakra-ui/icons';
 import { FaFacebookF, FaInstagram, FaTwitter, FaMapMarker } from "react-icons/fa";
+
 TopBar.propTypes = {
 
 };

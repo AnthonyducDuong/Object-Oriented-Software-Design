@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 import Title from '../Title';
-import { Button, FormControl, FormErrorMessage, FormLabel, Icon, Input, InputGroup, InputLeftElement, InputRightElement, useToast } from '@chakra-ui/react';
+import { Alert, AlertIcon, Button, FormControl, FormErrorMessage, FormLabel, Icon, Input, InputGroup, InputLeftElement, InputRightElement, useToast } from '@chakra-ui/react';
 import { HiMail } from 'react-icons/hi';
 import { RiLockPasswordFill, RiUser3Fill } from 'react-icons/ri';
 import { BiShowAlt, BiHide } from 'react-icons/bi';
@@ -9,7 +10,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import ButtonAction from '../ButtonAction';
-import authApi from '../../../../api/authApi';
+import { register as registerAuth } from "../../authSlice";
+import { clearMessage } from "../../../../app/messageSlice";
+import { Navigate } from 'react-router-dom';
+import { playCorrectSound_audio, playWrongSound_audio } from '../../../../utils/PlaySound';
 
 Register.propTypes = {
 
@@ -42,57 +46,71 @@ const registerSchema = yup.object().shape({
 
 function Register(props) {
    const toast = useToast();
-   //const flexDirection = useBreakpointValue({ base: 'column', lg: 'row' });
+   const dispatch = useDispatch();
+
+   const { isLoading } = useSelector((state) => state.auth);
+   const { message } = useSelector((state) => state.message);
 
    const [showPassword, setShowPassword] = useState(false);
    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-   const [loading, setLoading] = useState(false);
 
    const { register, handleSubmit, reset, formState: { errors } } = useForm({
       mode: 'all',
       resolver: yupResolver(registerSchema),
+      defaultValues: {
+         userName: '',
+         email: '',
+         password: '',
+         confirmPassword: '',
+      },
    });
+
+   useEffect(() => {
+      dispatch(clearMessage());
+   }, [dispatch]);
 
    const _onSubmitForm = async (data) => {
       console.log(">>> Check register", data);
       if (data.password === data.confirmPassword) {
-         setLoading(true);
-         try {
-            const params = {
-               email: data.email,
-               password: data.password,
-               username: data.userName,
-            };
+         const params = {
+            email: data.email,
+            password: data.password,
+            username: data.userName,
+         };
 
-            const response = await authApi.register(params);
-            console.log('>>> Check register/response: ', response);
-
-            toast({
-               title: 'WELCOME !!',
-               description: response.data.message,
-               status: 'success',
-               duration: 5000,
-               isClosable: true,
-               position: 'top',
-               variant: 'left-accent',
+         dispatch(registerAuth(params))
+            .unwrap()
+            .then(() => {
+               toast({
+                  title: 'WELCOME !!',
+                  description: 'Please check your email to confirm email',
+                  status: 'success',
+                  isClosable: false,
+                  position: 'top',
+                  variant: 'left-accent',
+               });
+               playCorrectSound_audio();
+            })
+            .catch((response) => {
+               console.log('>>> Check register/response - errors: ', response);
+               reset({
+                  userName: '',
+                  email: '',
+                  password: '',
+                  confirmPassword: '',
+               }, {
+                  keepErrors: true,
+                  keepDirty: true,
+                  keepIsSubmitted: false,
+                  keepTouched: false,
+                  keepIsValid: false,
+                  keepSubmitCount: false,
+               });
+               playWrongSound_audio();
             });
-         } catch (error) {
-            console.log('>>> Check register/response - errors: ', error.response);
-            toast({
-               title: 'Error Occured!',
-               description: error.response.data.message,
-               status: 'error',
-               duration: 3000,
-               isClosable: true,
-               position: 'top',
-               variant: 'left-accent',
-            });
-         }
-         finally {
-            setLoading(false);
-         }
       }
       else {
+         playWrongSound_audio();
          toast({
             title: 'Error Occured!',
             description: 'Password not match',
@@ -107,6 +125,16 @@ function Register(props) {
 
    return (
       <>
+         {message &&
+            <Alert
+               status='error'
+               variant='left-accent'
+               marginBottom={'15px'}
+               borderRadius='xl'
+            >
+               <AlertIcon />
+               {message}
+            </Alert>}
          <Title
             title='Register'
             subtitle='Register to manage your account'
@@ -289,7 +317,7 @@ function Register(props) {
                action='REGISTER'
                question='Do you have an account'
                direction='Login'
-               isLoading={loading}
+               isLoading={isLoading}
             />
          </form>
       </>
