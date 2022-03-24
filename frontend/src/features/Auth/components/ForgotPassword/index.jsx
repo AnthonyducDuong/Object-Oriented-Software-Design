@@ -24,13 +24,15 @@ const forgotPasswordSchema = yup.object().shape({
 function ForgotPassword(props) {
    const toast = useToast();
    const [loading, setLoading] = useState(false);
-   const [status, setStatus] = useState(false);
 
    const navigate = useNavigate();
 
    const { register, handleSubmit, reset, formState: { errors } } = useForm({
       mode: 'all',
       resolver: yupResolver(forgotPasswordSchema),
+      defaultValues: {
+         email: '',
+      },
    });
 
    const _onSubmitForm = async (data) => {
@@ -48,8 +50,6 @@ function ForgotPassword(props) {
             title: 'New password temp was sent. Pleas check your email!!',
             description: response.data.message,
             status: 'success',
-            duration: 5000,
-            isClosable: true,
             position: 'top',
             variant: 'left-accent',
          });
@@ -63,6 +63,7 @@ function ForgotPassword(props) {
             isClosable: true,
             position: 'top',
          });
+         reset();
       }
       finally {
          setLoading(false);
