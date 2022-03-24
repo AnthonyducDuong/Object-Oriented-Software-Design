@@ -60,27 +60,6 @@ function SliderAbout(props) {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="each-slide" >
-                    <div style={{
-                        backgroundColor: '#f4f4f4',
-                        height: '500px',
-                        width: '500px',
-                        borderRadius: '20px'
-                    }}>
-                    </div>
-                </div>
-                <div className="each-slide" >
-                    <div style={{
-                        backgroundImage: `url(${IMAGES.AdoptPet})`,
-                        backgroundRepeat: 'no-repeat',
-                        height: '500px',
-                        width: '500px',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center center',
-                        borderRadius: '20px'
-                    }}>
-                    </div>
-                </div> */}
                 </Slide>
             </div>
         </>

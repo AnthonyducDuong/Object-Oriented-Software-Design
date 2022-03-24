@@ -11,15 +11,17 @@ AdoptCart.propTypes = {
     age: PropTypes.number,
     breed: PropTypes.string,
     info: PropTypes.string,
-    character: PropTypes.string
-
+    character: PropTypes.string,
+    maxW: PropTypes.string,
+    h: PropTypes.string,
 };
 
 function AdoptCart(props) {
+    const { maxW, h } = props
     return (
         <Flex
-            maxWidth='544px'
-            height='396px'
+            maxWidth={maxW ? maxW : '544px'}
+            height={h ? h : '396px'}
             flexWrap='wrap'
             backgroundImage={IMAGES.AdoptCart}
             backgroundRepeat='repeat'

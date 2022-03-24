@@ -13,10 +13,16 @@ import {
 import { MinusIcon } from '@chakra-ui/icons';
 
 AccordionAbout.propTypes = {
-
+    padd: PropTypes.string,
 };
 
+AccordionAbout.DefaultProp = {
+    padd: '20px 20px'
+}
+
 function AccordionAbout(props) {
+    const { padd } = props;
+    console.log(padd);
     const [statusPhilosophy, setStatusPhilosophy] = useState(true)
     const handleExtendPhilosophy = () => {
         setStatusPhilosophy(!statusPhilosophy)
@@ -70,7 +76,7 @@ function AccordionAbout(props) {
                                 <Container
                                     maxWidth='100%'
                                     width='auto'
-                                    padding='20px 20px'
+                                    padding={padd}
                                     backgroundColor='#D61C62'
                                     borderRadius='50%'
                                     color='#fff'
@@ -114,7 +120,7 @@ function AccordionAbout(props) {
                                 <Container
                                     maxWidth='100%'
                                     width='auto'
-                                    padding='20px 20px'
+                                    padding={padd}
                                     backgroundColor='#D61C62'
                                     borderRadius='50%'
                                     color='#fff'
@@ -158,7 +164,7 @@ function AccordionAbout(props) {
                                 <Container
                                     maxWidth='100%'
                                     width='auto'
-                                    padding='20px 20px'
+                                    padding={padd}
                                     backgroundColor='#D61C62'
                                     borderRadius='50%'
                                     color='#fff'
