@@ -7,9 +7,11 @@ DisplayText.propTypes = {
 };
 
 function DisplayText(props) {
+   const { userName } = props;
    return (
       <Flex
          align={'center'}
+         marginBottom='1.25rem'
       >
          <Flex
             marginX={'-15px'}
@@ -17,11 +19,13 @@ function DisplayText(props) {
             direction={'column'}
          >
             <Heading as='h1' size='lg' isTruncated
-               marginBottom={'1.5rem'}
+               marginBottom={'0.75rem'}
             >
-               Hello [Username]
+               Hello {userName}
             </Heading>
-            <Text fontSize={'lg'}>
+            <Text
+               fontSize={'lg'}
+            >
                This is your profile page. You can see the progress you've made with <br /> your work and manage your projects or assigned tasks
             </Text>
          </Flex>

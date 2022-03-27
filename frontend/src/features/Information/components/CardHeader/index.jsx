@@ -22,7 +22,7 @@ function CardHeader(props) {
          justify='space-between'
       >
          <Text
-            fontSize={'xl'}
+            fontSize={'larger'}
             fontWeight='medium'
 
          >
@@ -34,7 +34,7 @@ function CardHeader(props) {
 
             lineHeight='1.5'
 
-            size='md'
+            size='sm'
             padding={'.25rem .5rem'}
 
             boxShadow={'0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%)'}

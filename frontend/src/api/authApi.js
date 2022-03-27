@@ -3,6 +3,9 @@ import axiosClient from './axiosClient';
 
 const path = '/auth';
 const cookies = new Cookies();
+const current = new Date();
+const nextYear = new Date();
+nextYear.setFullYear(current.getFullYear() + 1);
 
 const authApi = {
    register: (params) => {
@@ -16,9 +19,18 @@ const authApi = {
          .then((response) => {
             if (response.data.success) {
                // localStorage.setItem("authToken", JSON.stringify(response.data.data));
+               // var test = {
+               //    accessToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aGFuZ0N1dGUiLCJyb2xlUGVybWlzc2lvbnMiOlsidXNlcjpyZWFkIiwidXNlcjp3cml0ZSJdLCJleHAiOjE2NDgyMTU5OTIsInJvbGVOYW1lcyI6WyJVU0VSIl19.Ytt6vqJYFyxLMIb6JPPRDzec-H6Y18zDTwu6QzLLwxQ",
+               //    refreshToken: response.data.data.refreshToken,
+               // }
                cookies.set("authToken", JSON.stringify(response.data.data), {
-                  path: '/'
+                  path: '/',
+                  expires: nextYear,
                });
+               // cookies.set("authToken", JSON.stringify(test), {
+               //    path: '/',
+               //    expires: nextYear,
+               // });
             }
             console.log(response)
             return response;
@@ -38,7 +50,10 @@ const authApi = {
    },
    logout: () => {
       // localStorage.removeItem("authToken");
-      cookies.remove("authToken");
+      cookies.remove("authToken", {
+         path: '/',
+         domain: "localhost"
+      });
    },
    refreshToken: (param) => {
       const url = path + '/refreshtoken';

@@ -2,12 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@chakra-ui/react';
 import CardHeader from '../CardHeader';
+import CardBody from '../CardBody';
 
 UserInformation.propTypes = {
 
 };
 
 function UserInformation(props) {
+   const { userInfo, isLoading, message } = props;
+
    return (
       <Box
          marginTop={'-20'}
@@ -22,7 +25,7 @@ function UserInformation(props) {
          borderRadius='0.375rem'
       >
          <CardHeader />
-         UserInformation
+         <CardBody userInfo={userInfo} isLoading={isLoading} message={message} />
       </Box>
    );
 }

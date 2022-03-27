@@ -29,6 +29,10 @@ const loginSchema = yup.object().shape({
       .required('⚠ Password invalid'),
 });
 
+const current = new Date();
+const nextYear = new Date();
+nextYear.setFullYear(current.getFullYear() + 1);
+
 function LogIn(props) {
    const dispatch = useDispatch();
    const navigate = useNavigate();
@@ -80,7 +84,7 @@ function LogIn(props) {
             userName: btoa(userName_watch),
             password: btoa(password_watch),
          };
-         cookies.set('loginData', JSON.stringify(data), { path: '/' });
+         cookies.set('loginData', JSON.stringify(data), { path: '/', expires: nextYear, });
       }
       else {
          cookies.remove('loginData');
