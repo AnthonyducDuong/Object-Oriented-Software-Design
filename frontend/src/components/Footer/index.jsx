@@ -102,7 +102,7 @@ function Footer(props) {
                 </Flex>
                 <Divider width='100%' border='0 solid #cecece' margin='16px 0' opacity='1' />
                 <Flex alignItems='center' justifyContent='center'>
-                    <Text>Copyright 2019 - 2021 / Designed by <Link href='http://www.ingridkuhn.com/' target='_blank'>Ingrid Kuhn</Link></Text>
+                    <Text>Copyright 2019 - 2021 / Cloned by <Link href='http://www.ingridkuhn.com/' target='_blank'>Tài Phan & Anthony Đức Thắng</Link></Text>
                 </Flex>
             </Container>
         </Container>

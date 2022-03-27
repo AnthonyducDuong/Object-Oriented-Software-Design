@@ -43,7 +43,7 @@ function App() {
         />
 
         <Route
-          path='/about'
+          path='/aboutus'
           element={
             <React.Suspense fallback={<Loading />} >
               <AboutPage />
@@ -108,7 +108,7 @@ function App() {
           element={<AuthConfirmEmail />}
         />
       </Routes>
-      <NewsLetter />
+      <NewsLetter heading='Subscribe to our newsletter' description='We send e-mails once a month, we never send Spam!' />
       <Footer />
     </Router>
   );
