@@ -25,9 +25,9 @@ function PrivateRoutesUser(props) {
    if (isLoggedIn === undefined)
       return <Loading />
 
-   if (!isLoggedIn && !role) {
+   if (!isLoggedIn) {
       return <Navigate
-         to='/home'
+         to='/login'
          state={{ from: location }}
          replace
       />

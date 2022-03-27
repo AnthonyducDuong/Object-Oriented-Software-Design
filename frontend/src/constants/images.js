@@ -36,6 +36,7 @@ const IMAGES = {
     AboutContent,
     BannerHome,
     BannerElement,
+    DEFAULT_IMAGE: process.env.REACT_APP_DEFAULT_IMAGE,
     IntroHome,
     BoxAbout,
     BoxService,

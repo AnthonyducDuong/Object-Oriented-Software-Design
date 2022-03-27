@@ -1,5 +1,10 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { setMessage } from "../../app/messageSlice";
+import {
+   createSlice,
+   createAsyncThunk
+} from "@reduxjs/toolkit";
+import {
+   setMessage
+} from "../../app/messageSlice";
 import authApi from '../../api/authApi';
 import Cookies from "universal-cookie";
 import jwt_decode from 'jwt-decode';
@@ -16,7 +21,9 @@ export const login = createAsyncThunk(
          const response = await authApi.login(params);
          console.log(response);
          // Include accessToken and refreshToken
-         return { authToken: response.data.data };
+         return {
+            authToken: response.data.data
+         };
       } catch (error) {
          const message =
             (error.response &&
@@ -60,8 +67,10 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 export const refreshToken = createAsyncThunk("auth/refreshToken", async (param, thunkAPI) => {
    try {
       const response = await authApi.refreshToken(param);
-
-      return { authToken: response.data.data };
+      console.log(response);
+      return {
+         authToken: response.data.data
+      };
    } catch (error) {
       const message =
          (error.response &&
@@ -70,14 +79,24 @@ export const refreshToken = createAsyncThunk("auth/refreshToken", async (param, 
          error.message ||
          error.toString();
       thunkAPI.dispatch(setMessage(message));
-      return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(error.response.data.status);
    }
 });
 
 const decoded_accessToken = authToken ? jwt_decode(authToken.accessToken) : null;
-const initialState = authToken
-   ? { isLoggedIn: true, userName: decoded_accessToken.sub, role: decoded_accessToken.roleNames, authToken, isLoading: false, }
-   : { isLoggedIn: false, userName: null, role: null, authToken: null, isLoading: false, };
+const initialState = authToken ? {
+   isLoggedIn: true,
+   userName: decoded_accessToken.sub,
+   role: decoded_accessToken.roleNames,
+   authToken,
+   isLoading: false,
+} : {
+   isLoggedIn: false,
+   userName: null,
+   role: null,
+   authToken: null,
+   isLoading: false,
+};
 
 const authSlice = createSlice({
    name: "auth",
@@ -137,5 +156,7 @@ const authSlice = createSlice({
    },
 });
 
-const { reducer } = authSlice;
+const {
+   reducer
+} = authSlice;
 export default reducer;
