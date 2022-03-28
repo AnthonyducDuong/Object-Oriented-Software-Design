@@ -10,7 +10,7 @@ import * as yup from 'yup';
 import { playCorrectSound_audio, playWrongSound_audio } from '../../../../utils/PlaySound';
 import userApi from '../../../../api/userApi';
 import { useDispatch } from 'react-redux';
-import { updateInfo } from '../../userSlice';
+import { updateAvatar, updateInfo } from '../../userSlice';
 import ModalBox from '../../../../components/ModalBox';
 import { resizeImage } from '../../../../utils/ResizeImage';
 
@@ -167,21 +167,9 @@ function UserAccount(props) {
    };
 
    const handleOnChangeModal = () => {
-      const params = {
-         address: {
-            city: userInfo && userInfo.address && userInfo.address.city ? userInfo.address.city : '',
-            country: userInfo && userInfo.address && userInfo.address.country ? userInfo.address.country : '',
-            houseNumber: userInfo && userInfo.address && userInfo.address.houseNumber ? userInfo.address.houseNumber : '',
-            province: userInfo && userInfo.address && userInfo.address.province ? userInfo.address.province : '',
-            streetName: userInfo && userInfo.address && userInfo.address.streetName ? userInfo.address.streetName : '',
-         },
-         avatar: image,
-         firstName: userInfo && userInfo.firstName ? userInfo.firstName : '',
-         lastName: userInfo && userInfo.lastName ? userInfo.lastName : '',
-         phone: userInfo && userInfo.phone ? userInfo.phone : '',
-      }
-
-      dispatch(updateInfo(params))
+      dispatch(updateAvatar({
+         url: image,
+      }))
          .unwrap()
          .then((res) => {
             setStatusModal(false);

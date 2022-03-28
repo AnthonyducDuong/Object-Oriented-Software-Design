@@ -42,6 +42,26 @@ export const updateInfo = createAsyncThunk(
    }
 );
 
+export const updateAvatar = createAsyncThunk(
+   "user/updateAvater",
+   async (param, thunkAPI) => {
+      try {
+         const response = await userApi.updateAvatar(param);
+         return response.data.data.userInfo;
+      } catch (error) {
+         const message =
+            (error.response &&
+               error.response.data &&
+               error.response.data.message) ||
+            error.message ||
+            error.toString();
+         thunkAPI.dispatch(setMessage(message));
+         console.log(">>> Error: ", message);
+         return thunkAPI.rejectWithValue(message);
+      }
+   }
+);
+
 const initialState = {
    userInfo: {},
    isLoading: false,
@@ -51,7 +71,7 @@ const userSlice = createSlice({
    initialState,
    extraReducers: {
       [getInfo.rejected]: (state, action) => {
-         state.userInfo = {};
+         // state.userInfo = {};
          state.isLoading = false;
       },
       [getInfo.pending]: (state, action) => {
@@ -62,7 +82,7 @@ const userSlice = createSlice({
          state.isLoading = false;
       },
       [updateInfo.rejected]: (state, action) => {
-         state.userInfo = {};
+         // state.userInfo = {};
          state.isLoading = false;
       },
       [updateInfo.pending]: (state, action) => {
@@ -71,7 +91,18 @@ const userSlice = createSlice({
       [updateInfo.fulfilled]: (state, action) => {
          state.userInfo = action.payload;
          state.isLoading = false;
-      }
+      },
+      [updateAvatar.rejected]: (state, action) => {
+         // state.userInfo = {};
+         state.isLoading = false;
+      },
+      [updateAvatar.pending]: (state, action) => {
+         state.isLoading = true;
+      },
+      [updateAvatar.fulfilled]: (state, action) => {
+         state.userInfo = action.payload;
+         state.isLoading = false;
+      },
    },
 });
 

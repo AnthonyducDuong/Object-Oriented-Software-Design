@@ -86,7 +86,7 @@ function CardBody(props) {
             province: data.province,
             streetName: streetN ? streetN : '',
          },
-         avatar: userInfo && userInfo.avatar ? userInfo.avatar : process.env.REACT_APP_DEFAULT_IMAGE,
+         // avatar: userInfo && userInfo.avatar ? userInfo.avatar : process.env.REACT_APP_DEFAULT_IMAGE,
          firstName: data.firstName,
          lastName: data.lastName,
          phone: data.phone,
