@@ -14,6 +14,10 @@ const userApi = {
    updateInfo: (params) => {
       const url = path;
       return axiosClient.put(url, params);
+   },
+   updateAvatar: (param) => {
+      const url = path + '/avatar';
+      return axiosClient.put(url, param);
    }
 };
 

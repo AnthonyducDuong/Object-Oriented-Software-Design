@@ -47,7 +47,7 @@ function BackToTop(props) {
                zIndex='2'
                position={'fixed'}
                bottom='2vh'
-               boxShadow={'dark-lg'}
+               boxShadow={'0px 1px 20px #fff'}
                right='3%'
                _hover={{
                   transition: '1s',
