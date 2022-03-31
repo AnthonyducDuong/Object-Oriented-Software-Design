@@ -24,7 +24,12 @@ import Gallery2 from '../assets/images/gallery2.jpg'
 import Gallery3 from '../assets/images/gallery3.jpg'
 import Gallery4 from '../assets/images/gallery4.jpg'
 import Team1 from '../assets/images/team1.jpg'
-import ContactGB from '../assets/images/contactbg1.png'
+import ContactGB from '../assets/images/contactbg1.png';
+import ServiceImg1 from '../assets/images/serviceimg1.jpg';
+import ServiceContact from '../assets/images/contact.jpg';
+import ServicePattern from '../assets/images/servicePattern.png';
+import ServiceImg2 from '../assets/images/serviceimg2.png';
+
 const IMAGES = {
     Logo,
     FooterBG,
@@ -54,6 +59,10 @@ const IMAGES = {
     Gallery4,
     Team1,
     ContactGB,
+    SERVICE_IMG1: ServiceImg1,
+    SERVICE_CONTACT: ServiceContact,
+    SERVICE_PATTERN: ServicePattern,
+    SERVICE_IMG2: ServiceImg2,
 }
 
 export default IMAGES
