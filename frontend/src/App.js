@@ -20,6 +20,8 @@ const HomePage = React.lazy(() => import('./features/Introduce/pages/Home'));
 const ContactPage = React.lazy(() => import('./features/Introduce/pages/Contact'));
 const AboutPage = React.lazy(() => import('./features/Introduce/pages/About'));
 const UserProfile = React.lazy(() => import('./features/Information/pages/UserProfile'));
+const ServicesPage = React.lazy(() => import('./features/Service/pages/Services'));
+const ServiceDetailsPage = React.lazy(() => import('./features/Service/pages/ServiceDetails'));
 //
 
 function App() {
@@ -59,6 +61,27 @@ function App() {
             </React.Suspense>
           }
         />
+
+        <Route
+          path='services'
+        >
+          <Route
+            path=''
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <ServicesPage />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path=':id'
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <ServiceDetailsPage />
+              </React.Suspense>
+            }
+          />
+        </Route>
 
         {/* use logged in routes */}
         <Route element={<PublicRoutes />} >
