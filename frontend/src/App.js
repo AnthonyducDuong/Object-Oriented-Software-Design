@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import NotFound from './components/NotFound';
 import BackToTop from './components/BackToTop';
 import AuthConfirmEmail from './features/Auth/pages/ConfirmEmail';
+import AdoptPet from './features/AdoptPet';
 
 // Lazy loading components
 const AuthMain = React.lazy(() => import('./features/Auth/pages/Main'));
@@ -39,6 +40,15 @@ function App() {
           element={
             <React.Suspense fallback={<Loading />} >
               <AboutPage />
+            </React.Suspense>
+          }
+        />
+
+        <Route
+          path='/adoption'
+          element={
+            <React.Suspense fallback={<Loading />}>
+              <AdoptPet />
             </React.Suspense>
           }
         />

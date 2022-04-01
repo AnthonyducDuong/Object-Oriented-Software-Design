@@ -4,14 +4,17 @@ import { Flex, Link, Image, Container, Heading, List, ListItem, Text } from '@ch
 import IMAGES from '../../constants/images';
 import { MdPets } from "react-icons/md";
 import { FaDog } from "react-icons/fa";
+import { GiLoveInjection } from "react-icons/gi";
+import './AdoptCart.scss'
 
 AdoptCart.propTypes = {
+    srcImage: PropTypes.string,
     namePet: PropTypes.string,
     gender: PropTypes.string,
     age: PropTypes.number,
     breed: PropTypes.string,
     info: PropTypes.string,
-    character: PropTypes.string,
+    vaccin: PropTypes.bool,
     maxW: PropTypes.string,
     h: PropTypes.string,
 };
@@ -27,18 +30,28 @@ function AdoptCart(props) {
             backgroundRepeat='repeat'
             backgroundColor='#f4f4f4!important'
             padding='20px'
+            className='adopt'
         >
+
             <Flex
                 width='100%'
             >
-                <Link maxWidth='41.67%' padding='0 15px'>
-                    <Image
-                        objectFit='cover'
-                        src={IMAGES.AdoptPet}
-                        alt='Pet 1'
-                        borderBottom='5px solid #018AE0'
-                    />
-                </Link>
+                <Container
+                    margin='0'
+                    padding='0'
+                    width='41.67%'
+                    flex='0 0 41.67%'
+                    padding='0 15px'
+                >
+                    <Link overflow='hidden' display='block' borderBottom='5px solid #018AE0'>
+                        <Image
+                            objectFit='cover'
+                            src={props.srcImage}
+                            alt='Pet 1'
+
+                        />
+                    </Link>
+                </Container>
                 <Container
                     maxWidth='58,33%'
                     padding='0 15px'
@@ -54,19 +67,19 @@ function AdoptCart(props) {
                             borderBottom='1px dashed #cecece'
                             padding='5px 0'
                         >
-                            <strong>Gender:</strong>{props.gender}
+                            <strong>Gender: {' '}</strong>{props.gender}
                         </ListItem>
                         <ListItem
                             borderBottom='1px dashed #cecece'
                             padding='5px 0'
                         >
-                            <strong>Age:</strong>{props.age}years
+                            <strong>Age: {' '}</strong>{props.age} {' '}years
                         </ListItem>
                         <ListItem
                             borderBottom='1px dashed #cecece'
                             padding='5px 0'
                         >
-                            <strong>Breed:</strong>{props.breed}
+                            <strong>Breed: {' '}</strong>{props.breed ? props.breed : 'No Info'}
                         </ListItem>
                     </List>
                 </Container>
@@ -95,8 +108,9 @@ function AdoptCart(props) {
                         <Text
                             fontSize='12px'
                             fontWeight='500'
+                            textTransform='uppercase'
                         >
-                            SPECIAL NEEDS
+                            {props.info}
                         </Text>
                     </ListItem>
                     <ListItem
@@ -106,12 +120,13 @@ function AdoptCart(props) {
                         padding='5px 0'
                         margin='6px'
                     >
-                        <FaDog />
+                        <GiLoveInjection />
                         <Text
                             fontSize='12px'
                             fontWeight='500'
+                            textTransform='uppercase'
                         >
-                            FRIENDLY TO OTHER PETS
+                            {props.vaccin ? 'vaccinated' : 'No vaccinated'}
                         </Text>
                     </ListItem>
                 </List>

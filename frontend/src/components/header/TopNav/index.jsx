@@ -71,7 +71,7 @@ function TopNav(props) {
                                 <Menu isLazy >
                                     <MenuButton fontWeight='600'>Adopt <Icon as={TriangleDownIcon} w={2} h={2} /></MenuButton>
                                     <MenuList backgroundColor={'#018ae0'} >
-                                        <MenuItem fontWeight='600'><Link to='/adoptgallery'>Adopt Gallery</Link></MenuItem>
+                                        <MenuItem fontWeight='600'><Link to='/adoption'>Adopt Gallery</Link></MenuItem>
                                         <MenuItem fontWeight='600'><Link to='/adoptstories'>Adopt stories</Link></MenuItem>
                                         <MenuItem fontWeight='600'><Link to='/events'>Events</Link></MenuItem>
                                     </MenuList>
