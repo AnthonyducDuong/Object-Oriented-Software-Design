@@ -24,15 +24,15 @@ function ConfirmEmail(props) {
                // response true => home
                // else => login
                if (response.data.success) {
-                  navigate("/login");
+                  navigate("/");
                }
                else {
-                  navigate("/register");
+                  navigate("/login");
                }
             }
          } catch (error) {
             console.log(">>> Confirm email error/GET Method: ", error.response.data.message);
-            navigate("/register");
+            navigate("/login");
          }
          finally {
             setConfirming(false);

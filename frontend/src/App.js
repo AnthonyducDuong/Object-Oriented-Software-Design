@@ -9,6 +9,7 @@ import BackToTop from './components/BackToTop';
 import AuthConfirmEmail from './features/Auth/pages/ConfirmEmail';
 import PublicRoutes from './helpers/PublicRoutes';
 import PrivateRoutesUser from './helpers/PrivateRoutesUser';
+import AdoptPet from './features/AdoptPet';
 // import AuthMain from './features/Auth/pages/Main';
 // import HomePage from './features/Introduce/pages/Home';
 // import ContactPage from './features/Introduce/pages/Contact';
@@ -58,6 +59,14 @@ function App() {
           element={
             <React.Suspense fallback={<Loading />} >
               <ContactPage />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/adoption"
+          element={
+            <React.Suspense fallback={<Loading />} >
+              <AdoptPet />
             </React.Suspense>
           }
         />

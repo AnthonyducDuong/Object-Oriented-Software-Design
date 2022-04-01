@@ -52,7 +52,7 @@ function TopNav(props) {
                             <Link to='/'>Home</Link>
                         </ListItem>
                         <ListItem padding={'0 16px'}>
-                            <Link to='/Services'>Services</Link>
+                            <Link to='/services'>Services</Link>
                         </ListItem>
                         <ListItem>
                             <Container>
@@ -79,13 +79,13 @@ function TopNav(props) {
                             </Container>
                         </ListItem>
                         <ListItem padding={'0 16px'}>
-                            <Link to='/Gallery'>Gallery</Link>
+                            <Link to='/gallery'>Gallery</Link>
                         </ListItem>
                         <ListItem padding={'0 16px'}>
-                            <Link to='/Contact'>Contact</Link>
+                            <Link to='/contact'>Contact</Link>
                         </ListItem>
                         <ListItem padding={'0 16px'}>
-                            <Link to='/Blog'>Blog</Link>
+                            <Link to='/blog'>Blog</Link>
                         </ListItem>
                     </List>
                 </Flex>

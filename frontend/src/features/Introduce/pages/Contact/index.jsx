@@ -15,7 +15,7 @@ function Contact(props) {
     window.scrollTo(0, 0)
     return (
         <>
-            <Banner heading='Contact' />
+            <Banner arrHeading={['Contact']} />
             <ContentContact />
         </>
     );

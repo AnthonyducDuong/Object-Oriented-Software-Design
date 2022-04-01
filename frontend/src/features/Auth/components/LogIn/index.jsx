@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 import Title from '../Title';
-import { Button, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Icon, Input, InputGroup, InputLeftElement, InputRightElement, Link, Spacer, useToast } from '@chakra-ui/react';
+import { Alert, AlertIcon, Button, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Icon, Input, InputGroup, InputLeftElement, InputRightElement, Link, Spacer } from '@chakra-ui/react';
 import { RiUser3Fill } from 'react-icons/ri';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { BiShowAlt, BiHide } from 'react-icons/bi';
@@ -9,8 +10,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import ButtonAction from '../ButtonAction';
-import { Link as ReactRouterDom_Link } from 'react-router-dom';
-import authApi from '../../../../api/authApi';
+import { Link as ReactRouterDom_Link, useNavigate, Navigate } from 'react-router-dom';
+import { clearMessage } from '../../../../app/messageSlice';
+import { login } from '../../authSlice';
+import Cookies from 'universal-cookie';
+import { playWrongSound_audio } from '../../../../utils/PlaySound';
 
 LogIn.propTypes = {
 
@@ -25,63 +29,115 @@ const loginSchema = yup.object().shape({
       .required('⚠ Password invalid'),
 });
 
+const current = new Date();
+const nextYear = new Date();
+nextYear.setFullYear(current.getFullYear() + 1);
+
 function LogIn(props) {
-   const toast = useToast();
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
 
    const [showPassword, setShowPassword] = useState(false);
-   const [loading, setLoading] = useState(false);
+   const [check, setCheck] = useState(false);
 
-   const { register, handleSubmit, reset, formState: { errors } } = useForm({
+   const { isLoading } = useSelector((state) => state.auth);
+   const { message } = useSelector((state) => state.message);
+
+   const cookies = new Cookies();
+
+   const { register, handleSubmit, reset, formState: { errors }, setValue, watch } = useForm({
       mode: 'all',
       resolver: yupResolver(loginSchema),
+      defaultValues: {
+         userName: '',
+         password: '',
+      },
    });
+
+   useEffect(() => {
+      dispatch(clearMessage());
+   }, [dispatch]);
+
+   useEffect(() => {
+      const loginData = cookies.get('loginData') ? cookies.get('loginData') : null;
+
+      if (loginData !== null) {
+         setValue("userName", atob(loginData.userName), {
+            shouldValidate: true,
+            shouldDirty: true
+         });
+         setValue("password", atob(loginData.password), {
+            shouldValidate: true,
+            shouldDirty: true
+         });
+         setShowPassword(true);
+         setCheck(true);
+      }
+   }, []);
+
+   const userName_watch = watch('userName');
+   const password_watch = watch('password');
+   useEffect(() => {
+      if (check === true) {
+         cookies.remove('loginData');
+         const data = {
+            userName: btoa(userName_watch),
+            password: btoa(password_watch),
+         };
+         cookies.set('loginData', JSON.stringify(data), { path: '/', expires: nextYear, });
+      }
+      else {
+         cookies.remove('loginData');
+      }
+   }, [userName_watch, password_watch, check]);
 
    const _onSubmitForm = async (data) => {
       console.log(">>> Check login", data);
 
-      setLoading(true);
-      try {
-         const params = {
-            username: data.userName,
-            password: data.password,
-         };
+      const params = {
+         username: data.userName,
+         password: data.password,
+      };
 
-         const response = await authApi.login(params);
-         console.log('>>> Check login/response: ', response);
-
-         toast({
-            title: 'WELCOME BACK !!',
-            description: response.data.message,
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-            position: 'top',
-            variant: 'left-accent',
+      dispatch(login(params))
+         .unwrap()
+         .then((response) => {
+            console.log(">>> Check login/response - success: ", response);
+            navigate('/home');
+         })
+         .catch((response) => {
+            console.log('>>> Check login/response - errors: ', response);
+            reset({
+               userName: '',
+               password: '',
+            }, {
+               keepErrors: true,
+               keepDirty: true,
+               keepIsSubmitted: false,
+               keepTouched: false,
+               keepIsValid: false,
+               keepSubmitCount: false,
+            });
+            playWrongSound_audio();
          });
-      } catch (error) {
-         console.log('>>> Check login/response - errors: ', error.response);
-         toast({
-            title: 'Error Occured!',
-            description: error.response.data.message,
-            status: 'error',
-            duration: 3000,
-            isClosable: true,
-            position: 'top',
-            variant: 'left-accent',
-         });
-      }
-      finally {
-         setLoading(false);
-      }
    };
 
    return (
       <>
+         {message &&
+            <Alert
+               status='error'
+               variant='left-accent'
+               marginBottom={'15px'}
+               borderRadius='xl'
+            >
+               <AlertIcon />
+               {message}
+            </Alert>}
          <Title
             title='Log in'
             subtitle='Log in to explore other features'
          />
-
          <form onSubmit={handleSubmit(_onSubmitForm)}>
             <FormControl
                isRequired
@@ -170,7 +226,12 @@ function LogIn(props) {
             </FormControl>
 
             <Flex>
-               <Checkbox size='md' colorScheme='pink' defaultIsChecked>
+               <Checkbox
+                  size='md'
+                  colorScheme='pink'
+                  isChecked={check}
+                  onChange={() => { setCheck(!check) }}
+               >
                   Remember me
                </Checkbox>
                <Spacer />
@@ -189,7 +250,7 @@ function LogIn(props) {
                action='LOG IN'
                question='Not registered'
                direction='Create a account'
-               isLoading={loading}
+               isLoading={isLoading}
             />
          </form>
       </>

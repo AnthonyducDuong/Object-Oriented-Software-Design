@@ -46,7 +46,7 @@ function MainPages(props) {
    return (
       <>
          <Banner
-            heading={titleBanner()}
+            arrHeading={[titleBanner()]}
          />
          <Box>
             <Container
