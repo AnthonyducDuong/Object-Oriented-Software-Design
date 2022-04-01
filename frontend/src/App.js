@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Header from './components/header';
 import Loading from './components/Loading';
 import NewsLetter from './components/NewsLetter';
@@ -7,14 +7,22 @@ import Footer from './components/Footer';
 import NotFound from './components/NotFound';
 import BackToTop from './components/BackToTop';
 import AuthConfirmEmail from './features/Auth/pages/ConfirmEmail';
-import AdoptPet from './features/AdoptPet';
-
+import PublicRoutes from './helpers/PublicRoutes';
+import PrivateRoutesUser from './helpers/PrivateRoutesUser';
+// import AuthMain from './features/Auth/pages/Main';
+// import HomePage from './features/Introduce/pages/Home';
+// import ContactPage from './features/Introduce/pages/Contact';
+// import AboutPage from './features/Introduce/pages/About';
+// import UserProfile from './features/Information/pages/UserProfile';
 // Lazy loading components
 const AuthMain = React.lazy(() => import('./features/Auth/pages/Main'));
 const HomePage = React.lazy(() => import('./features/Introduce/pages/Home'));
 const ContactPage = React.lazy(() => import('./features/Introduce/pages/Contact'));
 const AboutPage = React.lazy(() => import('./features/Introduce/pages/About'));
-// 
+const UserProfile = React.lazy(() => import('./features/Information/pages/UserProfile'));
+const ServicesPage = React.lazy(() => import('./features/Service/pages/Services'));
+const ServiceDetailsPage = React.lazy(() => import('./features/Service/pages/ServiceDetails'));
+//
 
 function App() {
   return (
@@ -24,10 +32,11 @@ function App() {
       <Routes>
         <Route path='*' element={<NotFound />} />
 
-        {/* <Route path="/" element={<Navigate to='/login' replace />} /> */}
+        <Route path="/" element={<Navigate to='/home' replace />} />
 
+        {/* public routes */}
         <Route
-          path='/'
+          path='/home'
           element={
             <React.Suspense fallback={<Loading />} >
               <HomePage />
@@ -45,15 +54,6 @@ function App() {
         />
 
         <Route
-          path='/adoption'
-          element={
-            <React.Suspense fallback={<Loading />}>
-              <AdoptPet />
-            </React.Suspense>
-          }
-        />
-
-        <Route
           path='/contact'
           element={
             <React.Suspense fallback={<Loading />} >
@@ -63,32 +63,69 @@ function App() {
         />
 
         <Route
-          path="/login"
-          element={
-            <React.Suspense fallback={<Loading />} >
-              <AuthMain />
-            </React.Suspense>
-          }
-        />
+          path='services'
+        >
+          <Route
+            path=''
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <ServicesPage />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path=':id'
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <ServiceDetailsPage />
+              </React.Suspense>
+            }
+          />
+        </Route>
 
-        <Route
-          path="/register"
-          element={
-            <React.Suspense fallback={<Loading />} >
-              <AuthMain />
-            </React.Suspense>
-          }
-        />
+        {/* use logged in routes */}
+        <Route element={<PublicRoutes />} >
+          <Route
+            path="/login"
+            element={
+              <React.Suspense fallback={<Loading />} >
+                <AuthMain />
+              </React.Suspense>
+            }
+          />
 
-        <Route
-          path="/forgot-password"
-          element={
-            <React.Suspense fallback={<Loading />} >
-              <AuthMain />
-            </React.Suspense>
-          }
-        />
+          <Route
+            path="/register"
+            element={
+              <React.Suspense fallback={<Loading />} >
+                <AuthMain />
+              </React.Suspense>
+            }
+          />
 
+          <Route
+            path="/forgot-password"
+            element={
+              <React.Suspense fallback={<Loading />} >
+                <AuthMain />
+              </React.Suspense>
+            }
+          />
+        </Route>
+
+        {/* logged in & role: User */}
+        <Route element={<PrivateRoutesUser />}>
+          <Route
+            path='/profile'
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <UserProfile />
+              </React.Suspense>
+            }
+          />
+        </Route>
+
+        {/* middle routes */}
         <Route
           path='/confirm-email/:token'
           element={<AuthConfirmEmail />}
