@@ -9,6 +9,8 @@ import BackToTop from './components/BackToTop';
 import AuthConfirmEmail from './features/Auth/pages/ConfirmEmail';
 import PublicRoutes from './helpers/PublicRoutes';
 import PrivateRoutesUser from './helpers/PrivateRoutesUser';
+import { logout } from './features/Auth/authSlice';
+import { useDispatch } from 'react-redux';
 // import AuthMain from './features/Auth/pages/Main';
 // import HomePage from './features/Introduce/pages/Home';
 // import ContactPage from './features/Introduce/pages/Contact';
@@ -29,9 +31,14 @@ const OurTeamPage = React.lazy(() => import('./features/Introduce/pages/OurTeam'
 //
 
 function App() {
+  const dispatch = useDispatch();
+  const handleEventLogout = () => {
+    dispatch(logout());
+  }
+
   return (
     <Router>
-      <Header />
+      <Header handleEventLogout={handleEventLogout} />
       <BackToTop key={250} />
       <Routes>
         <Route path='*' element={<NotFound />} />
