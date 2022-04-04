@@ -14,6 +14,7 @@ UserProfile.propTypes = {
 };
 
 function UserProfile(props) {
+   window.scrollTo(0, 0)
    const dispatch = useDispatch();
 
    const { userInfo, isLoading } = useSelector((state) => state.user);
