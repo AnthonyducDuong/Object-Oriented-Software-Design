@@ -76,7 +76,7 @@ function ServiceDetails(props) {
 
    return (
       <>
-         <Banner heading='service-1' />
+         <Banner arrHeading={['service-1']} />
          <Container
             maxW={'6xl'}
             paddingY='90px'

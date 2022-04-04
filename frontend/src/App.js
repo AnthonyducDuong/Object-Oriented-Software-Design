@@ -22,6 +22,10 @@ const AboutPage = React.lazy(() => import('./features/Introduce/pages/About'));
 const UserProfile = React.lazy(() => import('./features/Information/pages/UserProfile'));
 const ServicesPage = React.lazy(() => import('./features/Service/pages/Services'));
 const ServiceDetailsPage = React.lazy(() => import('./features/Service/pages/ServiceDetails'));
+const AdoptionPage = React.lazy(() => import('./features/AdoptPet/pages/Adoption'))
+const AdoptionSinglePage = React.lazy(() => import('./features/AdoptPet/pages/AdoptionSingle'))
+const GalleryPage = React.lazy(() => import('./features/Introduce/pages/Gallery'))
+const OurTeamPage = React.lazy(() => import('./features/Introduce/pages/OurTeam'))
 //
 
 function App() {
@@ -52,6 +56,23 @@ function App() {
             </React.Suspense>
           }
         />
+        <Route
+          path='/ourteam'
+          element={
+            <React.Suspense fallback={<Loading />}>
+              <OurTeamPage />
+            </React.Suspense>
+          }
+        />
+
+        <Route
+          path='/gallery'
+          element={
+            <React.Suspense fallback={<Loading />}>
+              <GalleryPage />
+            </React.Suspense>
+          }
+        />
 
         <Route
           path='/contact'
@@ -61,6 +82,28 @@ function App() {
             </React.Suspense>
           }
         />
+        <Route
+          path='/adoption'
+        >
+          <Route
+            path=''
+            element={
+              <React.Suspense fallback={<Loading />} >
+                <AdoptionPage />
+              </React.Suspense>
+            }
+          />
+
+          <Route
+            path=":id"
+            element={
+              <React.Suspense fallback={<Loading />} >
+                <AdoptionSinglePage />
+              </React.Suspense>
+            }
+          />
+
+        </Route>
 
         <Route
           path='services'

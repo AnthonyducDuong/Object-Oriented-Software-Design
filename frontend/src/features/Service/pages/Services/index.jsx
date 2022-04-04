@@ -14,6 +14,7 @@ Services.propTypes = {
 };
 
 function Services(props) {
+   window.scrollTo(0, 0)
    const dispatch = useDispatch();
 
    const { services, isLoading } = useSelector((state) => state.service);
@@ -57,7 +58,7 @@ function Services(props) {
    return (
       <>
          <Banner
-            heading='Services'
+            arrHeading={['Services']}
          />
          <Box
             paddingY={'20'}

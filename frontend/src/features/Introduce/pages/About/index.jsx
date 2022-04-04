@@ -14,9 +14,10 @@ About.propTypes = {
 };
 
 function About(props) {
+    window.scrollTo(0, 0)
     return (
         <>
-            <Banner heading='About us' />
+            <Banner arrHeading={['About us']} />
             <Container
                 backgroundColor='#fff'
                 width='auto'

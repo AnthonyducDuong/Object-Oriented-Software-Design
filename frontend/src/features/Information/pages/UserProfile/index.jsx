@@ -30,7 +30,7 @@ function UserProfile(props) {
    return (
       <>
          <Banner
-            heading={'Profile'}
+            arrHeading={['Profile']}
          />
          <Box>
             <Container

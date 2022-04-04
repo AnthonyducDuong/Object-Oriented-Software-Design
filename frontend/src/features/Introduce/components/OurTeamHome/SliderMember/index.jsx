@@ -5,14 +5,17 @@ import 'react-slideshow-image/dist/styles.css'
 import BoxMember from '../BoxMember';
 
 SliderMember.propTypes = {
-
+    members: PropTypes.number,
 };
 
 function SliderMember(props) {
+    const { members } = props
+    console.log(members);
     const style = {
         // textAlign: 'center',
         // padding: '50px 0 0 0',
         // fontSize: '30px',
+        marginLeft: '40px'
     };
 
     const properties = {
@@ -25,7 +28,7 @@ function SliderMember(props) {
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: members ? members : 3,
                     slidesToScroll: 1
                 }
             },
@@ -42,16 +45,19 @@ function SliderMember(props) {
     return (
         <Slide {...properties}>
             <div style={style}>
-                <BoxMember maxW='246px' maxH='414px' />
+                <BoxMember maxW='286px' maxH='500px' name='Phan Thanh Tài' description='Không' />
             </div>
             <div style={style}>
-                <BoxMember maxW='246px' maxH='414px' />
+                <BoxMember maxW='286px' maxH='500px' name='Bùi Văn Tính' description='Không' />
             </div>
             <div style={style}>
-                <BoxMember maxW='246px' maxH='414px' />
+                <BoxMember maxW='286px' maxH='500px' name='Dương Đức Thắng' description='Không' />
             </div>
             <div style={style}>
-                <BoxMember maxW='246px' maxH='414px' />
+                <BoxMember maxW='286px' maxH='500px' name='Hoàng Minh Thắng' description='Không' />
+            </div>
+            <div style={style}>
+                <BoxMember maxW='286px' maxH='500px' name='Nguyễn Hiếu Đan' description='Không' />
             </div>
         </Slide>
     );

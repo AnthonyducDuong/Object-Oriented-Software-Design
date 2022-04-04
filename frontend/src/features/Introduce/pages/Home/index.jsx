@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../../../components/header';
 import Banner from '../../../../components/Banner';
@@ -23,6 +23,7 @@ HomePage.propTypes = {
 };
 
 function HomePage(props) {
+    window.scrollTo(0, 0)
     return (
         <>
             <BannerHome />
