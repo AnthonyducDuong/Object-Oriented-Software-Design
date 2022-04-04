@@ -6,7 +6,7 @@ import { FaHistory, FaMapMarker } from "react-icons/fa";
 import { BsPersonCircle } from "react-icons/bs";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../../features/Auth/authSlice';
+// import { logout } from '../../../features/Auth/authSlice';
 
 TopBar.propTypes = {
 
@@ -21,7 +21,7 @@ function TopBar(props) {
     console.log('path: ', pathCurr);
     const dispatch = useDispatch();
     const handleLogOut = () => {
-        dispatch(logout())
+        // dispatch(logout())
     }
 
     return (
