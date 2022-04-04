@@ -5,6 +5,10 @@ const petAPI = {
         const url = path
         return axiosClient.get(url, { params })
     },
+    getPet: (idPet) => {
+        const url = path + `/${idPet}`
+        return axiosClient.get(url, idPet)
+    },
     addPet: (params) => {
         const url = path
         return axiosClient.post(url, { params })

@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AdoptCart from '../../../../components/AdoptCart';
 import { Container, Flex } from '@chakra-ui/layout';
+import { Skeleton } from '@chakra-ui/react';
 
 AdoptContent.propTypes = {
     currentItems: PropTypes.array,
+    isLoading: PropTypes.bool,
 };
 
 function AdoptContent(props) {
-    const { currentItems } = props
+    const { currentItems, isLoading } = props
+    console.log('isLoading: ', isLoading);
     return (
         <Container
             maxWidth='100%'
@@ -42,6 +45,7 @@ function AdoptContent(props) {
                                 gender={item.gender}
                                 age={item.age}
                                 maxW='100%'
+                                idPet={item.id}
                             />
                         </Container>
                     ))}

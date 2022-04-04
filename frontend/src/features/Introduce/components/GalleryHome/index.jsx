@@ -80,7 +80,7 @@ function GalleryHome(props) {
                 margin='0'
                 padding='0'
             >
-                <SliderGallery />
+                <SliderGallery marg='0 0' />
             </Container>
         </Container>
     );

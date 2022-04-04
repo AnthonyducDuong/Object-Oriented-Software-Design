@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flex, Link, Image, Container, Heading, List, ListItem, Text } from '@chakra-ui/react';
+import { Flex, Image, Container, Heading, List, ListItem, Text } from '@chakra-ui/react';
 import IMAGES from '../../constants/images';
 import { MdPets } from "react-icons/md";
 import { FaDog } from "react-icons/fa";
 import { GiLoveInjection } from "react-icons/gi";
+import { Link } from 'react-router-dom';
 import './AdoptCart.scss'
 
 AdoptCart.propTypes = {
@@ -17,6 +18,7 @@ AdoptCart.propTypes = {
     vaccin: PropTypes.bool,
     maxW: PropTypes.string,
     h: PropTypes.string,
+    idPet: PropTypes.string,
 };
 
 function AdoptCart(props) {
@@ -43,7 +45,14 @@ function AdoptCart(props) {
                     flex='0 0 41.67%'
                     padding='0 15px'
                 >
-                    <Link overflow='hidden' display='block' borderBottom='5px solid #018AE0'>
+                    <Link
+                        to={`/adoption/${props.idPet}`}
+                        style={{
+                            overflow: 'hidden',
+                            display: 'block',
+                            borderBottom: '5px solid #018AE0',
+                        }}
+                    >
                         <Image
                             objectFit='cover'
                             src={props.srcImage}
@@ -131,12 +140,16 @@ function AdoptCart(props) {
                     </ListItem>
                 </List>
                 <Link
-                    marginTop='5px'
-                    padding='10px 50px'
-                    backgroundColor='#018AE0'
-                    borderRadius='50px'
-                    color='#fff'
-                    fontWeight='700'
+                    to={`/adoption/${props.idPet}`}
+                    style={{
+                        marginTop: '5px',
+                        padding: '10px 50px',
+                        backgroundColor: '#018AE0',
+                        borderRadius: '50px',
+                        color: '#fff',
+                        fontWeight: '700',
+                    }}
+
                 >
                     MORE INFO
                 </Link>

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Banner from '../../components/Banner';
-import PaginateAdopt from './components/Paginate';
+import Banner from '../../../../components/Banner'
+import PaginateAdopt from '../../components/Paginate';
 import { Container, Flex, Heading, Text, List, ListIcon, ListItem, Button } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { FaCheckSquare } from "react-icons/fa";
-import FiltersPet from './components/FiltersPet';
+import FiltersPet from '../../components/FiltersPet';
 
 AdoptPet.propTypes = {
 

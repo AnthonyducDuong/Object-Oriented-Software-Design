@@ -61,31 +61,18 @@ function TopNav(props) {
                                     <MenuList backgroundColor={'#018ae0'} >
                                         <MenuItem fontWeight='600'><Link to='/aboutus'>About Us</Link></MenuItem>
                                         <MenuItem fontWeight='600'><Link to='/ourteam'>Our team</Link></MenuItem>
-                                        <MenuItem fontWeight='600'><Link to='/careers'>Careers</Link></MenuItem>
                                     </MenuList>
                                 </Menu>
                             </Container>
                         </ListItem>
                         <ListItem>
-                            <Container >
-                                <Menu isLazy >
-                                    <MenuButton fontWeight='600'>Adopt <Icon as={TriangleDownIcon} w={2} h={2} /></MenuButton>
-                                    <MenuList backgroundColor={'#018ae0'} >
-                                        <MenuItem fontWeight='600'><Link to='/adoption'>Adopt Gallery</Link></MenuItem>
-                                        <MenuItem fontWeight='600'><Link to='/adoptstories'>Adopt stories</Link></MenuItem>
-                                        <MenuItem fontWeight='600'><Link to='/events'>Events</Link></MenuItem>
-                                    </MenuList>
-                                </Menu>
-                            </Container>
+                            <Link to='/adoption'>Adopt</Link>
                         </ListItem>
                         <ListItem padding={'0 16px'}>
                             <Link to='/gallery'>Gallery</Link>
                         </ListItem>
                         <ListItem padding={'0 16px'}>
                             <Link to='/contact'>Contact</Link>
-                        </ListItem>
-                        <ListItem padding={'0 16px'}>
-                            <Link to='/blog'>Blog</Link>
                         </ListItem>
                     </List>
                 </Flex>
