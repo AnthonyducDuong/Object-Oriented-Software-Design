@@ -7,12 +7,14 @@ import { AiOutlineRight } from "react-icons/ai";
 import { Link } from 'react-router-dom'
 
 Banner.propTypes = {
-    arrHeading: PropTypes.array,
+    arrHeading: PropTypes.string,
+    headingPage: PropTypes.string
 };
 
 function Banner(props) {
-    const { arrHeading } = props
+    const { arrHeading, headingPage } = props
     console.log(`length: ${arrHeading.length}`);
+    const arr = JSON.parse(arrHeading)
     return (
         <Container
             margin='0'
@@ -53,7 +55,7 @@ function Banner(props) {
                     color='#fff'
                     fontSize='60px'
                 >
-                    {arrHeading[0]}
+                    {headingPage}
                 </Heading>
                 <Flex alignItems='center' justifyContent='center' borderRadius='5px' background='#D61C62' height='30px' maxWidth='max-content' padding='5px 30px'>
                     <Link to='/'
@@ -66,10 +68,10 @@ function Banner(props) {
                     >
                         Home
                     </Link>
-                    {arrHeading.map((head, index) => {
-                        if (index < arrHeading.length - 1) {
+                    {arr.map((item, index) => {
+                        if (index < arr.length - 1) {
                             return (
-                                <Link to={`/${head}`}
+                                <Link to={`/${item.link}`}
                                     key={index}
                                     style={{
                                         lineHeight: '14px',
@@ -79,7 +81,7 @@ function Banner(props) {
                                     }}
                                 >
                                     <ChevronRightIcon color='#fff' />
-                                    {head}
+                                    {item.head}
                                 </Link>
                             )
 
@@ -88,7 +90,7 @@ function Banner(props) {
                             return (
                                 <Text key={index} lineHeight='14px' fontSize='14px' fontWeight='400' color='#cecece'>
                                     <ChevronRightIcon color='#fff' />
-                                    {head}
+                                    {item.head}
                                 </Text>
                             )
                         }

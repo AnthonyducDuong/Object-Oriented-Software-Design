@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../../../../components/Banner';
 import { Container, Flex, Image, Heading, List, ListItem, Text, Button, Divider } from '@chakra-ui/react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate, useLocation } from 'react-router-dom'
 import SliderAdoptSingle from '../../components/SliderAdoptSingle';
 import AccordionAdoptSingle from '../../components/AccordionAdoptSingle';
 import IMAGES from '../../../../constants/images';
 import petAPI from '../../../../api/petApi';
 import AdoptCartSingle from '../../components/AdoptCartSingle';
+import ModalBox from '../../../../components/ModalBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { getInfo } from '../../../Information/userSlice';
+import { useToast } from '@chakra-ui/react'
+import billAPI from '../../../../api/billApi';
 
 
 AdoptionSingle.propTypes = {
@@ -26,6 +31,22 @@ function AdoptionSingle(props) {
     const [srcImage, setSrcIamge] = useState();
     const [listPet, setListPet] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
+    const [onModal, setOnModal] = useState(false)
+    const { userInfo } = useSelector((state) => state.user);
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const toast = useToast()
+    const dispatch = useDispatch()
+    console.log('userInfo: ', userInfo);
+
+    const initFetch = useCallback(async () => {
+        dispatch(getInfo());
+    }, [dispatch]);
+
+    useEffect(() => {
+        initFetch();
+    }, [initFetch]);
     useEffect(() => {
         const getPet = async () => {
             const response = await petAPI.getPet(idPet);
@@ -47,12 +68,70 @@ function AdoptionSingle(props) {
         }
         getPet()
         getListPet()
+        window.scrollTo(0, 0)
     }, [idPet])
+    const handleAdoptPet = () => {
+        setOnModal(true)
+        // setCheckOut(true)
+    }
+    const onSetCloseModal = () => {
+        setOnModal(false)
+    }
+    // console.log('height: ', window.)
 
-    window.scrollTo(0, 0)
+    const handleAddBillPet = () => {
+        // const params = {
+        //     idPet: pet.id,
+        //     idUser: userInfo.id,
+        //     methodPayment: 'Banking',
+        //     price: pet.price,
+        // }
+        // const addBillPet = async () => {
+        //     const response = await billAPI.addBill(params)
+        //     const { data, message, status } = response.data
+        //     console.log(response);
+        //     if (status === 200) {
+        //         toast({
+        //             title: 'Add Bill Successfully',
+        //             description: `Thank you for adopting ${pet.name} with price ${pet.price}$!`,
+        //             status: 'success',
+        //             duration: '5000',
+        //             isClosable: true,
+        //             position: 'top'
+        //         })
+        //     }
+        //     else {
+        //         toast({
+        //             title: 'Add Bill Unsuccessfully',
+        //             description: `Error: ${message}`,
+        //             status: 'error',
+        //             duration: '5000',
+        //             isClosable: true,
+        //             position: 'top'
+        //         })
+        //     }
+        // }
+        // // addBillPet()
+        // console.log('info bill: ', (params));
+
+        const url = location.pathname + "/payment"
+        navigate(url)
+        setOnModal(false)
+    }
+    const arr = [
+        {
+            head: 'Adoption',
+            link: 'adoption'
+        },
+        {
+            head: 'Adoption single page',
+            link: ""
+        }
+    ]
+    const arrJson = JSON.stringify(arr)
     return (
         <>
-            <Banner arrHeading={['Adoption', 'Adoption single page']} />
+            <Banner arrHeading={arrJson} headingPage={'Adoption single page'} />
             <Container
                 maxWidth='100%'
                 width='auto'
@@ -141,9 +220,18 @@ function AdoptionSingle(props) {
                                     _active={{
                                         backgroundColor: '#D61C62'
                                     }}
+                                    onClick={handleAdoptPet}
                                 >
                                     Adopt me
                                 </Button>
+                                <ModalBox
+                                    isOpenModal={onModal}
+                                    onSetCloseModal={onSetCloseModal}
+                                    buttonActionContent='ADOPT PET'
+                                    modalContent={`Are you sure to adopt ${pet.name} with price ${pet.price}$`}
+                                    modalTitle='Confirm Adoption Pet'
+                                    onActionClick={handleAddBillPet}
+                                />
                             </Container>
                             <Container
                                 flex='0 0 100%'
@@ -205,6 +293,7 @@ function AdoptionSingle(props) {
                                         _active={{
                                             backgroundColor: '#D61C62'
                                         }}
+                                        onClick={handleAdoptPet}
                                     >
                                         Adopt me
                                     </Button>

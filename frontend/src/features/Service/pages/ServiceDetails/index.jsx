@@ -54,6 +54,16 @@ function ServiceDetails(props) {
          })
       }
    }
+   
+    const arr = [{
+      head: 'Services',
+      link: 'Services'
+   },
+   {
+      head: 'Services single page',
+      link: ''
+   }]
+   const arrJson = JSON.stringify(arr)
 
    useEffect(() => {
       const fetchData = async () => {
@@ -88,7 +98,7 @@ function ServiceDetails(props) {
 
    return (
       <>
-         <Banner arrHeading={['Services', currentService.name]} />
+         <Banner arrHeading={arrJson} headingPage={'Services single page'} />
          <Container
             maxW={'6xl'}
             paddingY='90px'

@@ -55,10 +55,16 @@ function Services(props) {
       });
    }
 
+   const arr = [{
+      head: 'Services',
+      link: ''
+   }]
+   const addJson = JSON.stringify(arr)
+   
    return (
       <>
          <Banner
-            arrHeading={['Services']}
+            arrHeading={addJson} headingPage='Services'
          />
          <Box
             paddingY={'20'}

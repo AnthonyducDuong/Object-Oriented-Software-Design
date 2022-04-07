@@ -6,12 +6,12 @@ import { Skeleton } from '@chakra-ui/react';
 
 AdoptContent.propTypes = {
     currentItems: PropTypes.array,
-    isLoading: PropTypes.bool,
+    // isLoading: PropTypes.bool,
 };
 
 function AdoptContent(props) {
-    const { currentItems, isLoading } = props
-    console.log('isLoading: ', isLoading);
+    const { currentItems } = props
+    // console.log('isLoading: ', isLoading);
     return (
         <Container
             maxWidth='100%'
