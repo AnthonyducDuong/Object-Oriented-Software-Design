@@ -6,6 +6,7 @@ import './Paginate.scss'
 import { Container, Flex, Button } from '@chakra-ui/react';
 import petAPI from '../../../../api/petApi';
 import AdoptCart from '../../../../components/AdoptCart';
+import { useLocation } from 'react-router-dom';
 
 PaginateAdopt.propTypes = {
     itemsPerPage: PropTypes.number,
@@ -17,6 +18,10 @@ function PaginateAdopt(props) {
     const { itemsPerPage, category } = props
     const [page, setPage] = useState(0)
     // console.log(itemsPerPage);
+    const location = useLocation()
+    // location.state = {
+    //     isRender
+    // }
 
     for (let i = 0; i < page; i++) {
         items[i] = i + 1
@@ -31,12 +36,17 @@ function PaginateAdopt(props) {
     };
     // console.log(`current page: ${currentPage}`);
 
+    // console.log('isRender: ', location.state.isRender);
     useEffect(() => {
+        location.state = {
+            isRender: false
+        }
         const getPet = async () => {
             const params = {
                 page: currentPage,
                 size: itemsPerPage,
                 category: category,
+                status: true,
             }
 
             const response = await petAPI.getAll(params)
@@ -47,9 +57,8 @@ function PaginateAdopt(props) {
             setCurrentItems(data.pets)
         }
         getPet()
-    }, [currentPage, category])
+    }, [currentPage, category, location.state])
     // console.log(currentItems);
-
     return (
         <Container
             maxWidth='100%'
