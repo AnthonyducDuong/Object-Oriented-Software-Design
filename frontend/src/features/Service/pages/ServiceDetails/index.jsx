@@ -73,10 +73,19 @@ function ServiceDetails(props) {
    useEffect(() => {
       fetchData(idService);
    }, [idService]);
+   const arr = [{
+      head: 'Services',
+      link: 'Services'
+   },
+   {
+      head: 'Services single page',
+      link: ''
+   }]
+   const arrJson = JSON.stringify(arr)
 
    return (
       <>
-         <Banner arrHeading={['service-1']} />
+         <Banner arrHeading={arrJson} headingPage={'Services single page'} />
          <Container
             maxW={'6xl'}
             paddingY='90px'

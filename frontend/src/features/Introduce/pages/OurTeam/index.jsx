@@ -10,9 +10,14 @@ OurTeam.propTypes = {
 
 function OurTeam(props) {
     window.scrollTo(0, 0)
+    const arr = [{
+        head: 'OurTeam',
+        link: ''
+    }]
+    const arrJson = JSON.stringify(arr)
     return (
         <>
-            <Banner arrHeading={['OurTeam']} />
+            <Banner arrHeading={arrJson} headingPage='OurTeam' />
             <Container
                 maxWidth='100%'
                 width='auto'

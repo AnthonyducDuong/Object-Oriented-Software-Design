@@ -9,14 +9,14 @@ import AdoptCart from '../../../../components/AdoptCart';
 
 PaginateAdopt.propTypes = {
     itemsPerPage: PropTypes.number,
-
+    category: PropTypes.string,
 };
 const items = [];
 
 function PaginateAdopt(props) {
-    const { itemsPerPage } = props
+    const { itemsPerPage, category } = props
     const [page, setPage] = useState(0)
-    console.log(itemsPerPage);
+    // console.log(itemsPerPage);
 
     for (let i = 0; i < page; i++) {
         items[i] = i + 1
@@ -29,25 +29,26 @@ function PaginateAdopt(props) {
     const handlePageClick = (event) => {
         setCurrentPage(event.selected)
     };
-    console.log(`current page: ${currentPage}`);
+    // console.log(`current page: ${currentPage}`);
 
     useEffect(() => {
         const getPet = async () => {
             const params = {
                 page: currentPage,
                 size: itemsPerPage,
+                category: category,
             }
 
             const response = await petAPI.getAll(params)
             const { data, pagination } = response.data
-            console.log(data);
-            console.log(pagination);
+            // console.log(data);
+            // console.log(pagination);
             setPage(pagination._totalPage)
             setCurrentItems(data.pets)
         }
         getPet()
-    }, [currentPage])
-    console.log(currentItems);
+    }, [currentPage, category])
+    // console.log(currentItems);
 
     return (
         <Container

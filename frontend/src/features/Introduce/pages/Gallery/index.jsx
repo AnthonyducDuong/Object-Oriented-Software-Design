@@ -10,9 +10,15 @@ Gallery.propTypes = {
 
 function Gallery(props) {
     window.scrollTo(0, 0)
+
+    const arr = [{
+        head: 'Gallery',
+        link: ''
+    }]
+    const arrJson = JSON.stringify(arr)
     return (
         <>
-            <Banner arrHeading={['Gallery']} />
+            <Banner arrHeading={arrJson} headingPage='Gallery' />
             <Container
                 maxWidth='100%'
                 width='auto'

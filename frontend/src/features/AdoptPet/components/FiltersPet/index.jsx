@@ -3,34 +3,16 @@ import PropTypes from 'prop-types';
 import { Container, Flex, Heading, Text, List, ListIcon, ListItem, Button } from '@chakra-ui/react';
 
 FiltersPet.propTypes = {
-
+    fliterAll: PropTypes.bool,
+    fliterDog: PropTypes.bool,
+    fliterCat: PropTypes.bool,
+    handleFilterAll: PropTypes.func,
+    handleFilterDog: PropTypes.func,
+    handleFilterCat: PropTypes.func,
 };
 
 function FiltersPet(props) {
-    const [fliterAll, setFilterAll] = useState(true)
-    const [fliterDog, setFilterDog] = useState(false)
-    const [fliterCat, setFilterCat] = useState(false)
-    const handleFilterAll = () => {
-        if (!fliterAll) {
-            setFilterAll(true)
-            setFilterCat(false)
-            setFilterDog(false)
-        }
-    }
-    const handleFilterDog = () => {
-        if (!fliterDog) {
-            setFilterDog(true)
-            setFilterCat(false)
-            setFilterAll(false)
-        }
-    }
-    const handleFilterCat = () => {
-        if (!fliterCat) {
-            setFilterCat(true)
-            setFilterAll(false)
-            setFilterDog(false)
-        }
-    }
+    const { fliterAll, fliterDog, fliterCat, handleFilterAll, handleFilterDog, handleFilterCat } = props
     return (
         <Flex
             alignItems='center'

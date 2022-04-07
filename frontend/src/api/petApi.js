@@ -11,11 +11,11 @@ const petAPI = {
     },
     addPet: (params) => {
         const url = path
-        return axiosClient.post(url, { params })
+        return axiosClient.post(url, params)
     },
-    updatePet: (params) => {
-        const url = params + `/${params.id}`
-        return axiosClient.put(url, { params })
+    updatePet: (id, params) => {
+        const url = params + `/${id}`
+        return axiosClient.put(url, params)
     },
     deletePet: (id) => {
         const url = path + `/${id}`
