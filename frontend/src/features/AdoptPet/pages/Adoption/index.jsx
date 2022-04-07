@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../../../../components/Banner'
 import PaginateAdopt from '../../components/Paginate';
@@ -13,9 +13,43 @@ AdoptPet.propTypes = {
 
 function AdoptPet(props) {
     window.scrollTo(0, 0)
+
+    useEffect(() => {
+
+    })
+    const [fliterAll, setFilterAll] = useState(true)
+    const [fliterDog, setFilterDog] = useState(false)
+    const [fliterCat, setFilterCat] = useState(false)
+
+    const [category, setCategory] = useState('')
+    const handleFilterAll = () => {
+        if (!fliterAll) {
+            setFilterAll(true)
+            setFilterCat(false)
+            setFilterDog(false)
+            setCategory('')
+        }
+    }
+    const handleFilterDog = () => {
+        if (!fliterDog) {
+            setFilterDog(true)
+            setFilterCat(false)
+            setFilterAll(false)
+            setCategory('dog')
+        }
+    }
+    const handleFilterCat = () => {
+        if (!fliterCat) {
+            setFilterCat(true)
+            setFilterAll(false)
+            setFilterDog(false)
+            setCategory('cat')
+        }
+    }
+    // console.log('category: ', category);
     return (
         <>
-            <Banner arrHeading={['Adoption']} />
+            <Banner headingPage={'Adoption'} arrHeading={JSON.stringify([{ head: 'Adoption', link: 'adoption' }])} />
             <Container
                 maxWidth='100%'
                 width='auto'
@@ -107,8 +141,15 @@ function AdoptPet(props) {
                         </List>
                     </Container>
                 </Flex>
-                <FiltersPet />
-                <PaginateAdopt itemsPerPage={6} />
+                <FiltersPet
+                    fliterAll={fliterAll}
+                    fliterCat={fliterCat}
+                    fliterDog={fliterDog}
+                    handleFilterAll={handleFilterAll}
+                    handleFilterDog={handleFilterDog}
+                    handleFilterCat={handleFilterCat}
+                />
+                <PaginateAdopt itemsPerPage={6} category={category} />
             </Container>
         </>
     );

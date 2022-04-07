@@ -24,10 +24,12 @@ const AboutPage = React.lazy(() => import('./features/Introduce/pages/About'));
 const UserProfile = React.lazy(() => import('./features/Information/pages/UserProfile'));
 const ServicesPage = React.lazy(() => import('./features/Service/pages/Services'));
 const ServiceDetailsPage = React.lazy(() => import('./features/Service/pages/ServiceDetails'));
-const AdoptionPage = React.lazy(() => import('./features/AdoptPet/pages/Adoption'))
-const AdoptionSinglePage = React.lazy(() => import('./features/AdoptPet/pages/AdoptionSingle'))
-const GalleryPage = React.lazy(() => import('./features/Introduce/pages/Gallery'))
-const OurTeamPage = React.lazy(() => import('./features/Introduce/pages/OurTeam'))
+const AdoptionPage = React.lazy(() => import('./features/AdoptPet/pages/Adoption'));
+const AdoptionSinglePage = React.lazy(() => import('./features/AdoptPet/pages/AdoptionSingle'));
+const GalleryPage = React.lazy(() => import('./features/Introduce/pages/Gallery'));
+const OurTeamPage = React.lazy(() => import('./features/Introduce/pages/OurTeam'));
+const HistoriesPage = React.lazy(() => import('./features/Information/pages/Histories'));
+const PaymentPage = React.lazy(() => import('./features/AdoptPet/pages/Payment'));
 //
 
 function App() {
@@ -110,6 +112,15 @@ function App() {
             }
           />
 
+        <Route
+            path=":id/payment"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <PaymentPage />
+              </React.Suspense>
+            }
+          />
+
         </Route>
 
         <Route
@@ -173,6 +184,15 @@ function App() {
               </React.Suspense>
             }
           />
+
+          <Route
+            path='history'
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <HistoriesPage />
+              </React.Suspense>
+            }
+          />
         </Route>
 
         {/* middle routes */}
@@ -186,5 +206,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

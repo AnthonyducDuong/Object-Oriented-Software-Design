@@ -15,9 +15,14 @@ About.propTypes = {
 
 function About(props) {
     window.scrollTo(0, 0)
+    const arr = [{
+        head: 'About us',
+        link: ''
+    }]
+    const arrJson = JSON.stringify(arr)
     return (
         <>
-            <Banner arrHeading={['About us']} />
+            <Banner arrHeading={arrJson} headingPage='About us' />
             <Container
                 backgroundColor='#fff'
                 width='auto'

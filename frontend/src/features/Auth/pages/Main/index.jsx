@@ -31,22 +31,43 @@ function MainPages(props) {
 
    const titleBanner = () => {
       if (pathname === '/login') {
-         return 'Login';
+         const arr = [{
+            head: 'Login',
+            link: ''
+         }]
+         return ({
+            arrJson: JSON.stringify(arr),
+            heading: 'Login'
+         });
       }
 
       if (pathname === '/register') {
-         return 'Register';
+         const arr = [{
+            head: 'Register',
+            link: ''
+         }]
+         return ({
+            arrJson: JSON.stringify(arr),
+            heading: 'Register'
+         });
       }
 
       if (pathname === '/forgot-password') {
-         return 'Forgot Password';
+         const arr = [{
+            head: 'Forgot password',
+            link: ''
+         }]
+         return ({
+            arrJson: JSON.stringify(arr),
+            heading: 'Forgot password'
+         });
       }
    }
 
    return (
       <>
          <Banner
-            arrHeading={[titleBanner()]}
+            arrHeading={titleBanner().arrJson} headingPage={titleBanner().heading}
          />
          <Box>
             <Container
