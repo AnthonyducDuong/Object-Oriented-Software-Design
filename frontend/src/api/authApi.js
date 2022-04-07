@@ -1,4 +1,7 @@
 import Cookies from 'universal-cookie';
+import {
+   currentDomain
+} from '../utils/VerifyDomain';
 import axiosClient from './axiosClient';
 
 const path = '/auth';
@@ -52,7 +55,7 @@ const authApi = {
       // localStorage.removeItem("authToken");
       cookies.remove("authToken", {
          path: '/',
-         domain: "localhost"
+         domain: currentDomain(),
       });
    },
    refreshToken: (param) => {

@@ -6,15 +6,16 @@ import { Image } from '@chakra-ui/react'
 import IMAGES from '../../../../../constants/images';
 
 SliderGallery.propTypes = {
-
+    marg: PropTypes.string,
 };
 
 function SliderGallery(props) {
+    const { marg } = props
     const style = {
         // textAlign: 'center',
         // padding: '50px 0 0 0',
         // fontSize: '30px'
-        margin: '0 30px',
+        margin: marg ? marg : '0 30px',
         // width: 'auto !important'
     };
 

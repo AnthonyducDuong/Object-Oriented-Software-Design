@@ -9,11 +9,13 @@ import './BoxMember.scss'
 BoxMember.propTypes = {
     maxW: PropTypes.string,
     maxH: PropTypes.string,
-
+    name: PropTypes.string,
+    description: PropTypes.string,
+    fontSizeH: PropTypes.string,
 };
 
 function BoxMember(props) {
-    const { maxW, maxH } = props
+    const { maxW, maxH, name, description } = props
     return (
         <Container
             maxWidth={maxW}
@@ -82,7 +84,7 @@ function BoxMember(props) {
                         fontWeight='600'
                         lineHeight='26px'
                     >
-                        Laura Smith
+                        {name}
                     </Heading>
                 </Link>
                 <Text
@@ -90,7 +92,7 @@ function BoxMember(props) {
                     fontWeight='700'
                     color='#018AE0'
                 >
-                    Veterinarian
+                    {description}
                 </Text>
                 <Divider
                     width='60px'
@@ -101,7 +103,7 @@ function BoxMember(props) {
                     marginTop='20px'
                     color='#6f6f6f'
                     fontWeight='500'
-                    fontSize='16px'
+                    fontSize='14px'
                 >
                     Id fermentum augue, ut pellen tesque leo nas. Maecenas at arcu risus Donec com modo.
                 </Text>

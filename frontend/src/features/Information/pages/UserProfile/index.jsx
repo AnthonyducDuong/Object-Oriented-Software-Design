@@ -14,6 +14,7 @@ UserProfile.propTypes = {
 };
 
 function UserProfile(props) {
+   window.scrollTo(0, 0)
    const dispatch = useDispatch();
 
    const { userInfo, isLoading } = useSelector((state) => state.user);
@@ -30,7 +31,7 @@ function UserProfile(props) {
    return (
       <>
          <Banner
-            heading={'Profile'}
+            arrHeading={['Profile']}
          />
          <Box>
             <Container

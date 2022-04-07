@@ -12,9 +12,15 @@ Contact.propTypes = {
 };
 
 function Contact(props) {
+    window.scrollTo(0, 0)
+    const arr = [{
+        head: 'Contact',
+        link: ''
+    }]
+    const arrJson = JSON.stringify(arr)
     return (
         <>
-            <Banner heading='Contact' />
+            <Banner arrHeading={arrJson} headingPage={'Contact'} />
             <ContentContact />
         </>
     );
