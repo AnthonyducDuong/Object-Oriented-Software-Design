@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Flex, Container, Table, Thead, Tbody, Tr, Th, Td, Heading, useToast } from '@chakra-ui/react';
 import Paypal from '../../components/Paypal';
 import Banner from '../../../../components/Banner';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import petAPI from '../../../../api/petApi'
 import { useDispatch, useSelector } from 'react-redux';
 import { getInfo } from '../../../Information/userSlice';
@@ -83,7 +83,7 @@ function Payment(props) {
 
         }
         addBillPet(params)
-        navigate('/adoption')
+        navigate('/adoption', { replace: true, state: { isRender: true } })
     }
     console.log('user pay: ', userInfo);
     return (
