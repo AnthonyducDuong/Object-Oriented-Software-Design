@@ -28,6 +28,7 @@ const AdoptionPage = React.lazy(() => import('./features/AdoptPet/pages/Adoption
 const AdoptionSinglePage = React.lazy(() => import('./features/AdoptPet/pages/AdoptionSingle'))
 const GalleryPage = React.lazy(() => import('./features/Introduce/pages/Gallery'))
 const OurTeamPage = React.lazy(() => import('./features/Introduce/pages/OurTeam'))
+const HistoriesPage = React.lazy(() => import('./features/Information/pages/Histories'));
 //
 
 function App() {
@@ -170,6 +171,15 @@ function App() {
             element={
               <React.Suspense fallback={<Loading />}>
                 <UserProfile />
+              </React.Suspense>
+            }
+          />
+
+          <Route
+            path='history'
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <HistoriesPage />
               </React.Suspense>
             }
           />

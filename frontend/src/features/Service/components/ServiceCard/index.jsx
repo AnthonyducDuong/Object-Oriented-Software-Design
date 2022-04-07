@@ -1,27 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Heading, Image, Text, Link, Badge } from '@chakra-ui/react';
+import { Box, Heading, Image, Text, Link, Badge, Checkbox } from '@chakra-ui/react';
 import { Link as LinkReactRouterDom, useNavigate } from 'react-router-dom';
-import { FaAngleDoubleLeft } from 'react-icons/fa';
+import CustomIcon from '../../../../custom/CustomIcon';
 
 ServiceCard.propTypes = {
    service: PropTypes.object,
+   handleCheckboxChange: PropTypes.func,
+   servicesRegistration: PropTypes.array,
 };
 
 ServiceCard.defaultProps = {
    service: {},
+   handleCheckboxChange: null,
+   servicesRegistration: [],
 };
 
 function ServiceCard(props) {
-   const { service } = props;
+   const { service, handleCheckboxChange, servicesRegistration } = props;
    const navigate = useNavigate();
+
+   const [check, setCheck] = useState(false);
    const [hiddenText, setHiddenText] = useState(false);
+
+   useEffect(() => {
+      console.log(">>> Check check: ", check);
+      if (handleCheckboxChange) handleCheckboxChange(service, check);
+   }, [check]);
+
+   useEffect(() => {
+      const indexItem = servicesRegistration.indexOf(service);
+      if (indexItem > -1) {
+         setCheck(true);
+      }
+   }, []);
 
    return (
       <Box
          width={'255px'}
          marginRight='30px'
-         marginBottom={'20px'}
+         marginBottom={'30px'}
       >
          <Box
             position={'relative'}
@@ -55,6 +73,7 @@ function ServiceCard(props) {
             >
                {hiddenText && service.name}
             </Text>
+
          </Box>
          <Box
             marginTop={'20px'}
@@ -65,10 +84,20 @@ function ServiceCard(props) {
                color='#222'
                fontSize={'1.4em'}
                fontWeight='600'
-               marginBottom={'20px'}
             >
                {service.name}
             </Heading>
+            <Checkbox
+               // isInvalid
+               icon={<CustomIcon />}
+               size='md'
+               colorScheme='pink'
+               marginBottom={'20px'}
+               isChecked={check}
+               onChange={() => { setCheck(!check) }}
+            >
+               Registration
+            </Checkbox>
             <Box display='flex'
                justifyContent={'center'}>
                <Badge borderRadius='full' px='2' colorScheme='teal'>
