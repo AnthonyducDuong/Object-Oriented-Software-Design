@@ -28,6 +28,13 @@ export const getServices = createAsyncThunk(
 
 const initialState = {
    services: [],
+   pagination: {
+      _currentItem: 0,
+      _limit: 0,
+      _page: 0,
+      _totalItem: 0,
+      _totalPage: 0,
+   },
    isLoading: false,
 };
 
@@ -45,6 +52,7 @@ const serviceSlice = createSlice({
          state.isLoading = false;
          var ids = new Set(state.services.map(s => s.id));
          state.services = [...state.services, ...action.payload.services.filter(s => !ids.has(s.id))];
+         state.pagination = action.payload.pagination;
       }
    },
 });

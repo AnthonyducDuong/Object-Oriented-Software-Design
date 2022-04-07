@@ -34,7 +34,6 @@ const nextYear = new Date();
 nextYear.setFullYear(current.getFullYear() + 1);
 
 function LogIn(props) {
-
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
@@ -60,7 +59,6 @@ function LogIn(props) {
    }, [dispatch]);
 
    useEffect(() => {
-      window.scrollTo(0, 0)
       const loginData = cookies.get('loginData') ? cookies.get('loginData') : null;
 
       if (loginData !== null) {

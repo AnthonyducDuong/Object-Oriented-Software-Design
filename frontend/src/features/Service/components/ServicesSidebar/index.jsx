@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Divider, Heading, Link } from '@chakra-ui/react';
+import { Box, Divider, Heading, Link, Skeleton } from '@chakra-ui/react';
 import { Link as LinkReactRouterDom } from 'react-router-dom';
 import IMAGES from '../../../../constants/images';
 
@@ -10,8 +10,10 @@ ServicesSidebar.propTypes = {
 
 function ServicesSidebar(props) {
    const { services } = props;
-   console.log(services);
+   const isLoaded = services.length > 0 ? true : false;
+   console.log(">>> Check services/sidebar: ", services);
    return (
+      // <Skeleton isLoaded={isLoaded} >
       <Box
          flex={'0 0 25%'}
          maxW='25%'
@@ -38,39 +40,42 @@ function ServicesSidebar(props) {
                Some services
             </Heading>
             <Divider margin={'auto'} textAlign={'center'} w='60px' />
-            <Box
-               fontWeight={'700'}
-               fontSize='18px'
-            >
-               {services &&
-                  services.map((service, index) => (
-                     <Link
-                        as={LinkReactRouterDom}
-                        to={`../${service.id}`}
-                        key={service.id}
-                        color={'#018AE0'}
-                        transition='all 0.2s ease-in-out'
-                        marginBottom='4px'
-                        border='0'
-                        borderRadius={'5px'}
-                        fontSize='16px'
-                        display={'block'}
-                        padding='0.75rem 1.25rem'
-                        bg={'#fff'}
-                        textDecoration='none'
-                        _hover={{
-                           textDecoration: 'none',
-                           bg: '#D61C62',
-                           color: '#fff'
-                        }}
-                     >
-                        {service.name}
-                     </Link>
-                  ))
-               }
-            </Box>
+            <Skeleton isLoaded={isLoaded} >
+               <Box
+                  fontWeight={'700'}
+                  fontSize='18px'
+               >
+                  {services &&
+                     services.map((service, index) => (
+                        <Link
+                           as={LinkReactRouterDom}
+                           to={`../${service.id}`}
+                           key={service.id}
+                           color={'#018AE0'}
+                           transition='all 0.2s ease-in-out'
+                           marginBottom='4px'
+                           border='0'
+                           borderRadius={'5px'}
+                           fontSize='16px'
+                           display={'block'}
+                           padding='0.75rem 1.25rem'
+                           bg={'#fff'}
+                           textDecoration='none'
+                           _hover={{
+                              textDecoration: 'none',
+                              bg: '#D61C62',
+                              color: '#fff'
+                           }}
+                        >
+                           {service.name}
+                        </Link>
+                     ))
+                  }
+               </Box>
+            </Skeleton>
          </Box>
       </Box>
+      // </Skeleton>
    );
 }
 
