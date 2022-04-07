@@ -19,6 +19,9 @@ function PaginateAdopt(props) {
     const [page, setPage] = useState(0)
     // console.log(itemsPerPage);
     const location = useLocation()
+    // location.state = {
+    //     isRender
+    // }
 
     for (let i = 0; i < page; i++) {
         items[i] = i + 1
@@ -33,9 +36,11 @@ function PaginateAdopt(props) {
     };
     // console.log(`current page: ${currentPage}`);
 
-    console.log('isRender: ', location.state.isRender);
+    // console.log('isRender: ', location.state.isRender);
     useEffect(() => {
-        location.state.isRender = false
+        location.state = {
+            isRender: false
+        }
         const getPet = async () => {
             const params = {
                 page: currentPage,
@@ -52,7 +57,7 @@ function PaginateAdopt(props) {
             setCurrentItems(data.pets)
         }
         getPet()
-    }, [currentPage, category, location.state.isRender])
+    }, [currentPage, category, location.state])
     // console.log(currentItems);
     return (
         <Container

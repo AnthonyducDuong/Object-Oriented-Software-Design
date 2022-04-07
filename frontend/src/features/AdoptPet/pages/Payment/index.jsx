@@ -14,6 +14,7 @@ Payment.propTypes = {
 };
 
 function Payment(props) {
+    window.scrollTo(0, 0)
     // const { idPet } = props
     const { isLoggedIn } = useSelector((state) => state.auth)
     const { userInfo } = useSelector((state) => state.user)
