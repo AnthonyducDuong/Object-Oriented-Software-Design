@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
+
 ModalBox.propTypes = {
    isOpenModal: PropTypes.bool,
    modalTitle: PropTypes.string,
@@ -12,6 +13,7 @@ ModalBox.propTypes = {
 
 function ModalBox(props) {
    const { isOpenModal, modalTitle, modalContent, buttonActionContent, onActionClick, onSetCloseModal } = props;
+
    const handleActionClick = () => {
       if (onActionClick) onActionClick();
    };
@@ -21,7 +23,7 @@ function ModalBox(props) {
    };
 
    return (
-      <Modal isOpen={isOpenModal} onClose={handleCloseModal}>
+      <Modal isOpen={isOpenModal}>
          <ModalOverlay />
          <ModalContent>
             <ModalHeader>{modalTitle}</ModalHeader>

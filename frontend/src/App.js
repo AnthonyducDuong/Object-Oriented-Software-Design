@@ -9,6 +9,8 @@ import BackToTop from './components/BackToTop';
 import AuthConfirmEmail from './features/Auth/pages/ConfirmEmail';
 import PublicRoutes from './helpers/PublicRoutes';
 import PrivateRoutesUser from './helpers/PrivateRoutesUser';
+import { logout } from './features/Auth/authSlice';
+import { useDispatch } from 'react-redux';
 // import AuthMain from './features/Auth/pages/Main';
 // import HomePage from './features/Introduce/pages/Home';
 // import ContactPage from './features/Introduce/pages/Contact';
@@ -22,17 +24,23 @@ const AboutPage = React.lazy(() => import('./features/Introduce/pages/About'));
 const UserProfile = React.lazy(() => import('./features/Information/pages/UserProfile'));
 const ServicesPage = React.lazy(() => import('./features/Service/pages/Services'));
 const ServiceDetailsPage = React.lazy(() => import('./features/Service/pages/ServiceDetails'));
-const AdoptionPage = React.lazy(() => import('./features/AdoptPet/pages/Adoption'))
-const AdoptionSinglePage = React.lazy(() => import('./features/AdoptPet/pages/AdoptionSingle'))
-const GalleryPage = React.lazy(() => import('./features/Introduce/pages/Gallery'))
-const OurTeamPage = React.lazy(() => import('./features/Introduce/pages/OurTeam'))
-const PaymentPage = React.lazy(() => import('./features/AdoptPet/pages/Payment'))
+const AdoptionPage = React.lazy(() => import('./features/AdoptPet/pages/Adoption'));
+const AdoptionSinglePage = React.lazy(() => import('./features/AdoptPet/pages/AdoptionSingle'));
+const GalleryPage = React.lazy(() => import('./features/Introduce/pages/Gallery'));
+const OurTeamPage = React.lazy(() => import('./features/Introduce/pages/OurTeam'));
+const HistoriesPage = React.lazy(() => import('./features/Information/pages/Histories'));
+const PaymentPage = React.lazy(() => import('./features/AdoptPet/pages/Payment'));
 //
 
 function App() {
+  const dispatch = useDispatch();
+  const handleEventLogout = () => {
+    dispatch(logout());
+  }
+
   return (
     <Router>
-      <Header />
+      <Header handleEventLogout={handleEventLogout} />
       <BackToTop key={250} />
       <Routes>
         <Route path='*' element={<NotFound />} />
@@ -103,7 +111,8 @@ function App() {
               </React.Suspense>
             }
           />
-          <Route
+
+        <Route
             path=":id/payment"
             element={
               <React.Suspense fallback={<Loading />}>
@@ -111,6 +120,7 @@ function App() {
               </React.Suspense>
             }
           />
+
         </Route>
 
         <Route
@@ -174,6 +184,15 @@ function App() {
               </React.Suspense>
             }
           />
+
+          <Route
+            path='history'
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <HistoriesPage />
+              </React.Suspense>
+            }
+          />
         </Route>
 
         {/* middle routes */}
@@ -187,5 +206,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

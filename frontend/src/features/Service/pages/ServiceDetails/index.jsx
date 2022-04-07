@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Container, Flex, useToast } from '@chakra-ui/react';
+import { Box, Button, Container, Flex, Link, useToast } from '@chakra-ui/react';
 import Banner from '../../../../components/Banner';
-import { Outlet, useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import ContentServiceDetails from '../../components/ContentServiceDetails';
 import ServicesSidebar from '../../components/ServicesSidebar';
 import serviceApi from '../../../../api/serviceApi';
@@ -17,10 +17,12 @@ function ServiceDetails(props) {
    const { id: idService } = useParams();
    console.log(">>> Check param servicedetails page: ", idService);
 
+   const navigate = useNavigate();
    const toast = useToast();
    const dispatch = useDispatch();
 
-   const { services, isLoading } = useSelector((state) => state.service);
+   // const { services, isLoading } = useSelector((state) => state.service);
+   const [services, setServices] = useState([]);
 
    const initialServiceState = {
       id: '',
@@ -39,7 +41,7 @@ function ServiceDetails(props) {
 
          if (response.data.success) {
             setCurrentService(response.data.data.serviceInfo);
-            console.log(">>> Check state: ", currentService);
+            console.log(">>> Check state: ", services);
          }
       } catch (error) {
          toast({
@@ -52,28 +54,8 @@ function ServiceDetails(props) {
          })
       }
    }
-
-   useEffect(() => {
-      const fetchData = async () => {
-         const params = {
-            page: 0,
-            size: 5,
-         };
-
-         dispatch(getServices(params))
-            .unwrap()
-            .then((response) => {
-               //
-            })
-            .catch(() => { });
-      };
-      fetchData();
-   }, [dispatch]);
-
-   useEffect(() => {
-      fetchData(idService);
-   }, [idService]);
-   const arr = [{
+   
+    const arr = [{
       head: 'Services',
       link: 'Services'
    },
@@ -82,6 +64,37 @@ function ServiceDetails(props) {
       link: ''
    }]
    const arrJson = JSON.stringify(arr)
+
+   useEffect(() => {
+      const fetchData = async () => {
+         const params = {
+            page: 0,
+            size: 5,
+         };
+
+         // dispatch(getServices(params))
+         //    .unwrap()
+         //    .then((response) => {
+         //       //
+         //    })
+         //    .catch(() => { });
+         try {
+            const response = await serviceApi.getServices(params);
+            console.log(">>> Check response/serviceDetail: ", response);
+            if (response.data.success) {
+               setServices(response.data.data.services);
+               console.log(">>> Check state services: ", services);
+            }
+         } catch (error) {
+
+         }
+      };
+      fetchData();
+   }, []);
+
+   useEffect(() => {
+      fetchData(idService);
+   }, [idService]);
 
    return (
       <>
@@ -94,6 +107,37 @@ function ServiceDetails(props) {
                <ContentServiceDetails service={currentService} />
                <ServicesSidebar services={services} />
             </Flex>
+            <Link
+               borderColor={'#018AE0'}
+               color={'#018AE0'}
+               display='inline-block'
+               marginTop='50px'
+               padding='5px 20px'
+               paddingBottom={'2px'}
+               fontWeight={'700'}
+               fontSize='16px'
+               borderY={'1px solid'}
+               letterSpacing='0.5px'
+               transition={'all .2s ease-in-out'}
+
+               _before={{
+                  transition: 'all .2s ease-in-out',
+                  display: 'inline-block',
+                  fontSize: '13px',
+                  fontWeight: '900',
+                  content: `"⬅️"`,
+                  marginRight: '5px',
+               }}
+
+               _hover={{
+                  borderColor: '#D61C62',
+                  color: '#D61C62'
+               }}
+
+               onClick={() => { navigate(-1) }}
+            >
+               Go back before
+            </Link>
          </Container>
       </>
    );
