@@ -27,11 +27,16 @@ function UserProfile(props) {
    useEffect(() => {
       initFetch();
    }, [initFetch]);
+   const arr = [{
+      head: 'Profile',
+      link: ''
+   }]
+   const arrJson = JSON.stringify(arr)
 
    return (
       <>
          <Banner
-            arrHeading={['Profile']}
+            arrHeading={arrJson} headingPage='Profile'
          />
          <Box>
             <Container

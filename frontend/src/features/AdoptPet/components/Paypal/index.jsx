@@ -11,12 +11,24 @@ Paypal.propTypes = {
     handleAdoptPayPal: PropTypes.func,
 };
 const updatePet = async (pet) => {
+    const id = pet.id
     const params = {
-        ...pet,
-        status: false,
+        "name": pet.name,
+        "gender": pet.gender,
+        "location": pet.location,
+        "breed": pet.breed,
+        "age": pet.age,
+        "size": pet.size,
+        "description": pet.description,
+        "vaccinated": pet.vaccinated,
+        "status": false,
+        "price": pet.price,
+        "category": pet.category,
+        "imagePetEntityList": pet.imagePetEntityList
+
     }
     try {
-        const response = await petAPI.updatePet(params)
+        const response = await petAPI.updatePet(id, params)
         const data = response.data
         console.log(data);
     } catch (error) {

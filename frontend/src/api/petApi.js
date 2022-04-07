@@ -14,7 +14,7 @@ const petAPI = {
         return axiosClient.post(url, params)
     },
     updatePet: (id, params) => {
-        const url = params + `/${id}`
+        const url = path + `/${id}`
         return axiosClient.put(url, params)
     },
     deletePet: (id) => {
