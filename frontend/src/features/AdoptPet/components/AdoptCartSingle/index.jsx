@@ -11,7 +11,7 @@ AdoptCartSingle.propTypes = {
 
 function AdoptCartSingle(props) {
     const { pet, srcImage, isLoading } = props
-    console.log('isLoading: ', isLoading);
+    // console.log('isLoading: ', isLoading);
     return (
         <Skeleton isLoaded={isLoading}>
             <Container
