@@ -11,11 +11,17 @@ Histories.propTypes = {
 
 };
 
+const arr = [{
+   head: 'History',
+   link: ''
+}]
+const arrJson = JSON.stringify(arr)
+
 function Histories(props) {
    return (
       <>
          <Banner
-            arrHeading={['History']}
+            arrHeading={arrJson} headingPage='History'
          />
          <Box
             paddingY={'20'}

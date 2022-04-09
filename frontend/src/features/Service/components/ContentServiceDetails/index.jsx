@@ -4,6 +4,9 @@ import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import ModalBox from '../../../../components/ModalBox';
 import { useNavigate } from 'react-router-dom';
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+import './ContentServiceDetails.scss';
 
 ContentServiceDetails.propTypes = {
    service: PropTypes.object
@@ -19,6 +22,8 @@ function ContentServiceDetails(props) {
    const navigate = useNavigate();
    const [login, setLogin] = useState(true);
    const [confirm, setConfirm] = useState(false);
+   const [startDate, setStartDate] = useState(new Date());
+   const [text, setText] = useState(false);
 
    const { isLoggedIn } = useSelector((state) => state.auth);
 
@@ -39,6 +44,19 @@ function ContentServiceDetails(props) {
       setConfirm(false);
    };
 
+   const handleConfirm = () => {
+      console.log(">>> startDate: ", startDate);
+      const arrTemp = [];
+      arrTemp.push(service);
+
+      if (startDate <= new Date()) {
+         setText(true);
+      }
+      else {
+         navigate("/services/payment", { state: { data: JSON.stringify(arrTemp), date: startDate } })
+      }
+   };
+
    return (
       <>
          {
@@ -55,9 +73,39 @@ function ContentServiceDetails(props) {
             <ModalBox
                isOpenModal={confirm}
                modalTitle='Information'
-               modalContent='Do you really want to sign up for this service?'
+               modalContent={
+                  <>
+                     <Heading
+                        as='h5'
+                        size='sm'
+                        marginBottom='5px'
+                     >
+                        Make a schedule to sign up for the service here. <br />Please choose the right date and time for you.
+                     </Heading>
+
+                     <DatePicker
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                        timeInputLabel="Time:"
+                        dateFormat="MM/dd/yyyy h:mm aa"
+                        showTimeInput
+                        className='picker'
+                     />
+
+                     {
+                        text && <Text
+                           as='i'
+                           fontSize='12px'
+                           color={'red'}
+                           marginBottom='15px'
+                        >
+                           *Please set your time in the future.
+                        </Text>
+                     }
+                  </>
+               }
                buttonActionContent='CONFIRM'
-               onActionClick={() => navigate('/services')}
+               onActionClick={handleConfirm}
                onSetCloseModal={handleCloseModalConfirm}
             />
          }

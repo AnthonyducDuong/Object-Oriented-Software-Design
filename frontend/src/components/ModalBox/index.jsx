@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 
 ModalBox.propTypes = {
-   isOpenModal: PropTypes.bool,
-   modalTitle: PropTypes.string,
-   modalContent: PropTypes.string,
-   buttonActionContent: PropTypes.string,
-   onActionClick: PropTypes.func,
-   onSetCloseModal: PropTypes.func,
+   // isOpenModal: PropTypes.bool,
+   // modalTitle: PropTypes.string,
+   // modalContent: PropTypes.string | PropTypes.object | PropTypes.func | PropTypes.number | PropTypes.element,
+   // buttonActionContent: PropTypes.string,
+   // onActionClick: PropTypes.func,
+   // onSetCloseModal: PropTypes.func,
 };
 
 function ModalBox(props) {
@@ -23,7 +23,7 @@ function ModalBox(props) {
    };
 
    return (
-      <Modal isOpen={isOpenModal}>
+      <Modal isOpen={isOpenModal} onClose={handleCloseModal}>
          <ModalOverlay />
          <ModalContent>
             <ModalHeader>{modalTitle}</ModalHeader>

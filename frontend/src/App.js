@@ -30,6 +30,7 @@ const GalleryPage = React.lazy(() => import('./features/Introduce/pages/Gallery'
 const OurTeamPage = React.lazy(() => import('./features/Introduce/pages/OurTeam'));
 const HistoriesPage = React.lazy(() => import('./features/Information/pages/Histories'));
 const PaymentPage = React.lazy(() => import('./features/AdoptPet/pages/Payment'));
+const ServicesPaymentPage = React.lazy(() => import('./features/Service/pages/ServicesPayment'));
 //
 
 function App() {
@@ -112,7 +113,7 @@ function App() {
             }
           />
 
-        <Route
+          <Route
             path=":id/payment"
             element={
               <React.Suspense fallback={<Loading />}>
@@ -142,6 +143,16 @@ function App() {
               </React.Suspense>
             }
           />
+          <Route element={<PrivateRoutesUser />}>
+            <Route
+              path="payment"
+              element={
+                <React.Suspense fallback={<Loading />}>
+                  <ServicesPaymentPage />
+                </React.Suspense>
+              }
+            />
+          </Route>
         </Route>
 
         {/* use logged in routes */}

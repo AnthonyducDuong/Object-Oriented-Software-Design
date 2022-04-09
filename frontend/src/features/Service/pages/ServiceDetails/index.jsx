@@ -14,6 +14,7 @@ ServiceDetails.propTypes = {
 };
 
 function ServiceDetails(props) {
+   window.scrollTo(0, 0);
    const { id: idService } = useParams();
    console.log(">>> Check param servicedetails page: ", idService);
 
@@ -54,8 +55,8 @@ function ServiceDetails(props) {
          })
       }
    }
-   
-    const arr = [{
+
+   const arr = [{
       head: 'Services',
       link: 'Services'
    },
