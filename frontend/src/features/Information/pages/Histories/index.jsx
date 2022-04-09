@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../../../../components/Banner';
 import { Box, Container, Flex, Heading, Spacer, Text } from '@chakra-ui/react';
@@ -6,16 +6,24 @@ import IMAGES from '../../../../constants/images';
 import TableHistory from '../../components/TableHistory';
 import TableDetail from '../../components/TableDetail';
 import DisplayText from '../../components/DisplayText';
+import { useLocation } from 'react-router-dom';
 
 Histories.propTypes = {
 
 };
 
 function Histories(props) {
+   const arr = [{
+      head: 'History',
+      link: ''
+   }]
+   const [stateHistory, setStateHistory] = useState('Pets')
+   const arrJson = JSON.stringify(arr)
    return (
       <>
          <Banner
-            arrHeading={['History']}
+            arrHeading={arrJson}
+            headingPage='History'
          />
          <Box
             paddingY={'20'}
@@ -64,8 +72,6 @@ function Histories(props) {
             >
                <Flex>
                   <TableHistory />
-                  <Spacer maxW='30px' />
-                  <TableDetail />
                </Flex>
             </Container>
          </Box>
