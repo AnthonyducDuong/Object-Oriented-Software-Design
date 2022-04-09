@@ -12,6 +12,12 @@ Histories.propTypes = {
 
 };
 
+const arr = [{
+   head: 'History',
+   link: ''
+}]
+const arrJson = JSON.stringify(arr)
+
 function Histories(props) {
    const arr = [{
       head: 'History',

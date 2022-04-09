@@ -54,9 +54,9 @@ function LogIn(props) {
       },
    });
 
-   useEffect(() => {
-      dispatch(clearMessage());
-   }, [dispatch]);
+   // useEffect(() => {
+   //    dispatch(clearMessage());
+   // }, [dispatch]);
 
    useEffect(() => {
       const loginData = cookies.get('loginData') ? cookies.get('loginData') : null;
