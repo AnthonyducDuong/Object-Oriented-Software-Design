@@ -50,6 +50,8 @@ function UserAccount(props) {
    const [isLoadingImg, setIsLoadingImg] = useState(false);
    const [isLoadingChangePwd, setIsLoadingChangePwd] = useState(false);
    const [statusModal, setStatusModal] = useState(false);
+   const [changeImg, setChangeImg] = useState(false);
+   const [imageData, setImageData] = useState({ url: "", public_id: "" });
 
    const dispatch = useDispatch();
 
@@ -96,6 +98,8 @@ function UserAccount(props) {
             setImage(response.data.url);
             setStatusModal(true);
             setIsLoadingImg(false);
+            setChangeImg(true);
+            setImageData({ url: response.data.url, public_id: response.data.public_id });
          } catch (error) {
             console.log(error);
             setIsLoadingImg(false);
@@ -202,6 +206,36 @@ function UserAccount(props) {
       setIsLoadingImg(false);
    };
 
+   const setDefaultAvatar = () => {
+      dispatch(updateAvatar({
+         url: process.env.REACT_APP_DEFAULT_IMAGE,
+      }))
+         .unwrap()
+         .then((res) => {
+            setStatusModal(false);
+            setImage(process.env.REACT_APP_DEFAULT_IMAGE);
+            toast({
+               title: 'Change avatar successfully 😚😗😚',
+               status: 'success',
+               duration: 2000,
+               isClosable: true,
+               position: 'top',
+            });
+         })
+         .catch((err) => {
+            setImage(imageBeforeUpload);
+            setStatusModal(false);
+            toast({
+               title: 'Something wrongs when save your changing 😢😢😢',
+               description: err,
+               status: 'error',
+               duration: 2000,
+               isClosable: true,
+               position: 'top',
+            });
+         });
+   }
+
    return (
       <>
          {
@@ -241,7 +275,7 @@ function UserAccount(props) {
                         borderRadius='full'
                         boxSize='200px'
                         src={image}
-                        alt='Dan Abramov'
+                        alt={userInfo && userInfo.userName}
                      />
                }
             </Flex>
@@ -261,6 +295,8 @@ function UserAccount(props) {
 
                   boxShadow={'0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%)'}
                   borderRadius='.375rem'
+
+                  onClick={() => { setDefaultAvatar() }}
                >
                   Delete
                </Button>

@@ -55,6 +55,7 @@ const authApi = {
       // localStorage.removeItem("authToken");
       cookies.remove("authToken", {
          path: '/',
+         maxAge: 0,
          domain: currentDomain(),
       });
    },

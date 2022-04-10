@@ -22,19 +22,30 @@ function ContentServiceDetails(props) {
    const navigate = useNavigate();
    const [login, setLogin] = useState(true);
    const [confirm, setConfirm] = useState(false);
+   const [infoIsFull, setInfoIsFull] = useState(true);
    const [startDate, setStartDate] = useState(new Date());
    const [text, setText] = useState(false);
 
    const { isLoggedIn } = useSelector((state) => state.auth);
+   const { userInfo } = useSelector((state) => state.user);
 
    const handleRegister = () => {
       if (!isLoggedIn) {
          setLogin(false);
       }
+      else if (!userInfo || !userInfo.firstName || !userInfo.lastName || !userInfo.phone ||
+         !userInfo.address.houseNumber || !userInfo.address.streetName || !userInfo.address.city ||
+         !userInfo.address.province || !userInfo.address.country) {
+         setInfoIsFull(false);
+      }
       else {
          setConfirm(true);
       }
    };
+
+   const hanldeUserInfoIsFull = () => {
+      setInfoIsFull(true);
+   }
 
    const handleCloseModalLogIn = () => {
       setLogin(!login);
@@ -67,6 +78,16 @@ function ContentServiceDetails(props) {
                buttonActionContent='GO TO LOGIN'
                onActionClick={() => navigate('/login')}
                onSetCloseModal={handleCloseModalLogIn}
+            />
+         }
+         {
+            <ModalBox
+               isOpenModal={!infoIsFull}
+               modalTitle='Warning'
+               modalContent='You have not fill your info'
+               buttonActionContent='GO TO PROFILE'
+               onActionClick={() => navigate('/profile')}
+               onSetCloseModal={hanldeUserInfoIsFull}
             />
          }
          {

@@ -61,7 +61,7 @@ function ServicesList(props) {
 
    const scrollToBottom = () => {
       var objDiv = document.getElementById("infiniteScroll");
-      window.scrollTo(0, objDiv.offsetHeight - 100);
+      window.scrollTo(0, objDiv.offsetHeight + 120);
    };
 
    const handleLoadMore = (newPage) => {
@@ -131,7 +131,7 @@ function ServicesList(props) {
          minHeight={'500'}
          position='relative'
          // height='500'
-         height={(_page + 1) * 410}
+         height={(_page + 1) * 450}
          overflow={'auto'}
          id='infiniteScroll'
          scrollBehavior={'smooth'}
