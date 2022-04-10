@@ -38,7 +38,7 @@ function AdoptionSingle(props) {
 
     const toast = useToast()
     const dispatch = useDispatch()
-    console.log('userInfo: ', userInfo);
+    // console.log('userInfo: ', userInfo);
 
     const initFetch = useCallback(async () => {
         dispatch(getInfo());

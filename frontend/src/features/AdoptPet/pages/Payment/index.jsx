@@ -8,6 +8,7 @@ import petAPI from '../../../../api/petApi'
 import { useDispatch, useSelector } from 'react-redux';
 import { getInfo } from '../../../Information/userSlice';
 import billAPI from '../../../../api/billApi';
+import moment from 'moment'
 
 Payment.propTypes = {
     // idPet: PropTypes.string
@@ -56,18 +57,20 @@ function Payment(props) {
     ]
     const arrJson = JSON.stringify(arr)
     const handleAdoptPayPal = () => {
+
+        const testMoment = moment().format('YYYY-MM-DDThh:mm:ss');
         const params = {
             idPet: idPet,
             idUser: userInfo.id,
             methodPayment: "Paypal",
-            paymentDate: "2022-04-07T09:47:53.326Z",
+            paymentDate: `${testMoment}`,
             price: pet.price
         }
         const addBillPet = async (infoBill) => {
             try {
                 const response = await billAPI.addBill(infoBill)
                 const { data, message, status, success } = response.data
-                console.log(data, message, status, success);
+                // console.log(data, message, status, success);
                 if (status === 200) {
                     toast({
                         title: 'Payment For Adopting',
@@ -86,7 +89,7 @@ function Payment(props) {
         addBillPet(params)
         navigate('/adoption', { replace: true, state: { isRender: true } })
     }
-    console.log('user pay: ', userInfo);
+    // console.log('user pay: ', userInfo);
     return (
         <>
             <Banner headingPage={'Payment'} arrHeading={arrJson} />

@@ -30,7 +30,7 @@ const updatePet = async (pet) => {
     try {
         const response = await petAPI.updatePet(id, params)
         const data = response.data
-        console.log(data);
+        // console.log(data);
     } catch (error) {
         console.log(error.response.data);
     }
@@ -47,7 +47,7 @@ function Paypal(props) {
 
                 <PayPalButtons
                     createOrder={(data, actions) => {
-                        console.log(pet);
+                        // console.log(pet);
                         return actions.order.create({
                             intent: "CAPTURE",
                             purchase_units: [{
@@ -61,7 +61,7 @@ function Paypal(props) {
                     onApprove={(data, actions) => {
                         return actions.order.capture().then((details) => {
                             const name = details.payer.name.given_name;
-                            console.log(name);
+                            // console.log(name);
                             handleAdoptPayPal()
                             updatePet(pet)
                         });
