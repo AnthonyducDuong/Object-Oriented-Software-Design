@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMessage } from '../../../../app/messageSlice';
 import Banner from '../../../../components/Banner';
-import { Container, Flex, Heading, Table, Tbody, Td, Th, Thead, Tr, useToast } from '@chakra-ui/react';
+import { Button, Container, Flex, Heading, Table, Tbody, Td, Th, Thead, Tr, useToast } from '@chakra-ui/react';
 import Paypal from '../../components/Paypal';
 import moment from 'moment';
 import bookingServiceApi from '../../../../api/bookingServiceApi';
@@ -90,8 +90,38 @@ function ServicesPayment(props) {
             }
          }
          bookingService();
-         navigate('/services', { replace: true })
       }
+      else {
+         const servicesId = [];
+         services.map((item) => (
+            servicesId.push(item.id)
+         ));
+
+         const params = {
+            dateBooking: moment(location.state.date).format('YYYY-MM-DD[T]HH:mm:ss[Z]'),
+            serviceIds: [...servicesId]
+         }
+         console.log(">>> a: ", params);
+
+         const bookingServices = async () => {
+            try {
+               const response = await bookingServiceApi.addNewBookingServices(params);
+               console.log(">>> Check response/bookingServiceApi: ", response);
+               toast({
+                  title: 'Payment For Booking Services',
+                  description: `Thank you for booking!`,
+                  status: 'success',
+                  duration: '5000',
+                  position: 'top',
+                  isClosable: true
+               });
+            } catch (error) {
+               console.log(error.response.data);
+            }
+         }
+         bookingServices();
+      }
+      navigate('/services', { replace: true })
    }
 
    return (

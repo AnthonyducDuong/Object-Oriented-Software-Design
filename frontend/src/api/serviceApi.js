@@ -9,6 +9,7 @@ const serviceApi = {
          params: {
             page: paramsQuery.page,
             size: paramsQuery.size,
+            sort: paramsQuery.sort,
          },
       });
    },

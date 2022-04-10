@@ -45,7 +45,6 @@ const registerSchema = yup.object().shape({
 });
 
 function Register(props) {
-   window.scrollTo(0, 0)
    const toast = useToast();
    const dispatch = useDispatch();
 

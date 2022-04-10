@@ -5,10 +5,12 @@ import TopNav from './TopNav';
 import { Container } from '@chakra-ui/layout';
 
 Header.propTypes = {
-
+    handleEventLogout: PropTypes.func,
 };
 
 function Header(props) {
+    const { handleEventLogout } = props;
+
     return (
         <Container
             maxWidth='100%'
@@ -19,7 +21,7 @@ function Header(props) {
             background='#fff'
             zIndex='999'
         >
-            <TopBar />
+            <TopBar handleEventLogout={handleEventLogout} />
             <TopNav />
         </Container>
     );

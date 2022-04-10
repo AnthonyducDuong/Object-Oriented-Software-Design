@@ -149,7 +149,7 @@ function ContentServiceDetails(props) {
                   maxW='50%'
                   paddingX='15px'
                >
-                  <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' />
+                  <Image src={service.image} alt={service.name} />
                </Box>
 
                <Box
