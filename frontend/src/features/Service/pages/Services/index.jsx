@@ -29,6 +29,7 @@ function Services(props) {
    const [filters, setFilters] = useState({
       _page: pagination._page,
       _size: 3,
+      _sort: "id",
    });
 
    useEffect(() => {
@@ -36,6 +37,7 @@ function Services(props) {
          const params = {
             page: filters._page,
             size: filters._size,
+            sort: filters._sort,
          };
 
          dispatch(getServices(params))
@@ -60,7 +62,7 @@ function Services(props) {
       link: ''
    }]
    const addJson = JSON.stringify(arr)
-   
+
    return (
       <>
          <Banner

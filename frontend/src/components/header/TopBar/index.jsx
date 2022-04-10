@@ -13,6 +13,7 @@ TopBar.propTypes = {
 };
 
 function TopBar(props) {
+    const { handleEventLogout } = props;
     const pathCurr = useLocation()
     const navigate = useNavigate();
     const auth = useSelector((state) => state.auth)
@@ -22,6 +23,7 @@ function TopBar(props) {
     const dispatch = useDispatch();
     const handleLogOut = () => {
         // dispatch(logout())
+        if (handleEventLogout) handleEventLogout();
     }
 
     return (
