@@ -102,7 +102,7 @@ function ServiceCard(props) {
                marginBottom={'20px'}
                isChecked={check}
                onChange={() => { setCheck(!check) }}
-               isDisabled={service.status}
+               isDisabled={!service.status}
             >
                Registration
             </Checkbox>

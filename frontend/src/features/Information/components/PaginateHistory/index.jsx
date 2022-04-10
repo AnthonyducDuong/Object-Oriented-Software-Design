@@ -100,7 +100,7 @@ function PaginateHistory(props) {
                 // console.log('data service: ', data);
                 // console.log(pagination);
                 setPage(pagination._totalPage)
-                setCurrentItems(data["booking services"])
+                setCurrentItems(data["bookingServices"])
             }
             getServiceByUser()
         }
