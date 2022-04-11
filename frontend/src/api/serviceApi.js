@@ -9,16 +9,13 @@ const serviceApi = {
          params: {
             page: paramsQuery.page,
             size: paramsQuery.size,
+            sort: paramsQuery.sort,
          },
       });
    },
    getInfoService: (id) => {
       const url = path + `/${id}`;
       return axiosClient.get(url);
-   },
-   addNewBookingService: (params) => {
-      const url = path + '/booking';
-      return axiosClient.post(url, params);
    },
 };
 

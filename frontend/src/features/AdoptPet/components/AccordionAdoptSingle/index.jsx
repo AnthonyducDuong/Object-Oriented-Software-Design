@@ -22,7 +22,7 @@ AccordionAdoptSingle.DefaultProp = {
 
 function AccordionAdoptSingle(props) {
     const { padd } = props;
-    console.log(padd);
+    // console.log(padd);
     const [statusPhilosophy, setStatusPhilosophy] = useState(true)
     const handleExtendPhilosophy = () => {
         setStatusPhilosophy(!statusPhilosophy)

@@ -13,15 +13,17 @@ TopBar.propTypes = {
 };
 
 function TopBar(props) {
+    const { handleEventLogout } = props;
     const pathCurr = useLocation()
     const navigate = useNavigate();
     const auth = useSelector((state) => state.auth)
     const { isLoggedIn, userName } = auth
-    console.log('auth: ', auth);
-    console.log('path: ', pathCurr);
+    // console.log('auth: ', auth);
+    // console.log('path: ', pathCurr);
     const dispatch = useDispatch();
     const handleLogOut = () => {
         // dispatch(logout())
+        if (handleEventLogout) handleEventLogout();
     }
 
     return (
@@ -92,7 +94,14 @@ function TopBar(props) {
                                                     _hover={{
                                                         backgroundColor: '#D61C62 !important'
                                                     }}
-                                                    onClick={() => alert('Kagebunshin')}>
+                                                    onClick={() => {
+                                                        navigate('/history', {
+                                                            state: {
+                                                                idBill: ''
+                                                            }
+                                                        })
+                                                    }}
+                                                >
                                                     <Icon as={FaHistory} marginRight='8px' />
                                                     History
                                                 </MenuItem>

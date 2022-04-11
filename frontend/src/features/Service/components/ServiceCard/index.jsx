@@ -47,8 +47,8 @@ function ServiceCard(props) {
          >
             <Image
                display={'flex'}
-               src='https://bit.ly/dan-abramov'
-               alt='Id'
+               src={service.image}
+               alt={service.name}
                boxSize={'36'}
                borderRadius='25%'
                margin={'auto'}
@@ -62,7 +62,14 @@ function ServiceCard(props) {
 
                onMouseMove={() => { setHiddenText(true) }}
                onMouseLeave={() => { setHiddenText(false) }}
-               onClick={() => { navigate(`/services/${service.id}`) }}
+               onClick={() => {
+                  if (service.status) {
+                     navigate(`/services/${service.id}`)
+                  }
+                  else {
+
+                  }
+               }}
             />
             <Text
                position={'absolute'}
@@ -88,21 +95,28 @@ function ServiceCard(props) {
                {service.name}
             </Heading>
             <Checkbox
-               // isInvalid
+               isInvalid
                icon={<CustomIcon />}
                size='md'
                colorScheme='pink'
                marginBottom={'20px'}
                isChecked={check}
                onChange={() => { setCheck(!check) }}
+               isDisabled={!service.status}
             >
                Registration
             </Checkbox>
             <Box display='flex'
                justifyContent={'center'}>
-               <Badge borderRadius='full' px='2' colorScheme='teal'>
-                  Available
-               </Badge>
+               {
+                  service && service.status ?
+                     <Badge borderRadius='full' px='2' colorScheme='teal'>
+                        Available
+                     </Badge> :
+                     <Badge borderRadius='full' px='2' colorScheme='red'>
+                        Unavailable
+                     </Badge>
+               }
                <Box
                   color='gray.500'
                   fontWeight='semibold'
@@ -126,7 +140,7 @@ function ServiceCard(props) {
                {service.description}
             </Text>
 
-            <Link as={LinkReactRouterDom} to={service.id}
+            <Link as={LinkReactRouterDom} to={service.status && service.id}
                borderColor={'#018AE0'}
                color={'#018AE0'}
                display='inline-block'

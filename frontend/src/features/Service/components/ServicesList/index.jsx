@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button, Container, Flex, Spinner } from '@chakra-ui/react';
+import { Box, Button, Container, Flex, Heading, Spinner, Text } from '@chakra-ui/react';
 import IMAGES from '../../../../constants/images';
 import ServiceCard from '../ServiceCard';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch, useSelector } from 'react-redux';
 import { getServices } from '../../serviceSlice';
 import { register, remove } from '../../servicesRegistrationSlice';
+import ModalBox from '../../../../components/ModalBox';
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+import '../ContentServiceDetails/ContentServiceDetails.scss';
+import { useNavigate } from 'react-router-dom';
 
 ServicesList.propTypes = {
    services: PropTypes.array,
@@ -23,9 +28,17 @@ ServicesList.defaultProps = {
 function ServicesList(props) {
    // window.scrollTo(0, document.body.scrollHeight);
    const { services, pagination, loadMore } = props;
+   console.log(">> a: ", services);
+   const navigate = useNavigate();
    const { _currentItem, _limit, _page, _totalItem, _totalPage } = pagination;
 
    const [statusLoadMore, setStatusLoadMore] = useState(false);
+   const [login, setLogin] = useState(true);
+   const [confirm, setConfirm] = useState(false);
+   const [startDate, setStartDate] = useState(new Date());
+   const [text, setText] = useState(false);
+
+   const { isLoggedIn } = useSelector((state) => state.auth);
    const servicesRegistration = useSelector((state) => state.servicesRegistration);
    const dispatch = useDispatch();
    console.log(">>> Check status load more: ", statusLoadMore);
@@ -48,7 +61,7 @@ function ServicesList(props) {
 
    const scrollToBottom = () => {
       var objDiv = document.getElementById("infiniteScroll");
-      window.scrollTo(0, objDiv.offsetHeight - 100);
+      window.scrollTo(0, objDiv.offsetHeight + 120);
    };
 
    const handleLoadMore = (newPage) => {
@@ -76,6 +89,35 @@ function ServicesList(props) {
       // setServicesRegistration([...new Set(newArray)]);
    };
 
+   const handleCloseModalLogIn = () => {
+      setLogin(!login);
+   };
+
+   const handleCloseModalConfirm = () => {
+      setConfirm(false);
+   };
+
+   const handleConfirm = () => {
+      console.log(">>> startDate: ", startDate);
+
+      if (startDate <= new Date()) {
+         setText(true);
+      }
+      else {
+         navigate("/services/payment", { state: { data: JSON.stringify(servicesRegistration), date: startDate } })
+      }
+   };
+
+   const handleRegister = () => {
+      if (!isLoggedIn) {
+         setLogin(false);
+      }
+      else {
+         setConfirm(true);
+      }
+      // alert("a");
+   };
+
    return (
       <Box
          paddingY={'90px'}
@@ -89,7 +131,7 @@ function ServicesList(props) {
          minHeight={'500'}
          position='relative'
          // height='500'
-         height={(_page + 1) * 410}
+         height={(_page + 1) * 450}
          overflow={'auto'}
          id='infiniteScroll'
          scrollBehavior={'smooth'}
@@ -110,6 +152,56 @@ function ServicesList(props) {
          }}
       >
          {
+            <ModalBox
+               isOpenModal={!login}
+               modalTitle='Warning'
+               modalContent='You have not logged in before'
+               buttonActionContent='GO TO LOGIN'
+               onActionClick={() => navigate('/login')}
+               onSetCloseModal={handleCloseModalLogIn}
+            />
+         }
+         {
+            <ModalBox
+               isOpenModal={confirm}
+               modalTitle='Information'
+               modalContent={
+                  <>
+                     <Heading
+                        as='h5'
+                        size='sm'
+                        marginBottom='5px'
+                     >
+                        Make a schedule to sign up for the service here. <br />Please choose the right date and time for you.
+                     </Heading>
+
+                     <DatePicker
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                        timeInputLabel="Time:"
+                        dateFormat="MM/dd/yyyy h:mm aa"
+                        showTimeInput
+                        className='picker'
+                     />
+
+                     {
+                        text && <Text
+                           as='i'
+                           fontSize='12px'
+                           color={'red'}
+                           marginBottom='15px'
+                        >
+                           *Please set your time in the future.
+                        </Text>
+                     }
+                  </>
+               }
+               buttonActionContent='CONFIRM'
+               onActionClick={handleConfirm}
+               onSetCloseModal={handleCloseModalConfirm}
+            />
+         }
+         {
             servicesRegistration.length > 0 ?
                <Button
                   position={'absolute'}
@@ -120,7 +212,7 @@ function ServicesList(props) {
                   color='white'
                   // paddingTop={'20px'}
                   // paddingBottom={'20px'}
-                  onClick={() => { console.log(">>> submit: ", servicesRegistration) }}
+                  onClick={() => handleRegister()}
                >
                   Register for <br /> multiple services
                </Button>
