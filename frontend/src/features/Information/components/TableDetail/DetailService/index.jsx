@@ -79,14 +79,6 @@ function DetailService(props) {
                             {dataBillService.service.price}
                         </Text>
                     </ListItem>
-                    <ListItem
-                        margin='12px'
-                    >
-                        <Text>
-                            <strong>Status: </strong>
-                            {dataBillService.service.status}
-                        </Text>
-                    </ListItem>
                 </List>
                 :
                 // <Text padding='10px 20px'>No Info</Text>

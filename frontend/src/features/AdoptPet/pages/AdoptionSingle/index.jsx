@@ -113,11 +113,29 @@ function AdoptionSingle(props) {
         // }
         // // addBillPet()
         // console.log('info bill: ', (params));
-
-        const url = location.pathname + "/payment"
-        navigate(url)
-        setOnModal(false)
+        if (userInfo === undefined || !userInfo.email || !userInfo.firstName || !userInfo.lastName || !userInfo.phone || !userInfo.address) {
+            console.log(userInfo === undefined);
+            console.log(!userInfo.email);
+            console.log(!userInfo.firstName);
+            console.log(!userInfo.lastName);
+            console.log(!userInfo.phone);
+            console.log(!userInfo.address);
+            toast({
+                title: 'Adopt Pet',
+                description: `Please, Update full information before adopt pet!`,
+                status: 'warning',
+                duration: '3000',
+                position: 'top',
+                isClosable: true,
+            })
+        }
+        else {
+            const url = location.pathname + "/payment"
+            navigate(url)
+            setOnModal(false)
+        }
     }
+    console.log("userInfo: ", userInfo);
     const arr = [
         {
             head: 'Adoption',

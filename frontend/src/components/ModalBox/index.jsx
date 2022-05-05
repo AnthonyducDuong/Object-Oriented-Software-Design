@@ -24,7 +24,7 @@ function ModalBox(props) {
 
    return (
       <Modal isOpen={isOpenModal} onClose={handleCloseModal}>
-         <ModalOverlay />
+         <ModalOverlay opacity='0.4 !important' />
          <ModalContent>
             <ModalHeader>{modalTitle}</ModalHeader>
             <ModalCloseButton />

@@ -1,6 +1,6 @@
 import axiosClient from "./axiosClient"
 
-const path = '/auth'
+const path = ''
 const billAPI = {
     addBill: (params) => {
         const url = path + "/bill"
