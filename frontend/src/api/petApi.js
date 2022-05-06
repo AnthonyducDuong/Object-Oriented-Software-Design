@@ -1,5 +1,5 @@
 import axiosClient from "./axiosClient"
-const path = 'auth/pet'
+const path = '/pet'
 const petAPI = {
     getAll: (params) => {
         const url = path
@@ -20,6 +20,10 @@ const petAPI = {
     deletePet: (id) => {
         const url = path + `/${id}`
         return axiosClient.delete(url)
+    },
+    getPetsByCategory: (category, params) => {
+        const url = path + `/category/${category}`
+        return axiosClient.get(url, params)
     }
 }
 

@@ -85,6 +85,7 @@ function DetailPet(props) {
                         <Text>
                             <strong>Price: </strong>
                             {dataBillPet.petSale.price}
+                            $
                         </Text>
                     </ListItem>
                     <ListItem

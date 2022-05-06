@@ -38,7 +38,7 @@ function TablePanel(props) {
                            <Tr key={index}>
                               <Td textAlign='center'>{serialNum + index + 1}</Td>
                               <Td textAlign='center'>{moment(`${item.paymentDate}`, 'YYYY-MM-DDThh:mm:ss').format("DD/MM/YYYY hh:mm")}</Td>
-                              <Td textAlign='center'>{item.price}</Td>
+                              <Td textAlign='center'>{item.price}$</Td>
                               <Td textAlign='center'>
                                  <Icon
                                     as={FiMoreHorizontal}
@@ -66,7 +66,7 @@ function TablePanel(props) {
                               <Tr key={index}>
                                  <Td textAlign='center'>{serialNum + index + 1}</Td>
                                  <Td textAlign='center'>{moment(`${item.dateBooking}`, 'YYYY-MM-DDThh:mm:ss').format("DD/MM/YYYY hh:mm")}</Td>
-                                 <Td textAlign='center'>{item.service.price}</Td>
+                                 <Td textAlign='center'>{item.service.price}$</Td>
                                  <Td textAlign='center'>
                                     <Icon
                                        as={FiMoreHorizontal}
