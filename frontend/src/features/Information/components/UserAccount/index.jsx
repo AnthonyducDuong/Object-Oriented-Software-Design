@@ -61,8 +61,10 @@ function UserAccount(props) {
    });
 
    useEffect(() => {
-      if (userInfo && userInfo.avatar !== process.env.REACT_APP_DEFAULT_IMAGE) {
-         setImage(userInfo.avatar);
+      if (userInfo && userInfo.avatar) {
+         if (userInfo.avatar !== process.env.REACT_APP_DEFAULT_IMAGE) {
+            setImage(userInfo.avatar);
+         }
       }
    }, [userInfo]);
 

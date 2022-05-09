@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Box, Image, Text, List, ListItem, ListIcon, Button } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,7 +8,6 @@ import { RiDashboard2Line } from 'react-icons/ri'
 import { BsFillCalendarCheckFill } from 'react-icons/bs'
 import { FaDog } from 'react-icons/fa'
 import { GiDogBowl } from 'react-icons/gi'
-import { useDispatch } from 'react-redux';
 import { logout } from '../../../Auth/authSlice';
 
 NavAdmin.propTypes = {
@@ -16,14 +15,25 @@ NavAdmin.propTypes = {
 };
 
 function NavAdmin(props) {
-    const { handleEventLogout } = props;
-    const navigate = useNavigate()
+    const { handleEventLogout, userInfo } = props;
+    const navigate = useNavigate();
+    const [image, setImage] = useState(process.env.REACT_APP_DEFAULT_IMAGE);
+
+    useEffect(() => {
+        if (userInfo && userInfo.avatar) {
+            if (userInfo.avatar !== process.env.REACT_APP_DEFAULT_IMAGE) {
+                setImage(userInfo.avatar);
+            }
+        }
+    }, [userInfo]);
+
     const handleLogout = () => {
         if (handleEventLogout) {
             handleEventLogout();
-            navigate('/')
+            navigate('/login')
         }
-    }
+    };
+
     return (
         <Flex
             top='0'
@@ -79,7 +89,7 @@ function NavAdmin(props) {
                     }}
                 >
                     <Link
-                        to='/admin'
+                        to='/admin/profile'
                         style={{
                             display: 'flex',
                             justifyContent: 'center',
@@ -88,7 +98,7 @@ function NavAdmin(props) {
                         }}
                     >
                         <Image
-                            src='https://acorn-html-medical-assistant.coloredstrategies.com/img/profile/profile-1.webp'
+                            src={image}
                             boxSize='80px'
                             borderRadius='full'
                         />
@@ -99,7 +109,7 @@ function NavAdmin(props) {
                             color='#fff'
                             marginTop='4px'
                         >
-                            Alicia Owens
+                            {userInfo.userName}
                         </Text>
                     </Link>
                 </Flex>
@@ -131,7 +141,7 @@ function NavAdmin(props) {
                             }}
                         >
                             <Link
-                                to='/accounts'
+                                to='/admin/accounts'
                                 style={{
                                     padding: '4px 20px',
                                     display: 'block'
@@ -158,7 +168,7 @@ function NavAdmin(props) {
                             }}
                         >
                             <Link
-                                to={'/booking'}
+                                to={'admin/booking'}
                                 style={{
                                     padding: '4px 20px',
                                     display: 'block'
@@ -185,7 +195,7 @@ function NavAdmin(props) {
                             }}
                         >
                             <Link
-                                to={'/dashboard'}
+                                to={'admin/dashboard'}
                                 style={{
                                     padding: '4px 20px',
                                     display: 'block'
@@ -212,7 +222,7 @@ function NavAdmin(props) {
                             }}
                         >
                             <Link
-                                to='/petsmanagement'
+                                to='admin/petsmanagement'
                                 style={{
                                     padding: '4px 20px',
                                     display: 'block'
@@ -239,7 +249,7 @@ function NavAdmin(props) {
                             }}
                         >
                             <Link
-                                to='/servicesmanagement'
+                                to='admin/servicesmanagement'
                                 style={{
                                     padding: '4px 20px',
                                     display: 'block'

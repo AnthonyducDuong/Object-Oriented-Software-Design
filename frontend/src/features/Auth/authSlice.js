@@ -22,7 +22,8 @@ export const login = createAsyncThunk(
          console.log(response);
          // Include accessToken and refreshToken
          return {
-            authToken: response.data.data
+            authToken: response.data.data,
+            role: jwt_decode(response.data.data.accessToken).roleNames
          };
       } catch (error) {
          const message =

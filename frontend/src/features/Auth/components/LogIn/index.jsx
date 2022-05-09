@@ -15,6 +15,7 @@ import { clearMessage } from '../../../../app/messageSlice';
 import { login } from '../../authSlice';
 import Cookies from 'universal-cookie';
 import { playWrongSound_audio } from '../../../../utils/PlaySound';
+import roles from '../../../../constants/roles';
 
 LogIn.propTypes = {
 
@@ -103,7 +104,12 @@ function LogIn(props) {
          .unwrap()
          .then((response) => {
             console.log(">>> Check login/response - success: ", response);
-            navigate('/home');
+            if (response.role[0] === roles.USER) {
+               navigate('/home');
+            }
+            else {
+               navigate('/admin/dashboard');
+            }
          })
          .catch((response) => {
             console.log('>>> Check login/response - errors: ', response);

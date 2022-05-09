@@ -54,10 +54,10 @@ function TopNav(props) {
                         <ListItem padding={'0 16px'}>
                             <Link to='/services'>Services</Link>
                         </ListItem>
-                        <ListItem>
+                        <ListItem padding={'0 7px'}>
                             <Container>
                                 <Menu isLazy>
-                                    <MenuButton fontWeight='600'>About <Icon as={TriangleDownIcon} w={2} h={2} /></MenuButton>
+                                    <MenuButton fontWeight='600'>About </MenuButton>
                                     <MenuList backgroundColor={'#018ae0'} >
                                         <MenuItem fontWeight='600'><Link to='/aboutus'>About Us</Link></MenuItem>
                                         <MenuItem fontWeight='600'><Link to='/ourteam'>Our team</Link></MenuItem>
@@ -65,7 +65,7 @@ function TopNav(props) {
                                 </Menu>
                             </Container>
                         </ListItem>
-                        <ListItem>
+                        <ListItem padding={'0 7px'}>
                             <Link to='/adoption'>Adopt</Link>
                         </ListItem>
                         <ListItem padding={'0 16px'}>
