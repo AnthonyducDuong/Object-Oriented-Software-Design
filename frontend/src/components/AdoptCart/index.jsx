@@ -57,7 +57,8 @@ function AdoptCart(props) {
                             objectFit='cover'
                             src={props.srcImage}
                             alt='Pet 1'
-
+                            width='162px'
+                            height='162px'
                         />
                     </Link>
                 </Container>
@@ -139,20 +140,25 @@ function AdoptCart(props) {
                         </Text>
                     </ListItem>
                 </List>
-                <Link
-                    to={`/adoption/${props.idPet}`}
-                    style={{
-                        marginTop: '5px',
-                        padding: '10px 50px',
-                        backgroundColor: '#018AE0',
-                        borderRadius: '50px',
-                        color: '#fff',
-                        fontWeight: '700',
-                    }}
-
+                <Flex
+                    alignItems='center'
+                    justifyContent='center'
                 >
-                    MORE INFO
-                </Link>
+                    <Link
+                        to={`/adoption/${props.idPet}`}
+                        style={{
+                            marginTop: '5px',
+                            padding: '10px 50px',
+                            backgroundColor: '#018AE0',
+                            borderRadius: '50px',
+                            color: '#fff',
+                            fontWeight: '700',
+                        }}
+
+                    >
+                        MORE INFO
+                    </Link>
+                </Flex>
 
             </Container>
         </Flex>

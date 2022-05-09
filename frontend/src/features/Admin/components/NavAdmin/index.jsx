@@ -8,7 +8,7 @@ import { RiDashboard2Line } from 'react-icons/ri'
 import { BsFillCalendarCheckFill } from 'react-icons/bs'
 import { FaDog } from 'react-icons/fa'
 import { GiDogBowl } from 'react-icons/gi'
-import { logout } from '../../../Auth/authSlice';
+import './NavAdmin.scss'
 
 NavAdmin.propTypes = {
 
@@ -18,6 +18,7 @@ function NavAdmin(props) {
     const { handleEventLogout, userInfo } = props;
     const navigate = useNavigate();
     const [image, setImage] = useState(process.env.REACT_APP_DEFAULT_IMAGE);
+    const [stateNav, setStateNav] = useState([false, false, true, false, false])
 
     useEffect(() => {
         if (userInfo && userInfo.avatar) {
@@ -47,7 +48,8 @@ function NavAdmin(props) {
             position='fixed'
             bottom='0'
             zIndex='1001'
-            backgroundImage='linear-gradient(160deg, #0ec4cb, #0ec4cb,#0ed0d6,#12d1d8)'
+            // backgroundImage='linear-gradient(160deg, #0ec4cb, #0ec4cb,#0ed0d6,#12d1d8)'
+            backgroundColor='#1446A0'
         >
             <Flex
                 flexDirection='column'
@@ -117,9 +119,9 @@ function NavAdmin(props) {
                     flexDirection='column'
                     alignItems='center'
                     justifyContent='center'
-                    boxShadow='0 4px 10px rgba(0,0,0,.2)!important'
-                    background='rgba(255, 255, 255, .05)'
-                    borderRadius='16px'
+                    // boxShadow='0 4px 10px rgba(0,0,0,.2)!important'
+                    // background='rgba(255, 255, 255, .05)'
+                    // borderRadius='16px'
                     width='80%'
                 >
                     <List
@@ -133,18 +135,18 @@ function NavAdmin(props) {
                             padding='6px'
                             width='100%'
                             textAlign='left'
-                            _after={{
-                                content: '""',
-                                width: '100%',
-                                display: 'block',
-                                borderBottom: '1px solid #cecece',
-                            }}
+                        // _after={{
+                        //     content: '""',
+                        //     width: '100%',
+                        //     display: 'block',
+                        //     borderBottom: '1px solid #cecece',
+                        // }}
                         >
                             <Link
                                 to='/admin/accounts'
-                                style={{
-                                    padding: '4px 20px',
-                                    display: 'block'
+                                className={stateNav[0] ? 'navadmin navadmin__active' : 'navadmin'}
+                                onClick={() => {
+                                    setStateNav([true, false, false, false, false])
                                 }}
                             >
                                 <ListIcon
@@ -160,18 +162,18 @@ function NavAdmin(props) {
                             padding='6px'
                             width='100%'
                             textAlign='left'
-                            _after={{
-                                content: '""',
-                                width: '100%',
-                                display: 'block',
-                                borderBottom: '1px solid #cecece',
-                            }}
+                        // _after={{
+                        //     content: '""',
+                        //     width: '100%',
+                        //     display: 'block',
+                        //     borderBottom: '1px solid #cecece',
+                        // }}
                         >
                             <Link
                                 to={'admin/booking'}
-                                style={{
-                                    padding: '4px 20px',
-                                    display: 'block'
+                                className={stateNav[1] ? 'navadmin navadmin__active' : 'navadmin'}
+                                onClick={() => {
+                                    setStateNav([false, true, false, false, false])
                                 }}
                             >
                                 <ListIcon
@@ -187,18 +189,18 @@ function NavAdmin(props) {
                             padding='6px'
                             width='100%'
                             textAlign='left'
-                            _after={{
-                                content: '""',
-                                width: '100%',
-                                display: 'block',
-                                borderBottom: '1px solid #cecece',
-                            }}
+                        // _after={{
+                        //     content: '""',
+                        //     width: '100%',
+                        //     display: 'block',
+                        //     borderBottom: '1px solid #cecece',
+                        // }}
                         >
                             <Link
                                 to={'admin/dashboard'}
-                                style={{
-                                    padding: '4px 20px',
-                                    display: 'block'
+                                className={stateNav[2] ? 'navadmin navadmin__active' : 'navadmin'}
+                                onClick={() => {
+                                    setStateNav([false, false, true, false, false])
                                 }}
                             >
                                 <ListIcon
@@ -214,18 +216,18 @@ function NavAdmin(props) {
                             padding='6px'
                             width='100%'
                             textAlign='left'
-                            _after={{
-                                content: '""',
-                                width: '100%',
-                                display: 'block',
-                                borderBottom: '1px solid #cecece',
-                            }}
+                        // _after={{
+                        //     content: '""',
+                        //     width: '100%',
+                        //     display: 'block',
+                        //     borderBottom: '1px solid #cecece',
+                        // }}
                         >
                             <Link
                                 to='admin/petsmanagement'
-                                style={{
-                                    padding: '4px 20px',
-                                    display: 'block'
+                                className={stateNav[3] ? 'navadmin navadmin__active' : 'navadmin'}
+                                onClick={() => {
+                                    setStateNav([false, false, false, true, false])
                                 }}
                             >
                                 <ListIcon
@@ -241,18 +243,18 @@ function NavAdmin(props) {
                             padding='6px'
                             width='100%'
                             textAlign='left'
-                            _after={{
-                                content: '""',
-                                width: '100%',
-                                display: 'block',
-                                borderBottom: '1px solid #cecece',
-                            }}
+                        // _after={{
+                        //     content: '""',
+                        //     width: '100%',
+                        //     display: 'block',
+                        //     borderBottom: '1px solid #cecece',
+                        // }}
                         >
                             <Link
                                 to='admin/servicesmanagement'
-                                style={{
-                                    padding: '4px 20px',
-                                    display: 'block'
+                                className={stateNav[4] ? 'navadmin navadmin__active' : 'navadmin'}
+                                onClick={() => {
+                                    setStateNav([false, false, false, false, true])
                                 }}
                             >
                                 <ListIcon
