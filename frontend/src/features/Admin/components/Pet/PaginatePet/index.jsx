@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import PropTypes from 'prop-types';
 import './PaginatePet.scss'
-import { Container, Flex, Button } from '@chakra-ui/react';
+import { Container, Flex, Button, Spinner } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import TablePet from '../TablePet';
@@ -54,7 +54,17 @@ function PaginatPet(props) {
             padding='0 16px'
             marginTop='48px'
         >
-            <TablePet currentItems={currentItems} serialNum={serialNum} hanldeRender={hanldeRender} />
+            {currentItems.length > 0 ?
+                <TablePet currentItems={currentItems} serialNum={serialNum} hanldeRender={hanldeRender} />
+                :
+                <Spinner
+                    thickness='8px'
+                    speed='0.8s'
+                    emptyColor='gray.200'
+                    color='black.300'
+                    size='xl'
+                    display={'block'} margin='0 auto' />
+            }
 
             <Flex
                 alignItems='center'

@@ -18,6 +18,8 @@ import Dashboard from './features/Admin/components/Dashboard';
 import PetManagement from './features/Admin/components/Pet';
 import ServiceManagement from './features/Admin/components/Service';
 import BookingService from './features/Admin/components/Booking';
+import PrivateRoutesAdmin from './helpers/PrivateRoutesAdmin';
+import CustomerRoutes from './helpers/CustomerRoutes';
 // import AuthMain from './features/Auth/pages/Main';
 // import HomePage from './features/Introduce/pages/Home';
 // import ContactPage from './features/Introduce/pages/Contact';
@@ -48,234 +50,307 @@ function App() {
   }
 
   return (
-    // <>
-    //   <Router>
-    //     <Header handleEventLogout={handleEventLogout} />
-    //     <BackToTop key={250} />
-    //     <Routes>
-    //       <Route path='*' element={<NotFound />} />
-
-    //       <Route path="/" element={<Navigate to='/home' replace />} />
-
-    //       {/* public routes */}
-    //       <Route
-    //         path='/home'
-    //         element={
-    //           <React.Suspense fallback={<Loading />} >
-    //             <HomePage />
-    //           </React.Suspense>
-    //         }
-    //       />
-
-    //       <Route
-    //         path='/aboutus'
-    //         element={
-    //           <React.Suspense fallback={<Loading />} >
-    //             <AboutPage />
-    //           </React.Suspense>
-    //         }
-    //       />
-    //       <Route
-    //         path='/ourteam'
-    //         element={
-    //           <React.Suspense fallback={<Loading />}>
-    //             <OurTeamPage />
-    //           </React.Suspense>
-    //         }
-    //       />
-
-    //       <Route
-    //         path='/gallery'
-    //         element={
-    //           <React.Suspense fallback={<Loading />}>
-    //             <GalleryPage />
-    //           </React.Suspense>
-    //         }
-    //       />
-    //       <Route
-    //         path='/contact'
-    //         element={
-    //           <React.Suspense fallback={<Loading />} >
-    //             <ContactPage />
-    //           </React.Suspense>
-    //         }
-    //       />
-    //       <Route
-    //         path='/adoption'
-    //       >
-    //         <Route
-    //           path=''
-    //           element={
-    //             <React.Suspense fallback={<Loading />} >
-    //               <AdoptionPage />
-    //             </React.Suspense>
-    //           }
-    //         />
-
-    //         <Route
-    //           path=":id"
-    //           element={
-    //             <React.Suspense fallback={<Loading />} >
-    //               <AdoptionSinglePage />
-    //             </React.Suspense>
-    //           }
-    //         />
-
-    //         <Route
-    //           path=":id/payment"
-    //           element={
-    //             <React.Suspense fallback={<Loading />}>
-    //               <PaymentPage />
-    //             </React.Suspense>
-    //           }
-    //         />
-
-    //       </Route>
-
-    //       <Route
-    //         path='services'
-    //       >
-    //         <Route
-    //           path=''
-    //           element={
-    //             <React.Suspense fallback={<Loading />}>
-    //               <ServicesPage />
-    //             </React.Suspense>
-    //           }
-    //         />
-    //         <Route
-    //           path=':id'
-    //           element={
-    //             <React.Suspense fallback={<Loading />}>
-    //               <ServiceDetailsPage />
-    //             </React.Suspense>
-    //           }
-    //         />
-    //         <Route element={<PrivateRoutesUser />}>
-    //           <Route
-    //             path="payment"
-    //             element={
-    //               <React.Suspense fallback={<Loading />}>
-    //                 <ServicesPaymentPage />
-    //               </React.Suspense>
-    //             }
-    //           />
-    //         </Route>
-    //       </Route>
-
-    //       {/* use logged in routes */}
-    //       <Route element={<PublicRoutes />} >
-    //         <Route
-    //           path="/login"
-    //           element={
-    //             <React.Suspense fallback={<Loading />} >
-    //               <AuthMain />
-    //             </React.Suspense>
-    //           }
-    //         />
-
-    //         <Route
-    //           path="/register"
-    //           element={
-    //             <React.Suspense fallback={<Loading />} >
-    //               <AuthMain />
-    //             </React.Suspense>
-    //           }
-    //         />
-
-    //         <Route
-    //           path="/forgot-password"
-    //           element={
-    //             <React.Suspense fallback={<Loading />} >
-    //               <AuthMain />
-    //             </React.Suspense>
-    //           }
-    //         />
-    //       </Route>
-
-    //       {/* logged in & role: User */}
-    //       <Route element={<PrivateRoutesUser />}>
-    //         <Route
-    //           path='/profile'
-    //           element={
-    //             <React.Suspense fallback={<Loading />}>
-    //               <UserProfile />
-    //             </React.Suspense>
-    //           }
-    //         />
-
-    //         <Route
-    //           path='history'
-    //           element={
-    //             <React.Suspense fallback={<Loading />}>
-    //               <HistoriesPage />
-    //             </React.Suspense>
-    //           }
-    //         />
-    //       </Route>
-
-    //       {/* middle routes */}
-    //       <Route
-    //         path='/confirm-email/:token'
-    //         element={<AuthConfirmEmail />}
-    //       />
-    //     </Routes>
-    //     <NewsLetter heading='Subscribe to our newsletter' description='We send e-mails once a month, we never send Spam!' />
-    //     <Footer />
-    //   </Router>
-    // </>
     <>
       <Router>
-        <Admin />
+        <Header handleEventLogout={handleEventLogout} />
+        <Admin handleEventLogout={handleEventLogout} />
+        <BackToTop key={250} />
         <Routes>
-          {/* <Route path='/admin' element={<Admin />} /> */}
+          <Route path='*' element={<NotFound />} />
 
-          <Route
-            path="/accounts"
-            element={
-              <React.Suspense fallback={<Loading />}>
-                <AccountsManagement />
-              </React.Suspense>
-            }
-          />
+          <Route path="/" element={<Navigate to='/home' replace />} />
 
-          <Route
-            path="/dashboard"
-            element={
-              <React.Suspense fallback={<Loading />}>
-                <Dashboard />
-              </React.Suspense>
-            }
-          />
+          {/* Admin can't use */}
+          <Route element={<CustomerRoutes />}>
+            {/* public routes */}
+            <Route
+              path='/home'
+              element={
+                <React.Suspense fallback={<Loading />} >
+                  <HomePage />
+                </React.Suspense>
+              }
+            />
 
-          <Route
-            path="/booking"
-            element={
-              <React.Suspense fallback={<Loading />}>
-                <BookingService />
-              </React.Suspense>
-            }
-          />
+            <Route
+              path='/aboutus'
+              element={
+                <React.Suspense fallback={<Loading />} >
+                  <AboutPage />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path='/ourteam'
+              element={
+                <React.Suspense fallback={<Loading />}>
+                  <OurTeamPage />
+                </React.Suspense>
+              }
+            />
 
+            <Route
+              path='/gallery'
+              element={
+                <React.Suspense fallback={<Loading />}>
+                  <GalleryPage />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path='/contact'
+              element={
+                <React.Suspense fallback={<Loading />} >
+                  <ContactPage />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path='/adoption'
+            >
+              <Route
+                path=''
+                element={
+                  <React.Suspense fallback={<Loading />} >
+                    <AdoptionPage />
+                  </React.Suspense>
+                }
+              />
+
+              <Route
+                path=":id"
+                element={
+                  <React.Suspense fallback={<Loading />} >
+                    <AdoptionSinglePage />
+                  </React.Suspense>
+                }
+              />
+
+              <Route element={<PrivateRoutesUser />}>
+                <Route
+                  path=":id/payment"
+                  element={
+                    <React.Suspense fallback={<Loading />}>
+                      <PaymentPage />
+                    </React.Suspense>
+                  }
+                />
+              </Route>
+
+            </Route>
+
+            <Route
+              path='services'
+            >
+              <Route
+                path=''
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <ServicesPage />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path=':id'
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <ServiceDetailsPage />
+                  </React.Suspense>
+                }
+              />
+              <Route element={<PrivateRoutesUser />}>
+                <Route
+                  path="payment"
+                  element={
+                    <React.Suspense fallback={<Loading />}>
+                      <ServicesPaymentPage />
+                    </React.Suspense>
+                  }
+                />
+              </Route>
+            </Route>
+          </Route>
+
+          {/* use logged in routes */}
+          <Route element={<PublicRoutes />} >
+            <Route
+              path="/login"
+              element={
+                <React.Suspense fallback={<Loading />} >
+                  <AuthMain />
+                </React.Suspense>
+              }
+            />
+
+            <Route
+              path="/register"
+              element={
+                <React.Suspense fallback={<Loading />} >
+                  <AuthMain />
+                </React.Suspense>
+              }
+            />
+
+            <Route
+              path="/forgot-password"
+              element={
+                <React.Suspense fallback={<Loading />} >
+                  <AuthMain />
+                </React.Suspense>
+              }
+            />
+          </Route>
+
+          {/* logged in & role: User */}
+          <Route element={<PrivateRoutesUser />}>
+            <Route
+              path='/profile'
+              element={
+                <React.Suspense fallback={<Loading />}>
+                  <UserProfile />
+                </React.Suspense>
+              }
+            />
+
+            <Route
+              path='history'
+              element={
+                <React.Suspense fallback={<Loading />}>
+                  <HistoriesPage />
+                </React.Suspense>
+              }
+            />
+          </Route>
+
+          {/* logged in & role: Admin */}
+          <Route element={<PrivateRoutesAdmin />}>
+            <Route path='admin'>
+              <Route
+                path=''
+                element={
+                  <Navigate to='dashboard' replace />
+                }
+              />
+
+              <Route
+                path="accounts"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <AccountsManagement />
+                  </React.Suspense>
+                }
+              />
+
+              <Route
+                path="dashboard"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <Dashboard />
+                  </React.Suspense>
+                }
+              />
+
+              <Route
+                path="booking"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <BookingService />
+                  </React.Suspense>
+                }
+              />
+
+              <Route
+                path="petsmanagement"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <PetManagement />
+                  </React.Suspense>
+                }
+              />
+
+              <Route
+                path="servicesmanagement"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <ServiceManagement />
+                  </React.Suspense>
+                }
+              />
+
+              <Route
+                path='profile'
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <UserProfile />
+                  </React.Suspense>
+                }
+              />
+
+            </Route>
+          </Route>
+
+          {/* middle routes */}
           <Route
-            path="/petsmanagement"
-            element={
-              <React.Suspense fallback={<Loading />}>
-                <PetManagement />
-              </React.Suspense>
-            }
-          />
-          <Route
-            path="/servicesmanagement"
-            element={
-              <React.Suspense fallback={<Loading />}>
-                <ServiceManagement />
-              </React.Suspense>
-            }
+            path='/confirm-email/:token'
+            element={<AuthConfirmEmail />}
           />
         </Routes>
+        <NewsLetter heading='Subscribe to our newsletter' description='We send e-mails once a month, we never send Spam!' />
+        <Footer />
       </Router>
     </>
+    // <>
+    //   <Router>
+    //     <Admin />
+    //     <Routes>
+    //       {/* <Route path='/admin' element={<Admin />} /> */}
+
+    //       <Route
+    //         path="/accounts"
+    //         element={
+    //           <React.Suspense fallback={<Loading />}>
+    //             <AccountsManagement />
+    //           </React.Suspense>
+    //         }
+    //       />
+
+    //       <Route
+    //         path="/dashboard"
+    //         element={
+    //           <React.Suspense fallback={<Loading />}>
+    //             <Dashboard />
+    //           </React.Suspense>
+    //         }
+    //       />
+
+    //       <Route
+    //         path="/booking"
+    //         element={
+    //           <React.Suspense fallback={<Loading />}>
+    //             <BookingService />
+    //           </React.Suspense>
+    //         }
+    //       />
+
+    //       <Route
+    //         path="/petsmanagement"
+    //         element={
+    //           <React.Suspense fallback={<Loading />}>
+    //             <PetManagement />
+    //           </React.Suspense>
+    //         }
+    //       />
+    //       <Route
+    //         path="/servicesmanagement"
+    //         element={
+    //           <React.Suspense fallback={<Loading />}>
+    //             <ServiceManagement />
+    //           </React.Suspense>
+    //         }
+    //       />
+    //     </Routes>
+    //   </Router>
+    // </>
   );
 }
 export default App;
