@@ -43,15 +43,15 @@ function HeaderAdmin(props) {
                 </Heading>
                 <Button
                     display={isButton ? 'flex' : 'none'}
-                    backgroundColor='#0ec4cb'
+                    backgroundColor='#1446A0'
                     alignItems='center'
                     boxShadow='none !important'
                     color='#fff'
                     _hover={{
-                        backgroundColor: '#0eb4b9'
+                        backgroundColor: '#018AE0'
                     }}
                     _active={{
-                        backgroundColor: '#0ec4cb'
+                        backgroundColor: '#1446A0'
                     }}
                     onClick={handleOnModal}
                 >

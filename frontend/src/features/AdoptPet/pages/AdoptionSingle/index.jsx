@@ -33,12 +33,13 @@ function AdoptionSingle(props) {
     const [isLoading, setIsLoading] = useState(false)
     const [onModal, setOnModal] = useState(false)
     const { userInfo } = useSelector((state) => state.user);
+    const { isLoggedIn } = useSelector((state) => state.auth)
     const navigate = useNavigate()
     const location = useLocation()
 
     const toast = useToast()
     const dispatch = useDispatch()
-    // console.log('userInfo: ', userInfo);
+    // console.log('isLoggedIn: ', isLoggedIn);
 
     const initFetch = useCallback(async () => {
         dispatch(getInfo());
@@ -80,59 +81,38 @@ function AdoptionSingle(props) {
     // console.log('height: ', window.)
 
     const handleAddBillPet = () => {
-        // const params = {
-        //     idPet: pet.id,
-        //     idUser: userInfo.id,
-        //     methodPayment: 'Banking',
-        //     price: pet.price,
-        // }
-        // const addBillPet = async () => {
-        //     const response = await billAPI.addBill(params)
-        //     const { data, message, status } = response.data
-        //     console.log(response);
-        //     if (status === 200) {
-        //         toast({
-        //             title: 'Add Bill Successfully',
-        //             description: `Thank you for adopting ${pet.name} with price ${pet.price}$!`,
-        //             status: 'success',
-        //             duration: '5000',
-        //             isClosable: true,
-        //             position: 'top'
-        //         })
-        //     }
-        //     else {
-        //         toast({
-        //             title: 'Add Bill Unsuccessfully',
-        //             description: `Error: ${message}`,
-        //             status: 'error',
-        //             duration: '5000',
-        //             isClosable: true,
-        //             position: 'top'
-        //         })
-        //     }
-        // }
-        // // addBillPet()
-        // console.log('info bill: ', (params));
-        if (userInfo === undefined || !userInfo.email || !userInfo.firstName || !userInfo.lastName || !userInfo.phone || !userInfo.address) {
-            console.log(userInfo === undefined);
-            console.log(!userInfo.email);
-            console.log(!userInfo.firstName);
-            console.log(!userInfo.lastName);
-            console.log(!userInfo.phone);
-            console.log(!userInfo.address);
+        if (isLoggedIn) {
+            if (userInfo === undefined || !userInfo.email || !userInfo.firstName || !userInfo.lastName || !userInfo.phone || !userInfo.address) {
+                console.log(userInfo === undefined);
+                console.log(!userInfo.email);
+                console.log(!userInfo.firstName);
+                console.log(!userInfo.lastName);
+                console.log(!userInfo.phone);
+                console.log(!userInfo.address);
+                toast({
+                    title: 'Adopt Pet',
+                    description: `Please, Update full information before adopt pet!`,
+                    status: 'warning',
+                    duration: '3000',
+                    position: 'top',
+                    isClosable: true,
+                })
+            }
+            else {
+                const url = location.pathname + "/payment"
+                navigate(url)
+                setOnModal(false)
+            }
+        }
+        else {
             toast({
                 title: 'Adopt Pet',
-                description: `Please, Update full information before adopt pet!`,
+                description: `Please, Login to proceed with the adoption!`,
                 status: 'warning',
                 duration: '3000',
                 position: 'top',
                 isClosable: true,
             })
-        }
-        else {
-            const url = location.pathname + "/payment"
-            navigate(url)
-            setOnModal(false)
         }
     }
     console.log("userInfo: ", userInfo);

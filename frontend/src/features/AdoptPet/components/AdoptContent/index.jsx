@@ -46,6 +46,7 @@ function AdoptContent(props) {
                                 age={item.age}
                                 maxW='100%'
                                 idPet={item.id}
+                                h='auto'
                             />
                         </Container>
                     ))}

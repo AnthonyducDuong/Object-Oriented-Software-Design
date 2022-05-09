@@ -13,7 +13,7 @@ function AdoptCartSingle(props) {
     const { pet, srcImage, isLoading } = props
     // console.log('isLoading: ', isLoading);
     return (
-        <Skeleton isLoaded={isLoading}>
+        <Skeleton isLoaded={isLoading} width='100%' height='100%'>
             <Container
                 maxWidth='100%'
                 flex='0 0 1'
