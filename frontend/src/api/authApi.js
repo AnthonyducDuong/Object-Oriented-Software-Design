@@ -55,11 +55,11 @@ const authApi = {
    logout: () => {
       // localStorage.removeItem("authToken");
       console.log(">>> Check domain: ", currentDomain());
-      // cookies.remove("authToken", {
-      //    path: '/',
-      //    maxAge: 0,
-      //    domain: currentDomain(),
-      // });
+      cookies.remove("authToken", {
+         path: '/',
+         maxAge: 0,
+         domain: currentDomain(),
+      });
       delete_cookie("authToken")
    },
    refreshToken: (param) => {

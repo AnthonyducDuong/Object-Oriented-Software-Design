@@ -14,7 +14,7 @@ function PrivateRoutesUser(props) {
    const location = useLocation();
 
    const { isLoggedIn, role } = useSelector((state) => state.auth);
-   console.log(">>> Check PrivateRoutesUser - isLoggedIn & role: ", isLoggedIn, " ", role);
+   // console.log(">>> Check PrivateRoutesUser - isLoggedIn & role: ", isLoggedIn, " ", role);
 
    // useEffect(() => {
    //    if (isLoggedIn) {

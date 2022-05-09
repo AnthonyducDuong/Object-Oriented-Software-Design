@@ -18,7 +18,7 @@ function HeaderAdmin(props) {
         <Box>
             <Link
                 className='link'
-                to='/dashboard'
+                to='/admin'
                 style={{
                     display: 'flex',
                     alignItems: 'center',
