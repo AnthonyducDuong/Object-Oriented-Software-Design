@@ -190,7 +190,6 @@ function TableService(props) {
                                                         setOpenModal(true)
                                                         setIdDelete(item.id)
                                                         setCurrService(item)
-                                                        // console.log(item);
                                                     }}
                                                 >
                                                     <Icon color='red.400' cursor='pointer' fontSize='22px' as={RiIndeterminateCircleLine} />

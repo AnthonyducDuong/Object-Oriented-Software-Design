@@ -8,6 +8,7 @@ import { RiDashboard2Line } from 'react-icons/ri'
 import { BsFillCalendarCheckFill } from 'react-icons/bs'
 import { FaDog } from 'react-icons/fa'
 import { GiDogBowl } from 'react-icons/gi'
+import { BiLock } from 'react-icons/bi'
 import './NavAdmin.scss'
 
 NavAdmin.propTypes = {
@@ -135,12 +136,6 @@ function NavAdmin(props) {
                             padding='6px'
                             width='100%'
                             textAlign='left'
-                        // _after={{
-                        //     content: '""',
-                        //     width: '100%',
-                        //     display: 'block',
-                        //     borderBottom: '1px solid #cecece',
-                        // }}
                         >
                             <Link
                                 to='/admin/accounts'
@@ -162,12 +157,6 @@ function NavAdmin(props) {
                             padding='6px'
                             width='100%'
                             textAlign='left'
-                        // _after={{
-                        //     content: '""',
-                        //     width: '100%',
-                        //     display: 'block',
-                        //     borderBottom: '1px solid #cecece',
-                        // }}
                         >
                             <Link
                                 to={'admin/booking'}
@@ -189,12 +178,6 @@ function NavAdmin(props) {
                             padding='6px'
                             width='100%'
                             textAlign='left'
-                        // _after={{
-                        //     content: '""',
-                        //     width: '100%',
-                        //     display: 'block',
-                        //     borderBottom: '1px solid #cecece',
-                        // }}
                         >
                             <Link
                                 to={'admin/dashboard'}
@@ -216,12 +199,6 @@ function NavAdmin(props) {
                             padding='6px'
                             width='100%'
                             textAlign='left'
-                        // _after={{
-                        //     content: '""',
-                        //     width: '100%',
-                        //     display: 'block',
-                        //     borderBottom: '1px solid #cecece',
-                        // }}
                         >
                             <Link
                                 to='admin/petsmanagement'
@@ -243,12 +220,6 @@ function NavAdmin(props) {
                             padding='6px'
                             width='100%'
                             textAlign='left'
-                        // _after={{
-                        //     content: '""',
-                        //     width: '100%',
-                        //     display: 'block',
-                        //     borderBottom: '1px solid #cecece',
-                        // }}
                         >
                             <Link
                                 to='admin/servicesmanagement'

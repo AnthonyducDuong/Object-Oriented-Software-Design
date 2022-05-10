@@ -36,10 +36,6 @@ function CalendarCus(props) {
     const handleNext = () => {
         setDayObj(dayObj.add(1, "month"))
     }
-    // console.log('daysInMonth: ', range(daysInMonth));
-    // console.log('thisMonth: ', thisMonth);
-    // console.log('thisYear: ', thisYear);
-    // console.log('arrDate: ', arrDate);
 
     return (
         <div className="calendar">
@@ -81,7 +77,6 @@ function CalendarCus(props) {
                                 className={tmp}
                                 key={i}
                                 onClick={(e) => {
-                                    // console.log(thisYear + "-" + thisMonth + "-" + e.target.innerText);
                                     let currMonth = ''
                                     if (thisMonth < 9) {
                                         currMonth = `0${thisMonth + 1}`

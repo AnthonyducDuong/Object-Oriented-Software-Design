@@ -56,12 +56,9 @@ function BookingService(props) {
             }
             const response = await userApi.getAllUsers(params)
             const { data } = response.data
-            // console.log('data.users: ', data.users);
-            // console.log('response: ', response);
             setFindUser(data.users)
         } catch (error) {
             setFindUser([])
-            console.log('error', error.data);
         }
 
     }
@@ -72,14 +69,12 @@ function BookingService(props) {
     }
 
     const handleAction = async (item) => {
-        // console.log('add booking');
         try {
             const params = {
                 usename: item.userName,
                 serviceId: item.serviceId,
                 dateBooking: startDate,
             }
-            // console.log('data booking: ', params);
             const response = await bookServiceAPI.adminAddBooking(params)
             const { data, status } = response.data
             if (status === 200) {
@@ -93,7 +88,6 @@ function BookingService(props) {
                 })
             }
         } catch (error) {
-            // console.log('error: ', error.response.data);
             const { details } = error.response.data
             toast({
                 title: 'Add new booking',
@@ -118,8 +112,6 @@ function BookingService(props) {
         }
         getAllService()
     }, [isRender])
-    // console.log('userName: ', userName);
-    // console.log('serviceId: ', serviceId);
     return (
         <Box marginLeft='288px'>
             <Box

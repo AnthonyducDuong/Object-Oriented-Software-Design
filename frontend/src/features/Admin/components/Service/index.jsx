@@ -59,7 +59,6 @@ function ServiceManagement(props) {
             handleOffModal()
         }
     }
-    // console.log('currImageService: ', currImageService);
     return (
         <Box marginLeft='288px'>
             <Box

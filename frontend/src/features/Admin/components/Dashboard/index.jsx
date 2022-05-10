@@ -39,7 +39,6 @@ function Dashboard(props) {
             }
             const response = await userApi.getAllUsers(params)
             const { data } = response.data
-            // console.log('data.users: ', data.users);
             setTotalUser(data.users.length)
         }
         const getAllPet = async () => {
@@ -49,7 +48,6 @@ function Dashboard(props) {
             }
             const response = await petAPI.getAll(params)
             const { data } = response.data
-            // console.log('data.pets: ', data.pets);
             setTotalPet(data.pets.length)
         }
         const getAllService = async () => {
@@ -60,7 +58,6 @@ function Dashboard(props) {
             }
             const response = await serviceApi.getServices(params)
             const { data } = response.data
-            // console.log('data.services: ', data.services);
             setTotalService(data.services.length)
         }
         const getAllRevenue = async () => {
@@ -87,8 +84,6 @@ function Dashboard(props) {
             })
 
             setToltalRevenue(total)
-            // console.log('bills: ', bills);
-            // console.log('bookingServices: ', bookingServices);
         }
         getAllUser()
         getAllPet()

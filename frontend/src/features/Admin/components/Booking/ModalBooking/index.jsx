@@ -56,7 +56,6 @@ function ModalBooking(props) {
         resolver: yupResolver(petSchema)
     });
     const onSubmit = (data) => {
-        // console.log("data Booking: ", data);
         handleAction(data)
     }
 
@@ -68,16 +67,11 @@ function ModalBooking(props) {
         setValue('payment', payment ? payment : '1')
     }, [userName, serviceId, status, payment])
 
-
-    // console.log('userName: ', userName);
-    // console.log('listService: ', listService);
-    // console.log('status: ', status);
-    // console.log('payment: ', payment);
     return (
         <>
             <Modal isOpen={openModal} onClose={closeModal} size='xl'>
                 <ModalOverlay opacity='0.4 !important' />
-                <ModalContent top='-40px' >
+                <ModalContent top='100px' >
                     <ModalHeader textAlign='center'>{headerModal}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody >
