@@ -14,7 +14,7 @@ PaginateUser.propTypes = {
 const items = [];
 
 function PaginateUser(props) {
-    const { itemsPerPage } = props
+    const { itemsPerPage, isRerender } = props
     const [page, setPage] = useState(0)
     const [isRender, setIsRender] = useState(false)
     const auth = useSelector((state) => state.auth)
@@ -48,7 +48,7 @@ function PaginateUser(props) {
             setCurrentItems(data.users)
         }
         getUsers()
-    }, [currentPage, isRender, itemsPerPage])
+    }, [currentPage, isRender, itemsPerPage, isRerender])
     return (
         <Container
             maxWidth='100%'

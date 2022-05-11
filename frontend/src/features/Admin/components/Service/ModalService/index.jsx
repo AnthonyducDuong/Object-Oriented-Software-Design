@@ -93,7 +93,6 @@ function ModalService(props) {
                 handleImageService(response.data.url);
                 handleOffloading();
             } catch (error) {
-                console.log(error);
                 handleOffloading();
             }
         } else {
@@ -116,18 +115,14 @@ function ModalService(props) {
             id: currIdService,
             image: currImageService,
         }
-        console.log('upService: ', tmpService);
-        // console.log("data Pet: ",data);
         handleAction(tmpService)
     }
-    // console.log('currImageService: ', currImageService);
-    // console.log('upService: ', upService);
 
     return (
         <>
             <Modal isOpen={openModal} onClose={closeModal}>
                 <ModalOverlay opacity='0.4 !important' />
-                <ModalContent top='-40px' >
+                <ModalContent top='20px' >
                     <ModalHeader textAlign='center'>Update Service</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody >

@@ -45,7 +45,6 @@ function PaginatService(props) {
 
             const response = await serviceApi.getServices(params)
             const { data, pagination } = response.data
-            // console.log('data.services', data.services);
             setPage(pagination._totalPage)
             setCurrentItems(data.services)
         }

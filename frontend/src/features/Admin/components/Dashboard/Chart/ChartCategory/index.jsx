@@ -90,7 +90,6 @@ function ChartCategory(props) {
             const response = await petAPI.getPetsByCategory(category, params)
             const { data } = response.data
             callBack(data.pets)
-            // console.log('data.pets: ', data.pets);
         }
         getAllPet('dog', {
             page: 0,

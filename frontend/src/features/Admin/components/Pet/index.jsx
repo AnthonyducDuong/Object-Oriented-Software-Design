@@ -62,7 +62,6 @@ function PetManagement(props) {
             handleOffModal()
         }
     }
-    // console.log('currImagePet: ', currImagePet);
     return (
         <Box marginLeft='288px'>
             <Box

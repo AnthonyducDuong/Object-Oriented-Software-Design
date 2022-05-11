@@ -36,6 +36,10 @@ const userApi = {
    deleteUserByID: (id) => {
       const url = pathUser + `/${id}`
       return axiosClient.delete(url, id)
+   },
+   saveUser: (params) => {
+      const url = pathUser;
+      return axiosClient.post(url, params)
    }
 };
 

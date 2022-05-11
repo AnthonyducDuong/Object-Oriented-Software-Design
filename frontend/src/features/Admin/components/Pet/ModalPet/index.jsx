@@ -107,7 +107,6 @@ function ModalPet(props) {
                 handleImagePet(response.data.url);
                 handleOffloading();
             } catch (error) {
-                console.log(error);
                 handleOffloading();
             }
         } else {
@@ -132,12 +131,8 @@ function ModalPet(props) {
                 url: currImagePet
             }]
         }
-        console.log('upPet: ', tmpPet);
-        // console.log("data Pet: ",data);
         handleAction(tmpPet)
     }
-    // console.log('currImagePet: ', currImagePet);
-    // console.log('upPet: ', upPet);
 
     return (
         <>

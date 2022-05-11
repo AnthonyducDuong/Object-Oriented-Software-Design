@@ -46,7 +46,6 @@ function TableBooking(props) {
                 })
             }
         } catch (error) {
-            console.log(error);
             toast({
                 title: 'Update Info Booking Service',
                 status: 'error',
@@ -70,12 +69,9 @@ function TableBooking(props) {
             }
             const response = await userApi.getAllUsers(params)
             const { data } = response.data
-            // console.log('data.users: ', data.users);
-            // console.log('response: ', response);
             setFindUser(data.users)
         } catch (error) {
             setFindUser([])
-            console.log('error', error.data);
         }
 
     }
@@ -103,7 +99,6 @@ function TableBooking(props) {
                 status: item.status,
                 username: item.userName,
             }
-            console.log('data booking: ', params);
             const response = await bookServiceAPI.addminUpdateBooking(idUpdate, params)
             const { data, status } = response.data
             if (status === 200) {
@@ -190,7 +185,6 @@ function TableBooking(props) {
                                                         status: item.status,
                                                         username: item.userBookService.userName
                                                     }
-                                                    console.log('tmpBooking: ', tmpBooking);
                                                     updateBooking(item.id, tmpBooking)
                                                 }}
                                             >
@@ -220,7 +214,6 @@ function TableBooking(props) {
                                                     setStatus(item.status)
                                                     setStartDate(new Date(item.dateBooking))
                                                     setIdUpdate(item.id)
-                                                    console.log('[item.service: ', item.service);
                                                 }}>
                                                     <Icon color='yellow.400' cursor='pointer' fontSize='22px' as={MdUpdate} />
                                                 </Box>
