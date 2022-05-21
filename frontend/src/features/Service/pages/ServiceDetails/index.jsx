@@ -67,6 +67,7 @@ function ServiceDetails(props) {
    const arrJson = JSON.stringify(arr)
 
    useEffect(() => {
+      document.title = "Service Details"
       const fetchData = async () => {
          const params = {
             page: 0,

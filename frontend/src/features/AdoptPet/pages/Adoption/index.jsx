@@ -15,8 +15,8 @@ function AdoptPet(props) {
     window.scrollTo(0, 0)
 
     useEffect(() => {
-
-    })
+        document.title = "Adoption"
+    }, [])
     const [fliterAll, setFilterAll] = useState(true)
     const [fliterDog, setFilterDog] = useState(false)
     const [fliterCat, setFilterCat] = useState(false)

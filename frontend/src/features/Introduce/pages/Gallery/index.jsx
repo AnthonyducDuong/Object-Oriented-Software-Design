@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../../../../components/Banner'
 import { Container, Heading, Text } from '@chakra-ui/react';
@@ -16,6 +16,9 @@ function Gallery(props) {
         link: ''
     }]
     const arrJson = JSON.stringify(arr)
+    useEffect(() => {
+        document.title = "Gallery"
+    })
     return (
         <>
             <Banner arrHeading={arrJson} headingPage='Gallery' />

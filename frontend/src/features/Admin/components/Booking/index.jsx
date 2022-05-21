@@ -111,6 +111,7 @@ function BookingService(props) {
             setListService(data.services)
         }
         getAllService()
+        document.title = "Booking Service"
     }, [isRender])
     return (
         <Box marginLeft='288px'>

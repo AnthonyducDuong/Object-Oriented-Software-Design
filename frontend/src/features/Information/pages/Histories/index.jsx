@@ -25,6 +25,9 @@ function Histories(props) {
    }]
    const [stateHistory, setStateHistory] = useState('Pets')
    const arrJson = JSON.stringify(arr)
+   useEffect(() => {
+      document.title = "History"
+   }, [])
    return (
       <>
          <Banner

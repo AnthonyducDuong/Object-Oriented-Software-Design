@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, useToast } from '@chakra-ui/react'
 import HeaderAdmin from '../Header';
@@ -57,6 +57,9 @@ function AccountsManagement(props) {
             })
         }
     }
+    useEffect(() => {
+        document.title = "Accounts"
+    }, [])
     return (
         <>
             <Box marginLeft='288px'>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../../../../components/Banner';
 import { Container, Flex } from '@chakra-ui/layout';
@@ -20,6 +20,9 @@ function About(props) {
         link: ''
     }]
     const arrJson = JSON.stringify(arr)
+    useEffect(() => {
+        document.title = "About Us"
+    })
     return (
         <>
             <Banner arrHeading={arrJson} headingPage='About us' />

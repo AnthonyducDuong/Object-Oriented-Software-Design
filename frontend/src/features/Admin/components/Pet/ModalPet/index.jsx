@@ -41,9 +41,9 @@ const petSchema = yup.object().shape({
     breed: yup.string().required(),
     category: yup.string().required(),
     description: yup.string().required(),
-    age: yup.number().required(),
-    size: yup.number().required(),
-    price: yup.number().required(),
+    age: yup.number().positive().integer().min(1, "Age must be greater or equal to 1").required(),
+    size: yup.number().positive().integer().min(1, "Size must be greater or equal to 1").required(),
+    price: yup.number().positive().min(1, "Price must be greater or equal to 1").required(),
     vaccinated: yup.bool().required(),
     status: yup.bool().required(),
 })
@@ -56,7 +56,8 @@ function ModalPet(props) {
     const toast = useToast()
 
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({
-        resolver: yupResolver(petSchema)
+        resolver: yupResolver(petSchema),
+        mode: 'all'
     });
 
 
@@ -184,7 +185,7 @@ function ModalPet(props) {
                             <Box
                                 display='flex'
                                 justifyContent='space-between'
-                                alignItems='center'
+                                alignItems='start'
                             >
                                 <FormControl
                                     maxWidth='48%'
@@ -206,6 +207,7 @@ function ModalPet(props) {
                                 >
                                     <FormLabel fontSize='14px' htmlFor='gender'>Gender</FormLabel>
                                     <Select minWidth='180px'
+                                        marginTop='-4px'
                                         placeholder='Select gender'
                                         {...register("gender")}
                                     >
@@ -218,7 +220,7 @@ function ModalPet(props) {
                             <Box
                                 display='flex'
                                 justifyContent='space-between'
-                                alignItems='center'
+                                alignItems='start'
                             >
                                 <Box>
                                     <FormControl
@@ -248,7 +250,7 @@ function ModalPet(props) {
                             <Box
                                 display='flex'
                                 justifyContent='space-between'
-                                alignItems='center'
+                                alignItems='start'
                             >
                                 <Box>
                                     <FormControl
@@ -278,52 +280,67 @@ function ModalPet(props) {
                             <Box
                                 display='flex'
                                 justifyContent='space-between'
-                                alignItems='center'
+                                alignItems='start'
                             >
                                 <Box>
-                                    <FormLabel fontSize='14px' htmlFor='age'>Age</FormLabel>
-                                    <NumberInput defaultValue={1} max={30} clampValueOnBlur={false}
-                                        {...register("age")}
+                                    <FormControl
+                                        isInvalid={!!errors?.age?.message}
+                                        errortext={errors?.age?.message}
                                     >
-                                        <NumberInputField />
-                                        <NumberInputStepper>
-                                            <NumberIncrementStepper />
-                                            <NumberDecrementStepper />
-                                        </NumberInputStepper>
-                                    </NumberInput>
-                                    <FormErrorMessage>{errors?.age?.message}</FormErrorMessage>
+                                        <FormLabel fontSize='14px' htmlFor='age'>Age</FormLabel>
+                                        <NumberInput defaultValue={1} max={30} clampValueOnBlur={false}
+                                            {...register("age")}
+                                        >
+                                            <NumberInputField />
+                                            <NumberInputStepper>
+                                                <NumberIncrementStepper />
+                                                <NumberDecrementStepper />
+                                            </NumberInputStepper>
+                                        </NumberInput>
+                                        <FormErrorMessage>{errors?.age?.message}</FormErrorMessage>
+                                    </FormControl>
                                 </Box>
                                 <Box>
-                                    <FormLabel fontSize='14px' htmlFor='size'>Size</FormLabel>
-                                    <NumberInput defaultValue={1} max={30} clampValueOnBlur={false}
-                                        {...register("size")}
+                                    <FormControl
+                                        isInvalid={!!errors?.size?.message}
+                                        errortext={errors?.size?.message}
                                     >
-                                        <NumberInputField />
-                                        <NumberInputStepper>
-                                            <NumberIncrementStepper />
-                                            <NumberDecrementStepper />
-                                        </NumberInputStepper>
-                                    </NumberInput>
-                                    <FormErrorMessage>{errors?.size?.message}</FormErrorMessage>
+                                        <FormLabel fontSize='14px' htmlFor='size'>Size</FormLabel>
+                                        <NumberInput defaultValue={1} max={30} clampValueOnBlur={false}
+                                            {...register("size")}
+                                        >
+                                            <NumberInputField />
+                                            <NumberInputStepper>
+                                                <NumberIncrementStepper />
+                                                <NumberDecrementStepper />
+                                            </NumberInputStepper>
+                                        </NumberInput>
+                                        <FormErrorMessage>{errors?.size?.message}</FormErrorMessage>
+                                    </FormControl>
                                 </Box>
                                 <Box>
-                                    <FormLabel fontSize='14px' htmlFor='price'>Price</FormLabel>
-                                    <NumberInput defaultValue={1} max={1000} clampValueOnBlur={false}
-                                        {...register("price")}
+                                    <FormControl
+                                        isInvalid={!!errors?.price?.message}
+                                        errortext={errors?.price?.message}
                                     >
-                                        <NumberInputField />
-                                        <NumberInputStepper>
-                                            <NumberIncrementStepper />
-                                            <NumberDecrementStepper />
-                                        </NumberInputStepper>
-                                    </NumberInput>
-                                    <FormErrorMessage>{errors?.price?.message}</FormErrorMessage>
+                                        <FormLabel fontSize='14px' htmlFor='price'>Price</FormLabel>
+                                        <NumberInput defaultValue={1} max={1000} clampValueOnBlur={false}
+                                            {...register("price")}
+                                        >
+                                            <NumberInputField />
+                                            <NumberInputStepper>
+                                                <NumberIncrementStepper />
+                                                <NumberDecrementStepper />
+                                            </NumberInputStepper>
+                                        </NumberInput>
+                                        <FormErrorMessage>{errors?.price?.message}</FormErrorMessage>
+                                    </FormControl>
                                 </Box>
                             </Box>
                             <Box
                                 display='flex'
                                 justifyContent='space-between'
-                                alignItems='center'
+                                alignItems='start'
                             >
                                 <Box>
                                     <FormControl

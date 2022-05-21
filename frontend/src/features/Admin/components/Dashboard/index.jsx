@@ -32,6 +32,7 @@ function Dashboard(props) {
     const [toltalRevenue, setToltalRevenue] = useState(0)
 
     useEffect(() => {
+        document.title = "Dashboard"
         const getAllUser = async () => {
             const params = {
                 page: 0,

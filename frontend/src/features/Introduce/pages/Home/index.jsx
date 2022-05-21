@@ -24,6 +24,9 @@ HomePage.propTypes = {
 
 function HomePage(props) {
     window.scrollTo(0, 0)
+    useEffect(() => {
+        document.title = "Home"
+    })
     return (
         <>
             <BannerHome />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../../../components/header';
 import Map from '../../../../components/Map'
@@ -18,6 +18,9 @@ function Contact(props) {
         link: ''
     }]
     const arrJson = JSON.stringify(arr)
+    useEffect(() => {
+        document.title = "Contact"
+    }, [])
     return (
         <>
             <Banner arrHeading={arrJson} headingPage={'Contact'} />

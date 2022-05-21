@@ -41,6 +41,9 @@ function Payment(props) {
         getPet()
         initFetch();
     }, [idPet, initFetch])
+    useEffect(() => {
+        document.title = "Adopt Payment"
+    }, [])
     const arr = [
         {
             head: 'Adoption',
