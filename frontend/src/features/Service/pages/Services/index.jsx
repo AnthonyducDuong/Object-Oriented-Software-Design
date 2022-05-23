@@ -33,6 +33,7 @@ function Services(props) {
    });
 
    useEffect(() => {
+      document.title = "Services"
       const fetchData = async () => {
          const params = {
             page: filters._page,

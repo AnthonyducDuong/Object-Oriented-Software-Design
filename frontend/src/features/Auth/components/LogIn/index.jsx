@@ -60,6 +60,7 @@ function LogIn(props) {
    // }, [dispatch]);
 
    useEffect(() => {
+      document.title = "Login"
       const loginData = cookies.get('loginData') ? cookies.get('loginData') : null;
 
       if (loginData !== null) {

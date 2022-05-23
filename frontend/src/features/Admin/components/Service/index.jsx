@@ -18,7 +18,7 @@ function ServiceManagement(props) {
     const toast = useToast()
 
     useEffect(() => {
-
+        document.title = "Services Management"
     }, [isRender])
 
     const handleOnModal = () => {

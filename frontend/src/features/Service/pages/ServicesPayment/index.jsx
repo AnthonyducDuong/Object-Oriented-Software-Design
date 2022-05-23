@@ -25,6 +25,7 @@ function ServicesPayment(props) {
    // console.log(">>> Check state location: ", JSON.parse(location.state.data), " ", location.state.date);
 
    useEffect(() => {
+      document.title = "Services Payment"
       if (!isLoggedIn) {
          dispatch(setMessage("You must to login"));
          navigate('/login');

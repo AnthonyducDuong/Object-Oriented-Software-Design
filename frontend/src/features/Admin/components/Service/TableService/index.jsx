@@ -141,7 +141,7 @@ function TableService(props) {
                                             {item.description}
                                         </Td>
                                         <Td textAlign='center' >
-                                            {item.price}
+                                            ${item.price}
                                         </Td>
                                         <Td textAlign='center' >
                                             {item.slot}

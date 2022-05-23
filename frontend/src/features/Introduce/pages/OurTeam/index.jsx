@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../../../../components/Banner';
 import { Container, Heading } from '@chakra-ui/react';
@@ -15,6 +15,9 @@ function OurTeam(props) {
         link: ''
     }]
     const arrJson = JSON.stringify(arr)
+    useEffect(() => {
+        document.title = "Our Team"
+    })
     return (
         <>
             <Banner arrHeading={arrJson} headingPage='OurTeam' />

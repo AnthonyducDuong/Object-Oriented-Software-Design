@@ -71,6 +71,9 @@ function AdoptionSingle(props) {
         getListPet()
         window.scrollTo(0, 0)
     }, [idPet])
+    useEffect(() => {
+        document.title = "Adoption Single"
+    }, [])
     const handleAdoptPet = () => {
         setOnModal(true)
         // setCheckOut(true)

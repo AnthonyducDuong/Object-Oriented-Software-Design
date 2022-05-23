@@ -27,6 +27,9 @@ function UserProfile(props) {
    useEffect(() => {
       initFetch();
    }, [initFetch]);
+   useEffect(() => {
+      document.title = "User Profile"
+   }, [])
    const arr = [{
       head: 'Profile',
       link: ''

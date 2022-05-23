@@ -53,7 +53,8 @@ function ModalBooking(props) {
     const toast = useToast()
 
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({
-        resolver: yupResolver(petSchema)
+        resolver: yupResolver(petSchema),
+        mode: 'all'
     });
     const onSubmit = (data) => {
         handleAction(data)

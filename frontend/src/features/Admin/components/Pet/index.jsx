@@ -19,7 +19,7 @@ function PetManagement(props) {
     const toast = useToast()
 
     useEffect(() => {
-
+        document.title = "Pets Management"
     }, [isRender])
 
     const handleOnModal = () => {

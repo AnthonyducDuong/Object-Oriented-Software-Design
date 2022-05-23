@@ -68,7 +68,9 @@ function Register(props) {
    useEffect(() => {
       dispatch(clearMessage());
    }, [dispatch]);
-
+   useEffect(() => {
+      document.title = "Register"
+   }, [])
    const _onSubmitForm = async (data) => {
       console.log(">>> Check register", data);
       if (data.password === data.confirmPassword) {

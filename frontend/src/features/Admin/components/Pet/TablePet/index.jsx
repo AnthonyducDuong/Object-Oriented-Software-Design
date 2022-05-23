@@ -165,7 +165,7 @@ function TablePet(props) {
                                             {item.category}
                                         </Td>
                                         <Td textAlign='center' >
-                                            {item.price}$
+                                            ${item.price}
                                         </Td>
                                         <Td textAlign='center'>
                                             <Box onClick={() => {

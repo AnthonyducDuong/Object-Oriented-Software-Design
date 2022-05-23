@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Text, Flex, Icon, Button, FormControl, InputGroup, InputLeftElement, Input, FormErrorMessage, useToast } from '@chakra-ui/react';
 import { IoMdArrowBack } from 'react-icons/io';
@@ -70,6 +70,9 @@ function ForgotPassword(props) {
       }
    };
 
+   useEffect(() => {
+      document.title = "Forgot Password"
+   }, [])
    return (
       <Box
          bg='white'
