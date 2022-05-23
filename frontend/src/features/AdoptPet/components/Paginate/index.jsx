@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import PropTypes from 'prop-types';
 import AdoptContent from '../AdoptContent';
 import './Paginate.scss'
-import { Container, Flex, Button } from '@chakra-ui/react';
+import { Container, Flex, Button, Skeleton } from '@chakra-ui/react';
 import petAPI from '../../../../api/petApi';
 import AdoptCart from '../../../../components/AdoptCart';
 import { useLocation } from 'react-router-dom';
@@ -66,7 +66,12 @@ function PaginateAdopt(props) {
             padding='0 16px'
             marginTop='48px'
         >
-            <AdoptContent currentItems={currentItems} />
+            {currentItems.length !== 0 ?
+                <AdoptContent currentItems={currentItems} />
+                :
+                <Skeleton width="1043px" height='1155px' />
+            }
+
 
             <Flex
                 alignItems='center'
