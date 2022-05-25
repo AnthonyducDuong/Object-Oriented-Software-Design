@@ -393,6 +393,9 @@ function AdoptionSingle(props) {
                                                     borderRadius='8px'
                                                     maxWidth='60px'
                                                     src={pet.imagePetEntityList[0].url}
+                                                    height='60px'
+                                                    width='216px'
+                                                    objectFit='cover'
                                                 />
                                                 <Heading
                                                     marginLeft='20px'
